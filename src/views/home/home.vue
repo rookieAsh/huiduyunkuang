@@ -41,6 +41,7 @@
             />
             <div v-if="this.coinName == 'BTC'" class="val">TH/s</div>
             <div v-if="this.coinName == 'ETH'" class="val">MH/s</div>
+            <div v-if="this.coinName == 'CHIA'" class="val">PH/s</div>
           </div>
           <div class="btn text-center" @click="handleCount">收益计算</div>
           <div class="show flex-column flex-between">
@@ -50,6 +51,9 @@
             </div>
             <div v-if="this.coinName == 'ETH'">
               {{ multiplyHashrate }} ETH (${{ multiply }})
+            </div>
+            <div v-if="this.coinName == 'CHIA'">
+              {{ multiplyHashrate }} CHIA (${{ multiply }})
             </div>
           </div>
         </div>
@@ -79,6 +83,7 @@
       <div class="titleBox">
         <div class="title">市场热销</div>
         <img src="../../assets/imgs/title_bg.png" class="title_bg" />
+        <!-- <img src="hotObj.image" class="title_bg" /> -->
       </div>
 
       <div class="flex">
@@ -101,7 +106,15 @@
         </div>
 
         <div class="hot_sell_right">
-          <img src="../../assets/imgs/pic.png" alt="" />
+          <img :src="hotObj.image" alt="" />
+          <!-- <img
+            v-if="hotObj.productId == 3"
+            src="../../assets/imgs/kangjiblack.png"
+          />
+          <img
+            v-if="hotObj.productId == 5"
+            src="../../assets/imgs/kuangji3.png"
+          /> -->
         </div>
       </div>
 
@@ -113,7 +126,17 @@
           :class="{ active: cureent == index }"
           @click="select1(item, index)"
         >
-          <img src="../../assets/imgs/pic2.png" alt="" />
+          <!-- {{ item }} -->
+          <img :src="item.image" alt="" />
+          <!-- <img
+            v-if="item.productId == 3"
+            src="../../assets/imgs/kangjiblack.png"
+          />
+          <img
+            v-if="item.productId == 5"
+            src="../../assets/imgs/kuangji3.png"
+          /> -->
+
           <div class="key1">{{ item.name }}</div>
         </div>
       </div>
@@ -130,23 +153,30 @@
           <div class="icon">
             <img src="../../assets/imgs/icon_btc.png" alt="" />
           </div>
-          <h4 @click="navigate('./power')">云算力</h4>
-          <h6 @click="navigate('./market')">联合挖矿</h6>
+          <h4 @click="navigate('./power', 0)">云算力</h4>
+          <h6 @click="navigate('./market', 0)">联合挖矿</h6>
         </div>
         <div class="miningLi">
           <div class="icon">
             <img src="../../assets/imgs/icon_eth.png" alt="" />
           </div>
-          <h4 @click="navigate('./power')">云算力</h4>
-          <h6 @click="navigate('./market')">联合挖矿</h6>
+          <h4 @click="navigate('./power', 1)">云算力</h4>
+          <h6 @click="navigate('./market', 1)">联合挖矿</h6>
         </div>
         <div class="miningLi">
           <div class="icon">
-            <img src="../../assets/imgs/icon_fil.png" alt="" />
+            <img src="../../assets/imgs/chiaImg.png" alt="" />
           </div>
-          <h4 @click="navigate('./power')">云算力</h4>
-          <h6 @click="navigate('./market')">联合挖矿</h6>
+          <h4 @click="navigate('./power', 2)">云算力</h4>
+          <h6 @click="navigate('./market', 2)">联合挖矿</h6>
         </div>
+        <!-- <div class="miningLi">
+          <div class="icon">
+            <img src="../../assets/imgs/chiaImg.png" alt="" />
+          </div>
+          <h4 @click="navigate('./power', 2)">云算力</h4>
+          <h6 @click="navigate('./market', 2)">联合挖矿</h6>
+        </div> -->
       </div>
     </div>
 
@@ -157,26 +187,72 @@
         <img src="../../assets/imgs/title_bg.png" class="title_bg" />
       </div>
       <div class="aboutContent">
-        <div class="aboutC">
+        <!-- <div class="aboutC">
           <div class="aboutLi"></div>
           <div class="name text-center">注册</div>
           <div class="dec">
             通过邮箱或者手机轻松注册灰度云矿账号，即可开启挖矿之旅
           </div>
-        </div>
-
+        </div> -->
         <div class="aboutC">
-          <div class="aboutLi1"></div>
-          <div class="name text-center">购买</div>
+          <div class="aboutLi">
+            <img src="../../assets/imgs/reg.png" alt="" />
+          </div>
+          <div class="name text-center">注册</div>
           <div class="dec">
-            灰度云矿提供了丰富的BTC，ETH,
-            FIL矿机组合产品，高性价比，高收益，高回报是你财富增值的最佳选择
+            通过邮箱或者手机轻松注册灰度云矿账号，即可开启挖矿之旅。
           </div>
         </div>
 
+        <!-- <div class="aboutC">
+          <div>
+            <div class="aboutLi1"></div>
+            <div class="name text-center">购买</div>
+            <div class="dec">
+              灰度云矿提供了丰富的BTC，ETH,
+              FIL矿机组合产品，高性价比，高收益，高回报是你财富增值的最佳选择
+            </div> -->
+        <!-- </div> -->
+        <!-- <div>
+            <div class="box1">矿机运维托管</div>
+            <div class="box2">矿池分配收益</div>
+          </div> -->
+        <!-- </div> -->
+
         <div class="aboutC">
-          <div class="aboutLi2"></div>
-          <div class="name text-center">获利</div>
+          <div class="aboutLi">
+            <img src="../../assets/imgs/buy.png" alt="" />
+          </div>
+          <div class="name">购买</div>
+          <div class="dec">
+            灰度云矿提供了丰富的BTC，ETH,
+            FIL矿机组合产品，高性价比，高收益，高回报是你财富增值的最佳选择。
+          </div>
+        </div>
+        <!-- 
+        <div class="aboutC">
+          <div class="aboutLi">
+            <img src="../../assets/imgs/tuoguan.png" alt="" />
+          </div>
+          <div class="name">托管</div>
+          <div class="dec">
+            灰度云矿为您提供一站式辅助服务，矿机运维托管。
+          </div>
+        </div> -->
+        <div class="aboutC1">
+          <div class="aboutLi1">
+            <img src="../../assets/imgs/tuoguanshouyi.png" alt="" />
+          </div>
+          <div class="name">托管/收益</div>
+          <div class="dec">
+            灰度云矿进行定制，物流上架，集中托管，矿机运维，派发收益，维护管理等服务，让您无忧挖矿。
+          </div>
+        </div>
+        <div class="aboutC">
+          <div class="aboutLi">
+            <img src="../../assets/imgs/huoli.png" alt="" />
+          </div>
+          <div class="name">获利</div>
           <div class="dec">
             灰度云矿为您提供一站式辅助服务，让你坐享收益，挖矿可以很简单！
           </div>
@@ -258,14 +334,18 @@
       </div>
     </div>
 
-    <!-- 合作伙伴 -->
+    <!-- 生态合作伙伴-->
     <div class="partner margin0">
       <div class="titleBox">
-        <div class="title">合作伙伴</div>
+        <div class="title">生态合作伙伴</div>
         <img src="../../assets/imgs/title_bg.png" class="title_bg" />
       </div>
-      <div>
-        <img :src="imgurl" class="imgUrl" />
+      <div class="partnerImg">
+        <!-- <img :src="imgurl" class="imgUrl" /> -->
+        <div class="boxImg" v-for="(item, id) in partnerList">
+          <img class="imgUrl" :src="item.url" alt="" />
+          <div class="imgName">{{ item.content }}</div>
+        </div>
       </div>
     </div>
   </div>
@@ -276,7 +356,7 @@ export default {
   data() {
     return {
       isSelect: false,
-      coinList: ["BTC", "ETH"],
+      coinList: ["BTC", "ETH", "CHIA"],
       coinName: "",
       inputVal: "",
       lunList: [],
@@ -286,7 +366,9 @@ export default {
       cureent: 0,
       multiply: "",
       multiplyHashrate: "",
-      imgurl: "https://mclouds.huoxing24.com/build/organl-e953533f.png"
+      // imgurl: "https://mclouds.huoxing24.com/build/organl-e953533f.png"
+      // 合作伙伴图标
+      partnerList: []
     };
   },
   created() {
@@ -294,6 +376,7 @@ export default {
     this.getLun();
     this.getHint();
     this.getHot();
+    this.getPartnersMsg();
   },
   methods: {
     // 收益计算
@@ -303,15 +386,26 @@ export default {
       param.append("hashrate", this.inputVal);
       this.$axios.post("/MartianOrePool/windowsCalculator", param).then(res => {
         const result = res.data.data;
-        console.log(result);
         this.multiply = result.multiply;
         this.multiplyHashrate = result.multiplyHashrate;
       });
     },
-
-    navigate(path) {
+    // 合作伙伴
+    getPartnersMsg() {
+      let param = new URLSearchParams();
+      param.append("type", 8);
+      this.$axios.post("/index/getBannerList", param).then(res => {
+        const result = res.data.data;
+        console.log("resultresultresult", result);
+        this.partnerList = result;
+      });
+    },
+    navigate(path, id) {
       this.$router.push({
-        path: path
+        path: path,
+        query: {
+          id: id
+        }
       });
     },
     select(name) {
@@ -340,7 +434,9 @@ export default {
       this.$axios.post("/MartianOrePool/selectMillAllByHost", {}).then(res => {
         console.log(res);
         this.hotList = res.data.data;
+        console.log("this.hotList", this.hotList);
         this.hotObj = this.hotList[0];
+        console.log("this.hotObj", this.hotObj);
       });
     },
     select1(item, index) {
@@ -498,7 +594,7 @@ export default {
     position: relative;
     .title {
       color: #815ff5;
-      font-size: 38px;
+      font-size: 34px;
     }
     .title_bg {
       width: 130px;
@@ -582,8 +678,10 @@ export default {
       img {
         width: 150px;
         height: 100px;
-        transform: translateX(-30px);
+        transform: translateX(-60px);
         margin-top: 25px;
+        border: 1px solid #ccc;
+        box-shadow: 0 0 10px rgb(172, 170, 170);
       }
       .key1 {
         flex: 1;
@@ -591,7 +689,7 @@ export default {
         font-weight: bold;
         color: #333;
         line-height: 150px;
-        transform: translateX(-30px);
+        transform: translateX(-40px);
       }
     }
     .active {
@@ -615,7 +713,7 @@ export default {
     position: relative;
     .title {
       color: #815ff5;
-      font-size: 38px;
+      font-size: 34px;
     }
     .title_bg {
       width: 130px;
@@ -696,7 +794,7 @@ export default {
     position: relative;
     .title {
       color: #815ff5;
-      font-size: 38px;
+      font-size: 34px;
     }
     .title_bg {
       width: 130px;
@@ -708,43 +806,63 @@ export default {
   }
 
   .aboutContent {
-    width: 955px;
-    height: 480px;
+    width: 90%;
+    // height: 480px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding-top: 60px;
     margin: 0 auto;
     .aboutC {
-      width: 210px;
+      width: 30%;
+      height: 300px;
+      margin-top: 50px;
       .name {
         color: #000;
         font-weight: 600;
+        text-align: center;
         font-size: 24px;
         padding-top: 20px;
       }
       .dec {
+        width: 85%;
+        margin: auto;
         color: #815ff5;
         font-size: 14px;
-        padding-top: 20px;
+        padding: 20px 0 0 0;
+      }
+      img {
+        width: 170px;
+        height: 150px;
       }
       .aboutLi {
-        width: 210px;
-        height: 180px;
-        background: url("../../assets/imgs/reg.png") no-repeat;
-        background-size: cover;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
       }
-      .aboutLi1 {
-        width: 210px;
-        height: 180px;
-        background: url("../../assets/imgs/buy.png") no-repeat;
-        background-size: cover;
+    }
+    .aboutC1 {
+      width: 30%;
+      height: 300px;
+      margin-top: 50px;
+      padding-top: 10px;
+      img {
+        width: 300px;
       }
-      .aboutLi2 {
-        width: 210px;
-        height: 180px;
-        background: url("../../assets/imgs/huoli.png") no-repeat;
-        background-size: cover;
+      .name {
+        color: #000;
+        font-weight: 600;
+        text-align: center;
+        font-size: 24px;
+        padding-top: 20px;
+      }
+      .dec {
+        width: 85%;
+        margin: auto;
+        color: #815ff5;
+        font-size: 14px;
+        padding: 20px 0 0 0;
       }
     }
   }
@@ -761,7 +879,7 @@ export default {
     position: relative;
     .title {
       color: #815ff5;
-      font-size: 38px;
+      font-size: 34px;
     }
     .title_bg {
       width: 130px;
@@ -804,18 +922,18 @@ export default {
   }
 }
 
-// 合作伙伴
+// 生态合作伙伴
 .partner {
   width: 1200px;
   padding: 50px 0;
   height: 500px;
   .titleBox {
-    width: 180px;
+    width: 250px;
     height: 50px;
     position: relative;
     .title {
-      color: #9d83f3;
-      font-size: 38px;
+      color: #815ff5;
+      font-size: 34px;
     }
     .title_bg {
       width: 130px;
@@ -825,9 +943,25 @@ export default {
       bottom: -10px;
     }
   }
-  .imgUrl {
-    width: 100%;
-    margin-top: 120px;
+  .partnerImg {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: center;
+    margin-top: 60px;
+    .boxImg {
+      width: 18%;
+      margin: 10px;
+    }
+    .imgUrl {
+      width: 120px;
+      height: 80px;
+    }
+    .imgName {
+      font-size: 14px;
+      color: #000;
+      font-weight: 500;
+    }
   }
 }
 </style>

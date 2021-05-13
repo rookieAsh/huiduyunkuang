@@ -2,32 +2,42 @@
   <div class="marketPage">
     <div class="k60" style="background: #815ff5"></div>
     <div class="tabs flex-between margin60">
-      <div class="tab" :class="{ active: active === 0 }" @click="change(0)">
+      <div class="tab" :class="{ active: active == 0 }" @click="change(0)">
         BTC专区
       </div>
-      <div class="tab" :class="{ active: active === 1 }" @click="change(1)">
+      <div class="tab" :class="{ active: active == 1 }" @click="change(1)">
         ETH专区
+      </div>
+      <div class="tab" :class="{ active: active == 2 }" @click="change(2)">
+        CHIA专区
       </div>
       <!-- <div class="tab" :class="{active:active===2}" @click="change(2)">FIL专区</div> -->
     </div>
     <div class="showLoading text-center fixed-auto" v-if="loading">
-        <span class="el-icon-loading" style="font-size:50px;color:#cecece"></span>
+      <span class="el-icon-loading" style="font-size:50px;color:#cecece"></span>
     </div>
     <div class="container">
       <div
         class="item"
         v-for="(item, index) in list"
         :key="index"
-        @click="navigate('./marketDetail',item.productId)"
+        @click="navigate('./marketDetail', item.productId)"
       >
         <div class="pic">
           <img src="../../assets/imgs/pic.png" alt="" />
         </div>
-        <div class="subT">现货挖矿</div>
+        <div class="subT" v-show="item.parseTime - nowTime >= 0">
+          现货挖矿
+        </div>
+        <div class="subT" v-show="item.parseTime - nowTime <= 0">
+          已结束
+        </div>
         <div class="name text-center">{{ item.name }}</div>
         <!-- <div class="name text-center">230M 现货</div> -->
         <div class="product text-center">
-          {{ item.production }}<span>ETH/日产出</span>
+          {{ item.production }}<span v-show="active == 0">BTC/日产出</span>
+          <span v-show="active == 1">ETH/日产出</span>
+          <span v-show="active == 2">CHIA/日产出</span>
         </div>
         <div class="price text-center">￥{{ item.activity_price }}</div>
         <div class="del">￥{{ item.mill_cost }}</div>
@@ -40,43 +50,73 @@
 export default {
   data() {
     return {
-      active: 0,
+      active: "",
       list: [],
-      loading:false
+      loading: false,
+      nowTime: "",
+      endTime: "",
+      flag: false,
+      id: ""
     };
   },
   created() {
-    this.getBtcList();
+    this.nowTime = Date.parse(new Date()) / 1000;
+    this.active = this.$route.query.id;
+    this.change(this.active);
   },
+
+  // watch: {
+  //   active: {
+  //     handler(newVal, oldVal) {
+  //       console.log(newVal);
+  //       console.log(oldVal);
+  //     }
+  //   }
+  // },
   methods: {
     change(index) {
       this.active = index;
-      if (index == 1) {
+      if (this.active == 0) {
+        this.getBtcList();
+      } else if (this.active == 1) {
         this.getEthList();
       } else {
-        this.getBtcList();
+        this.getChiaList();
       }
     },
-    navigate(path,productId) {
+    navigate(path, productId) {
       this.$router.push({
         path: path,
-        query:{
-            productId:productId
+        query: {
+          productId: productId
         }
       });
     },
+    // showTime(time) {
+    //   var thetime = time;
+    //   this.endTime = new Date(Date.parse(thetime.replace(/-/g, "/")));
+    //   this.nowTime = new Date();
+    //   console.log(this.endTime);
+    //   console.log(this.nowTime);
+    //   if (this.endTime <= this.nowTime) {
+    //     this.flag = false;
+    //   } else {
+    //     this.flag = true;
+    //   }
+    // },
+
     getBtcList() {
       this.loading = true;
       let param = new URLSearchParams();
       param.append("goodsType", 1);
       param.append("typeMill", 3);
-      this.$axios.post("/MartianOrePool/selectMillAll", param).then((res) => {
+      this.$axios.post("/MartianOrePool/selectMillAll", param).then(res => {
         let result = res.data;
-        console.log(result);
         if (result.state == 0) {
           this.list = result.data;
+          console.log(this.list);
         }
-        this.loading = false
+        this.loading = false;
       });
     },
     getEthList() {
@@ -84,16 +124,40 @@ export default {
       let param = new URLSearchParams();
       param.append("goodsType", 2);
       param.append("typeMill", 3);
-      this.$axios.post("/MartianOrePool/selectMillAll", param).then((res) => {
+      this.$axios.post("/MartianOrePool/selectMillAll", param).then(res => {
         let result = res.data;
-        console.log(result);
         if (result.state == 0) {
           this.list = result.data;
         }
-        this.loading = false
+        this.loading = false;
       });
     },
+    getChiaList() {
+      this.loading = true;
+      let param = new URLSearchParams();
+      param.append("goodsType", 3);
+      param.append("typeMill", 3);
+      this.$axios.post("/MartianOrePool/selectMillAll", param).then(res => {
+        let result = res.data;
+        console.log("result", result);
+        if (result.state == 0) {
+          this.list = result.data;
+        }
+        this.loading = false;
+      });
+    }
   },
+  watch: {
+    // active: {
+    //   handler(newVal, oldVal) {
+    //     console.log(newVal);
+    //     console.log(oldVal);
+    //     if (newVal != oldVal) {
+    //       this.active == newVal;
+    //     }
+    //   }
+    // }
+  }
 };
 </script>
 
@@ -105,8 +169,8 @@ export default {
   border-radius: 10px;
   .tab {
     width: 50%;
-    font-size: 48px;
-    font-weight: 800;
+    font-size: 36px;
+    font-weight: 600;
     color: #815ff5;
     text-align: center;
     line-height: 140px;

@@ -20,9 +20,10 @@
             :class="{
               current:
                 $route.path.indexOf('market') > 0 ||
-                $route.path.indexOf('order') > 0
+                $route.path.indexOf('order') > 0 ||
+                $route.path.indexOf('usdtPay') > 0
             }"
-            @click="navigate('../market')"
+            @click="navigate1('../market', 0)"
           >
             矿机
           </div>
@@ -47,13 +48,13 @@
           >
             闪兑
           </div>
-          <div
+          <!-- <div
             class="tab"
             :class="{ current: $route.path.indexOf('service') > 0 }"
             @click="navigate('../service')"
           >
             大客户服务
-          </div>
+          </div> -->
           <div
             class="tab"
             :class="{ current: $route.path.indexOf('help') > 0 }"
@@ -158,12 +159,21 @@ export default {
   },
   created() {
     this.getToken();
+    console.log(this.$route.path.indexOf("home"));
   },
   methods: {
     ...mapMutations(["logout"]),
     navigate(path) {
       this.$router.push({
         path: path
+      });
+    },
+    navigate1(path, id) {
+      this.$router.push({
+        path: path,
+        query: {
+          id: id
+        }
       });
     },
     scrollToTop() {
@@ -222,7 +232,7 @@ export default {
         margin-left: 40px;
         .tab {
           margin-right: 20px;
-          font-size: 16px;
+          font-size: 20px;
           color: rgba(255, 255, 255, 0.5);
           cursor: pointer;
         }
@@ -243,7 +253,7 @@ export default {
         line-height: 32px;
         background: #ffffff;
         color: #815ff5;
-        font-size: 16px;
+        font-size: 20px;
         cursor: pointer;
       }
       .address {
@@ -266,7 +276,7 @@ export default {
       }
       .download {
         color: rgba(255, 255, 255, 0.5);
-        font-size: 16px;
+        font-size: 20px;
         cursor: pointer;
         .arrow {
           margin-left: 5px;

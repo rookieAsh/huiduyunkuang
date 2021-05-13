@@ -1,7 +1,7 @@
 <template>
   <div class="loginPage">
     <div class="k60"></div>
-    <div class="loginBox margin0">
+    <div class="loginBox margin10">
       <div class="title text-center">欢迎登录灰度云矿</div>
       <div class="tabs flex">
         <div
@@ -125,7 +125,7 @@ export default {
 <style lang="less" scoped>
 .loginPage {
   width: 100%;
-  height: 580px;
+  height: 630px;
   background: #101838;
   // padding-top: 50px;
   .loginBox {
@@ -133,7 +133,7 @@ export default {
     height: 360px;
     background: #fff;
     border-radius: 10px;
-    margin-top: 50px;
+    margin-top: 80px;
     padding: 0 40px;
     .title {
       color: #333;

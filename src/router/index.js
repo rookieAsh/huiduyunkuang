@@ -215,5 +215,40 @@ export default new Router({
         return import('../views/market/usdtPay.vue')
       }
     },
+    {
+      path: '/supportHelp',
+      name: 'supportHelp',
+      component: function () {
+        return import('../views/support/supportHelp.vue')
+      }
+    },
+    {
+      path: '/supportUser',
+      name: 'supportUser',
+      component: function () {
+        return import('../views/support/supportUser.vue')
+      }
+    },
+    {
+      path: '/supportPrivacy',
+      name: 'supportPrivacy',
+      component: function () {
+        return import('../views/support/supportPrivacy.vue')
+      }
+    },
+    {
+      path: '/supportLaw',
+      name: 'supportLaw',
+      component: function () {
+        return import('../views/support/supportLaw.vue')
+      }
+    },
+    {
+      path: '/supportAbout',
+      name: 'supportAbout',
+      component: function () {
+        return import('../views/support/supportAbout.vue')
+      }
+    },
   ]
 })

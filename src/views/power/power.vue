@@ -8,6 +8,9 @@
       <div class="tab" :class="{ active: active === 1 }" @click="change(1)">
         ETH专区
       </div>
+      <div class="tab" :class="{ active: active === 2 }" @click="change(2)">
+        CHIA专区
+      </div>
       <!-- <div class="tab" :class="{active:active===2}" @click="change(2)">FIL专区</div> -->
     </div>
     <div class="container">
@@ -59,11 +62,21 @@ export default {
     };
   },
   created() {
+    // this.active = this.$route.query.id;
     this.getBtcList();
   },
+  watch: {
+    // active(newVal, oldVal) {
+    //   if (newVal == 0) {
+    //     this.getBtcList();
+    //   } else if (newVal == 1) {
+    //     this.getEthList();
+    //   } else {
+    //     this.getChiaList();
+    //   }
+    // }
+  },
   methods: {
-
-
     getBtcList() {
       this.loading = true;
       let param = new URLSearchParams();
@@ -73,7 +86,6 @@ export default {
         .post("/MartianOrePool/selectCloudHashrate", param)
         .then(res => {
           let result = res.data;
-          console.log(result);
           if (result.state == 0) {
             this.list = result.data;
           }
@@ -88,7 +100,20 @@ export default {
         .post("/MartianOrePool/selectCloudHashrate", param)
         .then(res => {
           let result = res.data;
-          console.log(result);
+          if (result.state == 0) {
+            this.list = result.data;
+          }
+        });
+    },
+    getChiaList() {
+      this.loading = true;
+      let param = new URLSearchParams();
+      param.append("goodsType", 3);
+      param.append("typeMill", 1);
+      this.$axios
+        .post("/MartianOrePool/selectCloudHashrate", param)
+        .then(res => {
+          let result = res.data;
           if (result.state == 0) {
             this.list = result.data;
           }
@@ -103,11 +128,14 @@ export default {
       });
     },
     change(index) {
+      console.log("index", index);
       this.active = index;
-      if (index == 1) {
+      if (this.active == 0) {
+        this.getBtcList();
+      } else if (this.active == 1) {
         this.getEthList();
       } else {
-        this.getBtcList();
+        this.getChiaList();
       }
     }
   }
@@ -122,8 +150,8 @@ export default {
   border-radius: 10px;
   .tab {
     width: 50%;
-    font-size: 48px;
-    font-weight: 800;
+    font-size: 36px;
+    font-weight: 600;
     color: #815ff5;
     text-align: center;
     line-height: 140px;
@@ -136,7 +164,7 @@ export default {
 }
 .container {
   width: 1200px;
-  height: 670px;
+  min-height: 670px;
   margin: 0px auto 0;
   display: flex;
   flex-wrap: wrap;

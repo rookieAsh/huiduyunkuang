@@ -226,7 +226,7 @@ export default {
     margin-left: 200px;
     .title {
       color: #9d83f3;
-      font-size: 38px;
+      font-size: 32px;
     }
     .title_bg {
       width: 70px;

@@ -59,7 +59,14 @@
           <div class="val">￥{{ orderObj.cose }}</div>
         </div>
         <div class="li flex-between">
-          <div class="key" style="margin-bottom:20px">电费</div>
+          <div
+            class="key"
+            style="margin-bottom:20px"
+            v-if="orderObj.name == 'CHIA存储挖矿'"
+          >
+            托管费
+          </div>
+          <div class="key" style="margin-bottom:20px" v-else>电费</div>
           <div class="val">￥{{ orderObj.decimal }}</div>
         </div>
         <div class="li flex-between">
@@ -165,6 +172,7 @@ export default {
         console.log(result, "resultresultresultresult");
         if (result.state == 0) {
           this.orderObj = result.data[0];
+          console.log("this.orderObj", this.orderObj);
           this.millCost = Number(this.orderObj.mill_cost_sum);
           this.cost =
             Number(this.orderObj.mill_cost_sum) +

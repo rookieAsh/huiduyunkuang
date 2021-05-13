@@ -6,14 +6,14 @@
         <div class="name">{{ detailObj.name }}</div>
         <!-- <div class="name">230M 现货 </div> -->
         <!-- <div class="countDown flex align-center">
-                    <div class="border">04</div>
-                    <span>天</span>
-                    <div class="border">07</div>
-                    <span>:</span>
-                    <div class="border">56</div>
-                    <span>:</span>
-                    <div class="border">56</div>
-                    <span>后结束</span>
+                  <div class="border">04</div>
+                  <span>天</span>
+                  <div class="border">07</div>
+                  <span>:</span>
+                  <div class="border">56</div>
+                  <span>:</span>
+                  <div class="border">56</div>
+                  <span>后结束</span>
                 </div> -->
         <div class="pic">
           <img src="../../assets/imgs/pic.png" alt="" />
@@ -24,21 +24,28 @@
         <div class="th flex">
           <div class="th_li">矿机算力</div>
           <div class="th_li">矿机功耗</div>
-          <div class="th_li">电费</div>
+          <div class="th_li" v-if="detailObj.cmc_subarea == 'CHIA'">托管费</div>
+          <div class="th_li" v-else>电费</div>
           <!-- <div class="th_li">狂吃费率</div> -->
         </div>
         <div class="td flex">
-          <div class="td_li">
-            {{ detailObj.hashrate
-            }}{{ detailObj.cmc_subarea == "BTC" ? "T" : "M" }}H/S
+          <div class="td_li" v-if="detailObj.cmc_subarea == 'BTC'">
+            {{ detailObj.hashrate }}TH/S
+          </div>
+          <div class="td_li" v-if="detailObj.cmc_subarea == 'ETH'">
+            {{ detailObj.hashrate }}MH/S
+          </div>
+          <div class="td_li" v-if="detailObj.cmc_subarea == 'CHIA'">
+            {{ detailObj.hashrate }}TH/S
           </div>
           <div class="td_li">{{ detailObj.power_diss }}KW/台</div>
-          <div class="td_li">{{ detailObj.electric_charge }}元/KW*h</div>
-          <!-- <div class="td_li">0%</div> -->
+          <div class="td_li" v-if="detailObj.cmc_subarea == 'CHIA'">
+            {{ detailObj.electric_charge }}元/T/月
+          </div>
+          <div class="td_li" v-else>{{ detailObj.electric_charge }}元/KW*h</div>
         </div>
         <div class="th flex" style="margin-top:30px">
           <div class="th_li">预计日产币</div>
-          <!-- <div class="th_li">库存数量</div> -->
           <div class="th_li">管理费</div>
           <div class="th_li">回本天数</div>
         </div>
@@ -46,7 +53,6 @@
           <div class="td_li">
             {{ detailObj.earnings }}{{ detailObj.cmc_subarea }}/天
           </div>
-          <!-- <div class="td_li">100台</div> -->
           <div class="td_li">{{ detailObj.administrative_fee }}%</div>
           <div class="td_li">{{ detailObj.Back_tothe }}天</div>
         </div>
@@ -68,8 +74,8 @@
 
         <el-checkbox v-model="checked">我已阅读并同意</el-checkbox
         ><span class="span" @click="navigate('./tips')">矿机租赁/购买协议</span>
-
-        <div class="btn" @click="navigate('./order')">购买</div>
+        <div class="btn1" v-if="flag == true">已结束</div>
+        <div class="btn" @click="navigate('./order')" v-else>购买</div>
       </div>
     </div>
     <div class="content margin0">
@@ -89,12 +95,13 @@ export default {
       checked: true,
       id: "",
       detailObj: {},
-      quantity: 1
+      quantity: 1,
+      time: "",
+      flag: false
     };
   },
   created() {
     this.id = this.$route.query.productId;
-    console.log(this.id);
     this.getDetail(this.id);
   },
   //   watch: {
@@ -118,6 +125,17 @@ export default {
       param.append("productId", id);
       this.$axios.post("/MartianOrePool/selectMillAllById", param).then(res => {
         let result = res.data;
+        var nowTime = Date.parse(new Date()) / 1000;
+        this.time = result.data[0].parseTime - nowTime;
+        console.log("resultresultresultresult", result);
+        console.log("this.time", this.time);
+        if (this.time <= 0) {
+          this.flag = true;
+          this.text == "已结束";
+        } else {
+          this.flag = false;
+          this.text == "购买";
+        }
         if (result.state == 0) {
           this.detailObj = result.data[0];
         }
@@ -222,6 +240,19 @@ export default {
       height: 60px;
       line-height: 60px;
       background: linear-gradient(180deg, #ff9b48, #ffc99b);
+      margin: 80px auto;
+      text-align: center;
+      border-radius: 30px;
+      font-size: 24px;
+      font-weight: 500;
+      color: #ffffff;
+      cursor: pointer;
+    }
+    .btn1 {
+      width: 500px;
+      height: 60px;
+      line-height: 60px;
+      background: linear-gradient(180deg, #b6b6b6, #929292);
       margin: 80px auto;
       text-align: center;
       border-radius: 30px;
