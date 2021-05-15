@@ -53,7 +53,8 @@
             >矿机租赁/购买协议</span
           ></el-checkbox
         >
-        <div class="btn" @click="handleBuy()">购买</div>
+        <div class="btn1" v-if="flag == true">已结束</div>
+        <div class="btn" @click="handleBuy()" v-else>购买</div>
       </div>
     </div>
     <div class="content margin0">
@@ -80,7 +81,9 @@ export default {
       id: "",
       price: "", //   总价
       activityPrice: "", //   单价
-      totalNumber: "" //算力总量
+      totalNumber: "", //算力总量
+      flag: false,
+      time: ""
     };
   },
   created() {
@@ -148,6 +151,16 @@ export default {
           this.activityPrice = this.obj.activity_price;
           this.price = this.activityPrice;
           this.totalNumber = this.obj.cloud_hashrate;
+        }
+
+        console.log("resultresult11111", result.data[0]);
+        var nowTime = Date.parse(new Date()) / 1000;
+        console.log("nowTime11111", nowTime);
+        this.time = result.data[0].parseTime - nowTime;
+        if (this.time <= 0) {
+          this.flag = true;
+        } else {
+          this.flag = false;
         }
       });
     }
@@ -254,6 +267,20 @@ export default {
       font-size: 24px;
       font-weight: 500;
       color: #ffffff;
+      cursor: pointer;
+    }
+    .btn1 {
+      width: 500px;
+      height: 60px;
+      line-height: 60px;
+      background: linear-gradient(180deg, #b6b6b6, #929292);
+      margin: 80px auto;
+      text-align: center;
+      border-radius: 30px;
+      font-size: 24px;
+      font-weight: 500;
+      color: #ffffff;
+      cursor: pointer;
     }
   }
 }

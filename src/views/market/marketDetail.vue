@@ -127,14 +127,12 @@ export default {
         let result = res.data;
         var nowTime = Date.parse(new Date()) / 1000;
         this.time = result.data[0].parseTime - nowTime;
-        console.log("resultresultresultresult", result);
-        console.log("this.time", this.time);
         if (this.time <= 0) {
           this.flag = true;
-          this.text == "已结束";
+          // this.text == "已结束";
         } else {
           this.flag = false;
-          this.text == "购买";
+          // this.text == "购买";
         }
         if (result.state == 0) {
           this.detailObj = result.data[0];
