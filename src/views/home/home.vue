@@ -7,14 +7,20 @@
         <h1>一站式挖矿服务</h1>
         <h2>灰度云矿</h2>
         <h2>助你轻松挖矿！</h2>
-        <div class="swiper margin50">
-          <el-carousel :interval="3000" type="card" height="300px">
+        <div class="swiper margin30">
+          <el-carousel
+            :interval="3000"
+            type="card"
+            :height="isCollapse ? '120px' : '300px'"
+          >
             <el-carousel-item v-for="item in lunList" :key="item.id">
-              <img :src="item.url" alt="" />
+              <a :href="item.jump_site">
+                <img :src="item.url" alt="" />
+              </a>
             </el-carousel-item>
           </el-carousel>
         </div>
-        <div class="calculation margin30 flex align-center">
+        <div class="calculation flex align-center hide">
           <div
             class="selectCoin text-center relative"
             @mouseenter="isSelect = true"
@@ -54,6 +60,55 @@
             </div>
             <div v-if="this.coinName == 'CHIA'">
               {{ multiplyHashrate }} CHIA (${{ multiply }})
+            </div>
+          </div>
+        </div>
+
+        <!-- 手机 -->
+        <div class="calculation hidePhone">
+          <div class="flex">
+            <div
+              class="selectCoin text-center relative"
+              @mouseenter="isSelect = true"
+              @mouseleave="isSelect = false"
+            >
+              {{ coinName }} <i class="el-icon-arrow-down"></i>
+              <div class="selectBox absolute" v-if="isSelect">
+                <div
+                  class="item text-center"
+                  v-for="(item, index) in coinList"
+                  :key="index"
+                  @click="select(item)"
+                >
+                  {{ item }}
+                </div>
+              </div>
+            </div>
+
+            <div class="sudu flex align-center">
+              <input
+                v-model="inputVal"
+                type="quantity"
+                placeholder="0.00000000"
+              />
+              <div v-if="this.coinName == 'BTC'" class="val">TH/s</div>
+              <div v-if="this.coinName == 'ETH'" class="val">MH/s</div>
+              <div v-if="this.coinName == 'CHIA'" class="val">PH/s</div>
+            </div>
+            <div class="btn text-center" @click="handleCount">收益计算</div>
+          </div>
+          <div>
+            <div class="show flex">
+              <div>24小时预估值:</div>
+              <div v-if="this.coinName == 'BTC'">
+                {{ multiplyHashrate }}&nbsp; BTC (${{ multiply }})
+              </div>
+              <div v-if="this.coinName == 'ETH'">
+                {{ multiplyHashrate }} &nbsp; ETH (${{ multiply }})
+              </div>
+              <div v-if="this.coinName == 'CHIA'">
+                {{ multiplyHashrate }} &nbsp; CHIA (${{ multiply }})
+              </div>
             </div>
           </div>
         </div>
@@ -118,7 +173,7 @@
         </div>
       </div>
 
-      <div class="market flex-between margin30">
+      <div class="market flex-between margin30 marketHide">
         <div
           class="marketLi flex"
           v-for="(item, index) in hotList"
@@ -137,6 +192,28 @@
             src="../../assets/imgs/kuangji3.png"
           /> -->
 
+          <div class="key1">{{ item.name }}</div>
+        </div>
+      </div>
+      <!-- 手机 -->
+      <div class="market flex margin10 marketHidePhone">
+        <div
+          class="marketLi flex"
+          v-for="(item, index) in hotList"
+          :key="item.productId"
+          :class="{ active: cureent == index }"
+          @click="select1(item, index)"
+        >
+          <!-- {{ item }} -->
+          <img :src="item.image" alt="" />
+          <!-- <img
+            v-if="item.productId == 3"
+            src="../../assets/imgs/kangjiblack.png"
+          />
+          <img
+            v-if="item.productId == 5"
+            src="../../assets/imgs/kuangji3.png"
+          /> -->
           <div class="key1">{{ item.name }}</div>
         </div>
       </div>
@@ -269,7 +346,7 @@
       <div class="serveContent">
         <div class="conLi">
           <div class="icon">
-            <img src="../../assets/imgs/kjcg.png" style="width:105px" />
+            <img src="../../assets/imgs/kjcg.png" />
           </div>
           <div class="name text-center">矿机采购</div>
           <div class="dec text-center">权威厂家</div>
@@ -277,7 +354,7 @@
         </div>
         <div class="conLi">
           <div class="icon">
-            <img src="../../assets/imgs/ysbs.png" style="width:105px" />
+            <img src="../../assets/imgs/ysbs.png" />
           </div>
           <div class="name text-center">运输部署</div>
           <div class="dec text-center">快速搬运</div>
@@ -285,7 +362,7 @@
         </div>
         <div class="conLi">
           <div class="icon">
-            <img src="../../assets/imgs/yxwx.png" style="width:105px" />
+            <img src="../../assets/imgs/yxwx.png" />
           </div>
           <div class="name text-center">运行维护</div>
           <div class="dec text-center">轮班监控</div>
@@ -293,7 +370,7 @@
         </div>
         <div class="conLi">
           <div class="icon">
-            <img src="../../assets/imgs/jqql.png" style="width:105px" />
+            <img src="../../assets/imgs/jqql.png" />
           </div>
           <div class="name text-center">机器清理</div>
           <div class="dec text-center">快速搬运</div>
@@ -301,7 +378,7 @@
         </div>
         <div class="conLi">
           <div class="icon">
-            <img src="../../assets/imgs/yjhb.png" style="width:105px" />
+            <img src="../../assets/imgs/yjhb.png" />
           </div>
           <div class="name text-center">一键换币</div>
           <div class="dec text-center">随时随地</div>
@@ -309,7 +386,7 @@
         </div>
         <div class="conLi">
           <div class="icon">
-            <img src="../../assets/imgs/gzdf.png" style="width:105px" />
+            <img src="../../assets/imgs/gzdf.png" />
           </div>
           <div class="name text-center">故障代发</div>
           <div class="dec text-center">运行异常</div>
@@ -317,7 +394,7 @@
         </div>
         <div class="conLi">
           <div class="icon">
-            <img src="../../assets/imgs/dfjn.png" style="width:105px" />
+            <img src="../../assets/imgs/dfjn.png" />
           </div>
           <div class="name text-center">电费缴纳</div>
           <div class="dec text-center">电费代缴</div>
@@ -325,7 +402,7 @@
         </div>
         <div class="conLi">
           <div class="icon">
-            <img src="../../assets/imgs/zxkf.png" style="width:105px" />
+            <img src="../../assets/imgs/zxkf.png" />
           </div>
           <div class="name text-center">专项客服</div>
           <div class="dec text-center">一对一</div>
@@ -355,6 +432,8 @@
 export default {
   data() {
     return {
+      screenWidth: document.body.clientWidth,
+      isCollapse: true,
       isSelect: false,
       coinList: ["BTC", "ETH", "CHIA"],
       coinName: "",
@@ -377,8 +456,34 @@ export default {
     this.getHint();
     this.getHot();
     this.getPartnersMsg();
+    if (this.screenWidth > 767) {
+      this.isCollapse = false;
+    } else {
+      this.isCollapse = true;
+    }
+  },
+  watch: {
+    screenWidth(val) {
+      this.screenWidth = val;
+      if (this.screenWidth > 767) {
+        this.isCollapse = false;
+      } else {
+        this.isCollapse = true;
+      }
+    }
+  },
+  mounted() {
+    // 监听窗口大小
+    window.onresize = () => {
+      return (() => {
+        this.screenWidth = document.body.clientWidth;
+      })();
+    };
   },
   methods: {
+    // changeMenu() {
+    //   this.isCollapse = !this.isCollapse;
+    // },
     // 收益计算
     handleCount() {
       let param = new URLSearchParams();
@@ -407,6 +512,7 @@ export default {
           id: id
         }
       });
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
     },
     select(name) {
       this.coinName = "";
@@ -420,7 +526,6 @@ export default {
       let param = new URLSearchParams();
       param.append("type", 2);
       this.$axios.post("/index/getBannerList", param).then(res => {
-        console.log(res);
         this.lunList = res.data.data;
       });
     },
@@ -432,7 +537,6 @@ export default {
     },
     getHot() {
       this.$axios.post("/MartianOrePool/selectMillAllByHost", {}).then(res => {
-        console.log(res);
         this.hotList = res.data.data;
         console.log("this.hotList", this.hotList);
         this.hotObj = this.hotList[0];
@@ -471,6 +575,7 @@ export default {
     .swiper {
       width: 1200px;
       padding: 20px;
+      margin-bottom: 70px;
       img {
         width: 100%;
         height: 100%;
@@ -907,6 +1012,9 @@ export default {
         width: 105px;
         height: 105px;
         margin: 0 auto;
+        img {
+          width: 105px;
+        }
       }
       .name {
         color: #000;
@@ -961,6 +1069,549 @@ export default {
       font-size: 14px;
       color: #000;
       font-weight: 500;
+    }
+  }
+}
+
+@media screen and (min-width: 767px) {
+  .hidePhone {
+    display: none;
+  }
+  .marketHidePhone {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  // 轮播图部分
+  .banner {
+    width: 100%;
+    height: 100%;
+    background: url("../../assets/imgs/home_banner.png") no-repeat;
+    background-size: cover;
+    .banner_inner {
+      width: 100%;
+      padding-bottom: 20px;
+      h1 {
+        color: #fff;
+        font-size: 23px;
+        font-weight: 700;
+        padding: 30px 0 0 10px;
+      }
+      h2 {
+        font-size: 13px;
+        color: #fff;
+        font-weight: 600;
+        padding: 10px 0 0 10px;
+      }
+      .swiper {
+        width: 100%;
+        padding: 14px;
+        margin: 5px 0;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .hide {
+        display: none;
+      }
+      .calculation {
+        width: 95%;
+        height: 80px;
+        background: #fff;
+        padding: 20px 30px;
+        margin-left: 10px;
+        .selectCoin {
+          // width: 75px;
+          height: 30px;
+          line-height: 30px;
+          background: url("../../assets/imgs/input_bg.png") no-repeat;
+          background-size: 100% 100%;
+          color: #fff;
+          font-size: 12px;
+          cursor: pointer;
+          border-radius: 5px;
+          .selectBox {
+            width: 75px;
+            background: #fff;
+            height: 75px;
+            bottom: -75px;
+            border-radius: 10px;
+            box-shadow: 0px 2px 4px 0px rgba(173, 179, 204, 0.39);
+            .item {
+              width: 100%;
+              height: 25px;
+              line-height: 25px;
+              color: #000;
+              font-weight: 500;
+            }
+            .item:hover {
+              background: #815ff5;
+              color: #fff;
+              border-radius: 10px;
+            }
+          }
+        }
+        .sudu {
+          width: 150px;
+          height: 30px;
+          line-height: 30px;
+          background: url("../../assets/imgs/input_bg2.png") no-repeat;
+          background-size: 100% 100%;
+          margin: 0 10px;
+          border-radius: 5px;
+          input {
+            width: 140px;
+            background: transparent;
+            outline: none;
+            border: none;
+            color: #fff;
+            font-size: 12px;
+            padding-left: 10px;
+          }
+          .val {
+            flex: 1;
+            text-align: right;
+            color: #fff;
+            font-size: 12px;
+            // padding-right: 10px;
+            margin: 0 -20px 0 -20px;
+          }
+        }
+        .btn {
+          // width: 93px;
+          height: 30px;
+          line-height: 30px;
+          background: url("../../assets/imgs/input_bg2.png") no-repeat;
+          background-size: 100% 100%;
+          color: #fff;
+          font-size: 10px;
+          font-weight: 600;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+        .show {
+          flex: 1;
+          margin-top: 8px;
+          padding-left: 0px;
+          height: 30px;
+          font-size: 12px;
+          color: #815ff5;
+          font-weight: 500;
+        }
+      }
+      .hint {
+        width: 390px;
+        height: 21px;
+        margin: 10px;
+        display: flex;
+        justify-content: center;
+        img {
+          width: 18px;
+          height: 21px;
+        }
+        .hint_swiper {
+          flex: 1;
+          height: 21px;
+          line-height: 21px;
+          .medium {
+            width: 90%;
+            color: #815ff5;
+            font-size: 12px;
+            padding-left: 10px;
+            // white-space: wrap;
+            text-overflow: ellipsis;
+          }
+        }
+      }
+    }
+  }
+  // 市场热销
+  .section_hot_sell {
+    width: 100%;
+    padding: 20px 0;
+    // background: pink;
+    .titleBox {
+      width: 90px;
+      height: 25px;
+      position: relative;
+      .title {
+        color: #815ff5;
+        font-size: 16px;
+        margin-left: 8px;
+      }
+      .title_bg {
+        width: 75px;
+        height: 16px;
+        position: absolute;
+        right: -9px;
+        bottom: -5px;
+      }
+    }
+    .hot_sell_left {
+      width: 300px;
+      padding-left: 38px;
+      height: 160px;
+      margin-top: 25px;
+      padding-top: 15px;
+      .subTtitle {
+        width: 90px;
+        height: 22px;
+        line-height: 22px;
+        background: url("../../assets/imgs/subtitle.png") no-repeat;
+        background-size: 100% 100%;
+        .coin {
+          width: 45px;
+          font-weight: 250;
+          color: #ffffff;
+          font-size: 12px;
+          text-align: center;
+        }
+        .time {
+          width: 59px;
+          text-align: center;
+          font-weight: 200;
+          color: #323232;
+          font-size: 12px;
+        }
+      }
+      .name {
+        width: 100%;
+        color: #333;
+        font-weight: 700;
+        font-size: 14px;
+        margin: 5px 0;
+      }
+      .pruduction {
+        color: #333;
+        font-size: 10px;
+        span {
+          color: rgba(0, 0, 0, 0.5);
+        }
+      }
+      .price {
+        color: #815ff5;
+        font-size: 21px;
+        padding-bottom: 20px;
+        del {
+          font-size: 13px;
+          color: rgba(0, 0, 0, 0.5);
+        }
+      }
+    }
+    .hot_sell_right {
+      flex: 1;
+      height: 160px;
+      margin-top: 25px;
+      img {
+        width: 220px;
+        height: 145px;
+        // margin-right: 40px;
+      }
+    }
+    .marketHide {
+      display: none;
+    }
+    .market {
+      width: 100%;
+      height: 280px;
+      // flex-wrap: wrap;
+      overflow: hidden;
+      .marketLi {
+        width: 90%;
+        height: 75px;
+        background: linear-gradient(29deg, #7763fb, #bfb5fe);
+        border-radius: 10px;
+        cursor: pointer;
+        margin-bottom: 25px;
+        img {
+          width: 70px;
+          height: 50px;
+          transform: translateX(-60px);
+          margin-top: 17px;
+          border: 1px solid #ccc;
+          box-shadow: 0 0 10px rgb(172, 170, 170);
+        }
+        .key1 {
+          flex: 1;
+          font-size: 8px;
+          font-weight: bold;
+          color: #333;
+          line-height: 75px;
+          transform: translateX(-20px);
+        }
+      }
+      .active {
+        background: linear-gradient(
+          21deg,
+          rgba(255, 155, 71, 0.6),
+          rgba(255, 201, 155, 0.6)
+        );
+      }
+    }
+  }
+
+  // 灰度挖矿部分
+  .mining {
+    width: 100%;
+    padding: 20px 0;
+    // background: pink;
+    .titleBox {
+      width: 90px;
+      height: 25px;
+      position: relative;
+      .title {
+        color: #815ff5;
+        font-size: 16px;
+        margin-left: 8px;
+      }
+      .title_bg {
+        width: 65px;
+        height: 18px;
+        position: absolute;
+        right: 0;
+        bottom: -5px;
+      }
+    }
+    .miningBox {
+      width: 100%;
+      height: 110px;
+      margin-top: 25px;
+
+      .miningLi {
+        width: 240px;
+        height: 170px;
+        background: url("../../assets/imgs/mining.png") no-repeat;
+        background-size: 100% 100%;
+        position: relative;
+        cursor: pointer;
+        h4 {
+          width: 71px;
+          height: 25px;
+          line-height: 25px;
+          background: linear-gradient(
+            21deg,
+            rgba(255, 155, 71, 0.6),
+            rgba(255, 201, 155, 0.6)
+          );
+          border-radius: 13px;
+          color: #fff;
+          font-size: 11px;
+          text-align: center;
+          margin: 75px auto 0;
+        }
+        h6 {
+          width: 71px;
+          height: 25px;
+          line-height: 25px;
+          background: linear-gradient(
+            21deg,
+            rgba(255, 155, 71, 0.6),
+            rgba(255, 201, 155, 0.6)
+          );
+          border-radius: 13px;
+          color: #fff;
+          font-size: 12px;
+          text-align: center;
+          margin: 15px auto 0;
+          transform: translateX(-10px);
+        }
+        .icon {
+          width: 25px;
+          height: 40px;
+          position: absolute;
+          right: 25px;
+          top: 10px;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+      .miningLi:hover {
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  // 如何加入
+  .about {
+    width: 100%;
+    padding: 25px 0 0 0;
+    .titleBox {
+      width: 90px;
+      height: 25px;
+      margin-top: 40px;
+      position: relative;
+      .title {
+        color: #815ff5;
+        font-size: 16px;
+        margin-left: 8px;
+      }
+      .title_bg {
+        width: 65px;
+        height: 18px;
+        position: absolute;
+        right: 0;
+        bottom: -5px;
+      }
+    }
+    .aboutContent {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      padding: 0 8px;
+      margin-top: 30px;
+      font-size: 14px;
+      .aboutC {
+        width: 50%;
+        height: 270px;
+        margin: 0;
+        img {
+          width: 110px;
+          height: 100px;
+        }
+        .name {
+          font-size: 16px;
+        }
+        .dec {
+          font-size: 12px;
+        }
+      }
+      .aboutC1 {
+        width: 50%;
+        height: 270px;
+        margin: 0;
+        padding: 5px 0 0 0;
+        img {
+          width: 200px;
+        }
+        .name {
+          font-size: 16px !important;
+        }
+        .dec {
+          font-size: 12px;
+        }
+      }
+
+      .titleBox {
+        width: 90px;
+        height: 25px;
+        position: relative;
+        .title {
+          color: #815ff5;
+          font-size: 17px;
+        }
+        .title_bg {
+          width: 60px;
+          height: 16px;
+          position: absolute;
+          right: 0;
+          bottom: -5px;
+        }
+      }
+    }
+  }
+
+  //我们的服务
+  .serve {
+    width: 100%;
+    padding: 20px 0 !important;
+    .titleBox {
+      width: 100px;
+      height: 50px;
+      position: relative;
+      .title {
+        color: #815ff5;
+        font-size: 16px;
+        margin-left: 8px;
+      }
+      .title_bg {
+        width: 75px;
+        height: 16px;
+        position: absolute;
+        right: 0;
+        bottom: 22px;
+      }
+    }
+    .serveContent {
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 0px 20px;
+      .conLi {
+        width: 25%;
+        height: 160px;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        padding: 25px 0;
+        .icon {
+          width: 50px;
+          height: 50px;
+          margin: 0 auto;
+          img {
+            width: 50px;
+          }
+        }
+        .name {
+          color: #000;
+          font-size: 12px;
+          font-weight: 300;
+          padding-top: 5px;
+        }
+        .dec {
+          color: #815ff5;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+
+  // 生态合作伙伴
+  .partner {
+    width: 100%;
+    height: 380px;
+    padding: 25px 0;
+    .titleBox {
+      width: 170px;
+      height: 50px;
+      position: relative;
+      .title {
+        color: #815ff5;
+        font-size: 16px;
+        margin-left: 8px;
+      }
+      .title_bg {
+        width: 75px;
+        height: 16px;
+        position: absolute;
+        right: 68px;
+        bottom: 22px;
+      }
+    }
+    .partnerImg {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      text-align: center;
+      margin: 0px 0 0 12px;
+      .boxImg {
+        width: 18%;
+        margin: 10px;
+      }
+      .imgUrl {
+        width: 60px;
+        height: 40px;
+      }
+      .imgName {
+        font-size: 12px;
+        color: #000;
+        font-weight: 500;
+      }
     }
   }
 }

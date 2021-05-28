@@ -1,9 +1,9 @@
 <template>
   <div class="orderContent">
     <div class="k60"></div>
-    <div class="flex">
+    <div class="flex flexPhone">
       <div class="left">
-        <div class="name" style="margin-bottom:100px">{{ orderObj.name }}</div>
+        <div class="name">{{ orderObj.name }}</div>
         <div class="pic">
           <img :src="orderObj.image" alt="" />
         </div>
@@ -19,9 +19,9 @@
         </div> -->
       </div>
       <div class="center">
-        <div class="title" style="margin-bottom:70px">电费</div>
+        <div class="title">电费</div>
         <div class="li flex-between">
-          <div class="key" style="margin-bottom:20px">今日电费</div>
+          <div class="key">今日电费</div>
           <div class="val" style="margin-bottom:20px">
             {{ orderObj.electricDay }}元/台/天
           </div>
@@ -49,7 +49,7 @@
         <div class="tip">最小缴纳30天，最大缴纳90天</div>
       </div>
       <div class="right">
-        <div class="title" style="margin-bottom:70px">金额</div>
+        <div class="title">金额</div>
         <div class="li flex-between">
           <div class="key" style="margin-bottom:20px">矿机总价</div>
           <div class="val">￥{{ orderObj.mill_cost_sum }}</div>
@@ -199,6 +199,7 @@ export default {
       font-size: 26px;
       font-weight: 600;
       padding: 60px 0 30px;
+      margin-bottom: 100px;
     }
     .number {
       margin-top: 60px;
@@ -240,6 +241,7 @@ export default {
     }
     .title {
       padding-top: 60px;
+      margin-bottom: 70px;
       color: #000;
       font-size: 26px;
       font-weight: 600;
@@ -247,6 +249,7 @@ export default {
     .li {
       margin-top: 20px;
       .key {
+        margin-bottom: 20px;
         color: #666;
         font-size: 18px;
       }
@@ -324,6 +327,165 @@ export default {
     font-weight: 500;
     color: #ffffff;
     cursor: pointer;
+  }
+}
+@media screen and (max-width: 767px) {
+  .orderContent {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    .flexPhone {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .left {
+        width: 100%;
+        padding-right: 0px;
+        padding-bottom: 0px;
+        .name {
+          width: 100%;
+          text-align: center;
+          color: #000;
+          font-size: 26px;
+          font-weight: 600;
+          padding: 0px 0px;
+          margin-bottom: 30px;
+          margin-top: 30px;
+        }
+        .number {
+          margin-top: 10px;
+          .text {
+            color: #888;
+            font-size: 14px;
+            padding-right: 10px;
+          }
+          span {
+            color: #000;
+            font-size: 18px;
+            cursor: pointer;
+          }
+          .num {
+            width: 50px;
+            color: #000;
+            font-size: 16px;
+            border: 1px solid #999;
+            text-align: center;
+            border-radius: 5px;
+            margin: 0 10px;
+          }
+        }
+        .pic {
+          width: 100%;
+          // height: 152px;
+          margin-top: 10px;
+          text-align: center;
+          img {
+            width: 60%;
+            height: 100%;
+          }
+        }
+      }
+      .center {
+        width: 100%;
+        padding: 0 25px;
+        .tip {
+          color: #f16c00;
+          padding-top: 16px;
+        }
+        .title {
+          padding-top: 15px;
+          margin-bottom: 20px;
+          color: #000;
+          font-size: 16px;
+          font-weight: 600;
+        }
+        .li {
+          margin-top: 0px;
+          .key {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 0px;
+          }
+          .val {
+            color: #000;
+            font-size: 16px;
+            .cell {
+              width: 60px;
+              height: 30px;
+              line-height: 30px;
+              border: 1px solid #999;
+              border-radius: 5px;
+              font-size: 16px;
+              margin-left: 10px;
+              cursor: pointer;
+            }
+            .active {
+              border: 1px solid #ff3600;
+              background: #ffeee3;
+            }
+            input {
+              width: 60px;
+              height: 30px;
+              text-align: center;
+              font-size: 16px;
+              margin-left: 10px;
+              border-radius: 5px;
+              border: none;
+              border: 1px solid #999;
+            }
+            input::-webkit-input-placeholder {
+              color: #999;
+              font-size: 16px !important;
+            }
+          }
+        }
+      }
+
+      .right {
+        flex: 1;
+        width: 100%;
+        padding-left: 25px;
+        padding-right: 25px;
+        .title {
+          padding-top: 30px;
+          padding-bottom: 20px;
+          color: #000;
+          font-size: 16px;
+          font-weight: 600;
+        }
+        .li {
+          margin-top: 0px;
+          .key {
+            color: #666;
+            font-size: 16px;
+          }
+          .val {
+            color: #000;
+            font-size: 16px;
+          }
+        }
+      }
+      .coupon {
+        color: #ff9b48;
+        font-size: 16px;
+        padding-top: 80px;
+        cursor: pointer;
+      }
+    }
+    .btn {
+      width: 60%;
+      height: 40px;
+      line-height: 40px;
+      background: linear-gradient(180deg, #ff9b48, #ffc99b);
+      margin: 10px auto 40px;
+      text-align: center;
+      border-radius: 20px;
+      font-size: 16px;
+      font-weight: 500;
+      color: #ffffff;
+      cursor: pointer;
+    }
   }
 }
 </style>

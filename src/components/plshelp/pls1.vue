@@ -1,8 +1,6 @@
 <template>
   <div class="pls1">
-    <div class="plsbox" v-html="$route.query.title">
-      
-    </div>
+    <div class="plsbox" v-html="$route.query.title"></div>
   </div>
 </template>
 
@@ -10,9 +8,9 @@
 export default {
   data() {
     return {
-      htmllist:undefined
+      htmllist: undefined
     };
-  },
+  }
 };
 </script>
 
@@ -27,6 +25,22 @@ export default {
     line-height: 50px;
     .div1 {
       font-size: 40px;
+    }
+  }
+}
+@media screen and (max-width: 767px) {
+  .pls1 {
+    overflow: hidden;
+    padding: 10px;
+    .plsbox {
+      color: #000;
+      width: 100%;
+      margin: 60px auto;
+      font-size: 16px;
+      line-height: 30px;
+      .div1 {
+        font-size: 14px;
+      }
     }
   }
 }

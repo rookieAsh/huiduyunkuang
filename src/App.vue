@@ -33,7 +33,30 @@ export default {
 </script>
 
 <style lang="less">
-// .viewClass {
-//   margin: 0 0 300px 0;
-// }
+.el-dialog__wrapper .el-dialog {
+  width: 600px;
+}
+@media screen and (max-width: 767px) {
+  html {
+    // overflow: hidden !important;
+    body {
+      // overflow: hidden !important;
+      #app {
+        overflow: hidden !important;
+      }
+    }
+  }
+
+  .el-dialog__wrapper .el-dialog {
+    width: 300px;
+  }
+  // .el-dialog__wrapper .el-dialog__footer .dialog-footer .el-button {
+  // }
+
+  // el-dialog__body
+
+  .el-message-box {
+    width: 80%;
+  }
+}
 </style>

@@ -1,6 +1,7 @@
 <template>
   <div class="footerPage">
-    <div class="footContainer margin0 flex-between">
+    <!-- 电脑 -->
+    <div class="footContainer margin0 flex-between footerHide">
       <div class="line">
         <!-- <div class="logo">
           <img src="../assets/imgs/logo.png" alt="" />
@@ -134,10 +135,130 @@
         <div class="td" @click="handleAbout">关于我们</div>
       </div>
     </div>
+
+    <!-- 手机 -->
+    <div class="footContainer margin0  flex-between footerHidePhone">
+      <div class="line">
+        <div class="th">关注我们</div>
+
+        <div class="td">
+          <a href="https://weibo.com/u/7575599257?refer_flag=1001030103_"
+            >微博</a
+          >
+        </div>
+
+        <div class="td">
+          <a
+            href=" https://www.huoxing24.com/userCenter/35272edfa3944eb0bf99b3f531ce7e96"
+            >火星号</a
+          >
+        </div>
+        <div class="td">
+          <a href="https://0.plus/graycloud888">
+            电报号
+          </a>
+        </div>
+        <div class="td">
+          <a href="https://bihu.com/people/1045398140">币乎</a>
+        </div>
+      </div>
+      <div class="line">
+        <div class="th">挖矿产品</div>
+        <div class="td" @click="navigate('/market', 0)">BTC挖矿</div>
+        <div class="td" @click="navigate('/market', 1)">ETH挖矿</div>
+        <div class="td" @click="navigate('/market', 2)">CHIA挖矿</div>
+      </div>
+      <div class="line">
+        <div class="th">其他产品</div>
+        <div class="td" @click="navigate('/transfer')">闪兑</div>
+        <div class="td" @click="handleCalculator">计算器</div>
+        <div class="td" @click="yaoqing('copy')">
+          邀请链接
+        </div>
+        <div class="yaoqing" id="copy">
+          https://www.graycloud.top/dl.html
+        </div>
+      </div>
+      <div class="line ">
+        <div class="th">友情链接</div>
+        <div class="td">
+          <a href="https://www.f2pool.com">鱼池</a>
+        </div>
+        <div class="td">
+          <a href="https://cobo.com/custody">COBO</a>
+        </div>
+        <div class="td">
+          <a href="https://www.huobi.ms/topic/invited/?invite_code=j2uh3">
+            火币
+          </a>
+        </div>
+        <div class="td">
+          <a href="https://www.poolin.com">币印矿池</a>
+        </div>
+        <div class="td">
+          <a href="https://www.jinse.com/member?id=796392">金色财经</a>
+        </div>
+        <div class="td">
+          <a href="https://tokenview.com/cn/">Tokenview</a>
+        </div>
+      </div>
+      <div class="line">
+        <div class="th">支持</div>
+        <div class="td" @click="handleHelp">帮助中心</div>
+        <div class="td" @click="handleUser">用户条款</div>
+        <div class="td" @click="handlePrivacy">隐私协议</div>
+        <div class="td" @click="handleLaw">法律声明</div>
+        <div class="td" @click="handleAbout">关于我们</div>
+      </div>
+
+      <div class="line">
+        <div>
+          <div class="logo">
+            <div v-if="navIcon == 1">
+              <el-tooltip :content="content" placement="bottom" effect="dark">
+                <img :src="srcUrl" alt="" />
+              </el-tooltip>
+            </div>
+            <div v-else><img :src="srcUrl" alt="" /></div>
+            <div class="gfwx">{{ imageMsg }}</div>
+          </div>
+          <div class="flex navIcon">
+            <div
+              class="wxIcon"
+              :class="{ wxIconActive: navIcon == 0 }"
+              @click="handleNavIcon(0)"
+            ></div>
+            <div
+              class="wxIcon"
+              :class="{ wxIconActive: navIcon == 3 }"
+              @click="handleNavIcon(3)"
+            ></div>
+            <div
+              class="qqIcon"
+              :class="{ qqIconActive: navIcon == 1 }"
+              @click="handleNavIcon(1)"
+            ></div>
+            <div
+              class="wbIcon"
+              :class="{ wbIconActive: navIcon == 2 }"
+              @click="handleNavIcon(2)"
+            ></div>
+          </div>
+        </div>
+        <div class="flex-center">
+          <div class="login" @click="navigate('/login')" v-if="!token">
+            登录
+          </div>
+          <div class="login" @click="logout()" v-else>退出</div>
+          <div class="reg" @click="navigate('/register')">注册</div>
+        </div>
+      </div>
+    </div>
+
     <!-- 计算器 -->
     <el-dialog center :visible.sync="dialog" :before-close="handleClose">
       <template slot="title">
-        <div style="font-size:24px;color: #000; ">计算器</div>
+        <div class="hearderTitle">计算器</div>
       </template>
       <div class="page">
         <div class="placeholder30"></div>
@@ -597,7 +718,6 @@ export default {
         width: 100px;
         height: 120px;
         margin: 10px 0 0 40px;
-
         .gfwx {
           text-align: center;
         }
@@ -608,11 +728,6 @@ export default {
         }
       }
       .navIcon {
-        // img {
-        //   width: 35px;
-        //   height: 35px;
-        //   margin: 10px 5px;
-        // }
         .wxIcon {
           width: 32px;
           height: 32px;
@@ -662,36 +777,6 @@ export default {
           cursor: pointer;
         }
       }
-      // .logo1 {
-      //   width: 100px;
-      //   height: 120px;
-      //   margin: 10px 0 0 0;
-      //   .img1 {
-      //     width: 100%;
-      //     height: 100px;
-      //   }
-      //   .gfwx {
-      //     text-align: center;
-      //     color: #fff;
-      //   }
-      // }
-      // .logo2 {
-      //   width: 100px;
-      //   height: 120px;
-      //   margin: 10px 0 10px 10px;
-      //   .img2 {
-      //     width: 100%;
-      //     height: 100px;
-      //   }
-      //   .kfwx {
-      //     text-align: center;
-      //     color: #fff;
-      //   }
-      // }
-      // .qq {
-      //   color: #fff;
-      //   margin: 0 0 10px 0;
-      // }
       .contact {
         color: #ffffff;
       }
@@ -751,6 +836,11 @@ export default {
       width: 32%;
     }
   }
+  .el-dialog__header {
+    .hearderTitle {
+      font-size: 24px;
+    }
+  }
   .el-dialog__body {
     .tabDiv,
     .tabBox {
@@ -787,7 +877,7 @@ export default {
 
     .listItem,
     .item {
-      width: 690px;
+      width: 550px;
       height: 80px;
       .price,
       .quantity {
@@ -824,12 +914,11 @@ export default {
     }
 
     .listItem {
-      width: 690px;
+      width: 550px;
       height: 180px;
-
       .price,
       .quantity {
-        width: 690px;
+        width: 550px;
         height: 80px;
         font-size: 18px;
       }
@@ -904,7 +993,7 @@ export default {
     }
 
     .infoBox {
-      width: 690px;
+      width: 550px;
       height: 140px;
       background: #fff3e7;
       margin: 0 auto 50px;
@@ -924,6 +1013,351 @@ export default {
         .key {
           font-size: 22px;
           color: rgba(0, 0, 0, 0.3);
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 767px) {
+  .footerHidePhone {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .footerPage {
+    width: 100%;
+    height: 100%;
+    background: #7a68f3;
+    .footerHide {
+      display: none;
+    }
+    .footContainer {
+      width: 100%;
+      height: 100%;
+      // flex-direction: row;
+      flex-wrap: wrap;
+      padding: 25px 0;
+      .line {
+        text-align: center;
+        width: 50%;
+        margin: 10px 0;
+        .logo {
+          width: 100%;
+          height: 70px;
+          margin: 10px 0 0 0px;
+          text-align: center;
+          .gfwx {
+            width: 100%;
+            font-size: 12px;
+            // margin: 10px 0;
+          }
+          img {
+            width: 50px;
+            height: 50px;
+            box-shadow: 0 0 5px #ccc;
+          }
+        }
+        .navIcon {
+          width: 100%;
+          margin: 0px 0;
+          justify-content: center;
+          align-content: center;
+          .wxIcon {
+            width: 16px;
+            height: 16px;
+            margin: 2px 2px 7px 3px;
+            background: url(../assets/images/weixin.png) no-repeat;
+            background-size: 16px 16px;
+            cursor: pointer;
+          }
+          .wxIconActive {
+            width: 16px;
+            height: 16px;
+            margin: 3px 3px 7px 3px;
+            background: url(../assets/images/weixin2.png) no-repeat;
+            background-size: 16px 16px;
+            cursor: pointer;
+          }
+          .qqIcon {
+            width: 16px;
+            height: 16px;
+            margin: 3px 3px 7px 3px;
+            background: url(../assets/images/qq.png) no-repeat;
+            background-size: 16px 16px;
+            cursor: pointer;
+          }
+          .qqIconActive {
+            width: 16px;
+            height: 16px;
+            margin: 3px 3px 7px 3px;
+            background: url(../assets/images/qq2.png) no-repeat;
+            background-size: 16px 16px;
+            cursor: pointer;
+          }
+          .wbIcon {
+            width: 16px;
+            height: 16px;
+            margin: 3px 3px 7px 3px;
+            background: url(../assets/images/weibo.png) no-repeat;
+            background-size: 16px 16px;
+            cursor: pointer;
+          }
+          .wbIconActive {
+            width: 16px;
+            height: 16px;
+            margin: 3px 3px 7px 3px;
+            background: url(../assets/images/weibo2.png) no-repeat;
+            background-size: 16px 16px;
+            cursor: pointer;
+          }
+        }
+        .login {
+          width: 50px;
+          height: 18px;
+          line-height: 18px;
+          text-align: center;
+          background: #ffb165;
+          border-radius: 5px;
+          color: #fff;
+          font-size: 8px;
+          cursor: pointer;
+        }
+        .reg {
+          cursor: pointer;
+          width: 50px;
+          height: 18px;
+          line-height: 18px;
+          border: 1px solid #ffffff;
+          color: #fff;
+          border-radius: 5px;
+          font-size: 8px;
+          text-align: center;
+          margin-left: 5px;
+        }
+        .yaoqing {
+          position: absolute;
+          z-index: -1000;
+        }
+        .th {
+          color: #fff;
+          font-size: 12px;
+          margin-bottom: 10px;
+        }
+        .td {
+          color: rgba(255, 255, 255, 0.5);
+          font-size: 8px;
+          cursor: pointer;
+          margin-bottom: 5px;
+          a {
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.5);
+          }
+
+          a:hover {
+            color: #fff;
+            text-decoration: underline;
+          }
+        }
+        .td:hover {
+          color: #fff;
+          cursor: pointer;
+          text-decoration: underline;
+        }
+      }
+      .line:nth-child(1) {
+        width: 50%;
+        // margin-left: 25px;
+      }
+      // .line:nth-child(6) {
+      //   width: 30%;
+      //   margin-left: 20px;
+      // }
+    }
+
+    .el-dialog__header {
+      .hearderTitle {
+        font-size: 16px;
+      }
+    }
+    .el-dialog__body {
+      .tabDiv,
+      .tabBox {
+        width: 500px;
+        height: 40px;
+        background: #fff3e7;
+        border-radius: 16px;
+        cursor: pointer;
+        .tab {
+          width: 33.333%;
+          font-size: 15px;
+          color: rgba(0, 0, 0, 0.3);
+          line-height: 40px;
+          text-align: center;
+        }
+        .active {
+          height: 40px;
+          background: #ffd8b1;
+          box-shadow: 2px 3px 6px 0px rgba(196, 98, 0, 0.27);
+          border-radius: 16px;
+          font-weight: 300;
+          color: #000;
+        }
+      }
+      .tabDiv {
+        width: 200px;
+        .tab {
+          width: 50%;
+        }
+      }
+      .tabBox {
+        width: 250px;
+      }
+
+      .listItem,
+      .item {
+        width: 230px;
+        height: 40px;
+        .price,
+        .quantity {
+          width: 230px;
+          background: #fff3e7;
+          border-radius: 15px;
+          padding: 0 10px;
+          .name {
+            color: #606266;
+            font-size: 12px;
+          }
+          .line {
+            width: 1px;
+            height: 10px;
+            background-color: rgba(0, 0, 0, 0.23);
+            margin-left: 10px;
+          }
+          input {
+            flex: 1;
+            color: #000;
+            font-size: 12px;
+            // text-align: center;
+            padding-left: 4px;
+            margin: 0 10px;
+          }
+          .key {
+            color: #606266;
+            font-size: 9px;
+          }
+        }
+        .quantity {
+          width: 230px;
+        }
+      }
+
+      .listItem {
+        width: 230px;
+        height: 90px;
+
+        .price,
+        .quantity {
+          width: 230px;
+          height: 40px;
+          font-size: 9px;
+        }
+        input {
+          flex: 1;
+          width: 100%;
+          height: 25px;
+          color: #000;
+          font-size: 6px;
+          padding-left: 0px;
+          padding: 0px;
+          margin: 0 0px;
+        }
+        input::-webkit-input-placeholder {
+          color: #999;
+          font-size: 8px;
+        }
+      }
+
+      .item {
+        background: #fff3e7;
+        border-radius: 16px;
+        padding: 0 15px;
+        font-size: 9px;
+        .line {
+          width: 1px;
+          height: 10px;
+          background-color: rgba(0, 0, 0, 0.23);
+          margin-left: 10px;
+        }
+        input {
+          flex: 1;
+          width: 100%;
+          height: 25px;
+          color: #000;
+          font-size: 12px;
+          padding-left: 4px;
+          margin: 0 10px;
+        }
+        input::-webkit-input-placeholder {
+          color: #999;
+          font-size: 12px;
+        }
+      }
+
+      .btn {
+        width: 100%;
+        height: 45px;
+        background: url("../assets/imgs/btn_bg.png") no-repeat;
+        background-size: 100% 100%;
+        line-height: 36px;
+        color: #fff;
+        font-size: 18px;
+        font-weight: 500;
+        cursor: pointer;
+      }
+
+      .circle {
+        font-size: 24px;
+        font-weight: bold;
+        color: #f16c00;
+        text-align: center;
+        padding: 12px 0 0px;
+        text {
+          font-size: 12px;
+          padding-left: 2px;
+        }
+      }
+
+      .tip {
+        font-size: 12px;
+        font-weight: 500;
+        color: rgba(0, 0, 0, 0.5);
+        margin-bottom: 20px;
+      }
+
+      .infoBox {
+        width: 100%;
+        height: 70px;
+        background: #fff3e7;
+        margin: 0 auto 50px;
+        .infiLi {
+          width: 33.3333%;
+          padding: 8px 0;
+          padding-left: 15px;
+          font-weight: 500;
+          .coinNum {
+            font-size: 12px;
+            color: #000;
+          }
+          .rmb {
+            font-size: 12px;
+            color: #000;
+          }
+          .key {
+            font-size: 12px;
+            color: rgba(0, 0, 0, 0.3);
+          }
         }
       }
     }

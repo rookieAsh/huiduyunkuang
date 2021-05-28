@@ -12,3 +12,14 @@
 //     },
 //   }
 // }
+
+module.exports = {
+  publicPath: './',
+  assetsDir: 'static',
+  outputDir: 'dist',
+  // assetsPublicPath: './',
+  devServer: {
+    port: 8080,
+    host: '192.168.2.18',
+  }
+}

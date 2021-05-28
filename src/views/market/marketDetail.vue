@@ -1,7 +1,7 @@
 <template>
   <div class="maeketDetailPage">
     <div class="k60"></div>
-    <div class="banner margin0 flex-between">
+    <div class="banner margin0">
       <div class="left">
         <div class="name">{{ detailObj.name }}</div>
         <!-- <div class="name">230M 现货 </div> -->
@@ -128,6 +128,7 @@ export default {
         var nowTime = Date.parse(new Date()) / 1000;
         this.time = result.data[0].parseTime - nowTime;
         if (this.time <= 0) {
+          // 过会改为true
           this.flag = true;
           // this.text == "已结束";
         } else {
@@ -147,6 +148,9 @@ export default {
 .banner {
   width: 1200px;
   padding: 100px 0 0 30px;
+  display: flex;
+  flex-direction: row;
+  // justify-content: space-between;
   .name {
     font-size: 30px;
     font-weight: 700;
@@ -286,6 +290,157 @@ export default {
     color: #000000;
     line-height: 36px;
     padding: 30px 0;
+  }
+}
+@media screen and (max-width: 767px) {
+  .banner {
+    width: 100%;
+    padding: 0px 0 0 15px;
+    display: flex;
+    flex-direction: column;
+    .name {
+      text-align: center;
+      font-size: 16px;
+      font-weight: 700;
+      margin-top: 18px;
+      color: #000000;
+    }
+    .countDown {
+      margin: 15px 0 60px 0;
+    }
+    .border {
+      width: 20px;
+      height: 20px;
+      border: 1px solid #ffab57;
+      border-radius: 5px;
+      line-height: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #ffab57;
+      text-align: center;
+    }
+    span {
+      color: #989898;
+      font-size: 12px;
+      padding: 0 5px;
+      cursor: pointer;
+    }
+    .pic {
+      width: 160px;
+      height: 110px;
+      margin: 30px auto;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .right {
+      flex: 1;
+      padding-left: 20px;
+      .starTime {
+        font-size: 14px;
+        font-family: PingFang SC;
+        font-weight: 500;
+        color: #999;
+      }
+      .th {
+        width: 100%;
+        margin-top: 25px;
+        font-size: 10px;
+        font-weight: bold;
+        color: #000000;
+        .th_li {
+          width: 33.333333%;
+        }
+      }
+      .td {
+        width: 100%;
+        margin-top: 5px;
+        font-size: 12px;
+        color: #999;
+        .td_li {
+          width: 33.333333%;
+        }
+      }
+      .number {
+        width: 90%;
+        height: 35px;
+        background: rgba(0, 0, 0, 0.05);
+        margin-top: 10px;
+        padding: 0 10px;
+        .pre,
+        .plus {
+          color: #000;
+          font-size: 24px;
+          cursor: pointer;
+        }
+        .num {
+          color: #000;
+          font-size: 18px;
+        }
+      }
+      .span {
+        color: #f16c00;
+        font-size: 12px;
+      }
+      .el-checkbox {
+        margin-top: 10px;
+      }
+      .btn {
+        width: 250px;
+        height: 30px;
+        line-height: 30px;
+        background: linear-gradient(180deg, #ff9b48, #ffc99b);
+        margin: 40px auto;
+        text-align: center;
+        border-radius: 15px;
+        font-size: 12px;
+        font-weight: 500;
+        color: #ffffff;
+        cursor: pointer;
+      }
+      .btn1 {
+        width: 250px;
+        height: 30px;
+        line-height: 30px;
+        background: linear-gradient(180deg, #b6b6b6, #929292);
+        margin: 40px 25px;
+        text-align: center;
+        border-radius: 15px;
+        font-size: 12px;
+        font-weight: 500;
+        color: #ffffff;
+        cursor: pointer;
+      }
+    }
+  }
+  .content {
+    width: 100%;
+    padding-bottom: 50px;
+    .titleBox {
+      width: 90px;
+      height: 25px;
+      position: relative;
+      .title {
+        color: #815ff5;
+        font-size: 18px;
+        margin-left: 5px;
+      }
+      .title_bg {
+        width: 75px;
+        height: 16px;
+        position: absolute;
+        right: -5px;
+        bottom: -5px;
+      }
+    }
+    .text {
+      font-size: 12px;
+      font-weight: 400;
+      color: #000000;
+      line-height: 18px;
+      padding: 15px 10px;
+    }
   }
 }
 </style>

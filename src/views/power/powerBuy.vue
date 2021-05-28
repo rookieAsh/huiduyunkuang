@@ -100,7 +100,6 @@
     <el-dialog
       title="上传截图凭证"
       :visible.sync="creVisible"
-      width="30%"
       :before-close="handleClose"
     >
       <!-- <el-upload
@@ -129,10 +128,9 @@
     <el-dialog
       title="充值"
       :visible.sync="czVisible"
-      width="20%"
       :before-close="handleCloseCz"
     >
-      <div class="qrCode" style="margin-left:30%">
+      <div class="qrCode">
         <img
           class="image"
           v-if="img != ''"
@@ -149,8 +147,6 @@
     <el-dialog
       title="截图凭证展示"
       :visible.sync="screenshotVisible"
-      width="30%"
-      height="600px"
       center
       :before-close="handleScreenshot"
     >
@@ -203,7 +199,7 @@ export default {
     this.number = this.$route.query.number;
     this.amount = (this.$route.query.amount / 6.62).toFixed(4);
     this.amounts = this.$route.query.amount;
-    this.getWellatAddress();
+    // this.getWellatAddress();
   },
 
   watch: {
@@ -547,7 +543,6 @@ export default {
       font-weight: 500;
       color: #000000;
       opacity: 0.5;
-
       .balValue {
         display: inline-block;
         margin: 0 120px 0 20px;
@@ -611,6 +606,177 @@ export default {
     color: #ffffff;
     border-radius: 50px;
     background: linear-gradient(121deg, #ff9b47, #ffc99b);
+  }
+}
+.el-dialog__body .qrCode {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+@media screen and (max-width: 767px) {
+  .content {
+    width: 100%;
+    padding: 100px 0 0 15px;
+    .leftContent {
+      width: 85%;
+      .title {
+        // height: 49px;
+        font-size: 20px;
+        font-weight: 800;
+        color: #000000;
+        line-height: 30px;
+      }
+      .title2 {
+        height: 30px;
+        line-height: 30px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #000000;
+        margin: 20px 0;
+        .dayWidth {
+          width: 190px;
+        }
+      }
+      .pay {
+        font-size: 13px;
+        font-weight: bold;
+        color: #000000;
+
+        .usdt {
+          width: 133px;
+          height: 39px;
+          line-height: 39px;
+          margin-right: 32px;
+          text-align: center;
+          display: inline-block;
+          border-radius: 5px;
+          border: 1px solid rgb(255, 201, 155);
+          .usdtPay {
+            display: inline-block;
+          }
+          img {
+            width: 25px;
+            height: 25px;
+            vertical-align: middle;
+            margin-bottom: 5px;
+          }
+        }
+        .zfb {
+          width: 133px;
+          height: 35px;
+          line-height: 35px;
+          text-align: center;
+          display: inline-block;
+          border-radius: 5px;
+          border: 1px solid rgb(255, 201, 155);
+          .zfbPay {
+            display: inline-block;
+          }
+          img {
+            width: 25px;
+            height: 25px;
+            vertical-align: middle;
+            margin-bottom: 3px;
+          }
+        }
+        .active {
+          // width: 266px;
+          // height: 78px;
+          // line-height: 78px;
+          // text-align: center;
+          // display: inline-block;
+          // border-radius: 10px;
+          color: #ffffff;
+          background-color: rgb(255, 201, 155);
+          // border: 1px solid rgb(255, 201, 155);
+        }
+      }
+      .balance {
+        width: 260px;
+        height: 46px;
+        line-height: 46px;
+        margin: 20px 0 0 0;
+        border: 0;
+        background-color: #f2f2f2;
+        font-size: 12px;
+        font-weight: 500;
+        color: #000000;
+        opacity: 0.5;
+        .balValue {
+          display: inline-block;
+          margin: 0 60px 0 10px;
+        }
+        .btn {
+          width: 60px;
+          height: 24px;
+          border-radius: 5px;
+          display: inline-block;
+          cursor: pointer;
+          text-align: center;
+          line-height: 24px;
+          font-weight: 500;
+          color: #fff;
+          background: linear-gradient(121deg, #ff9b47, #ffc99b);
+        }
+      }
+      .title3 {
+        display: block;
+        height: 30px;
+        line-height: 30px;
+        font-size: 13px;
+        font-weight: 400;
+        color: #000000;
+        opacity: 0.61;
+      }
+      .titleContent {
+        font-size: 14px;
+        line-height: 30px;
+        font-weight: 500;
+        color: #000000;
+      }
+      .heightTit {
+        margin: 10px 0;
+      }
+      .el-input {
+        width: 200px;
+        font-size: 12px;
+      }
+      .credential {
+        width: 250px;
+        img {
+          width: 100%;
+        }
+      }
+    }
+    .rightContent {
+      width: 20%;
+      position: absolute;
+      left: 200px;
+      img {
+        width: 160px;
+        height: 110px;
+      }
+    }
+    .footerBtn {
+      width: 280px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      margin: 0 auto;
+      margin-top: 40px;
+      margin-bottom: 40px;
+      font-size: 14px;
+      font-family: PingFang SC;
+      font-weight: 500;
+      color: #ffffff;
+      border-radius: 25px;
+      background: linear-gradient(121deg, #ff9b47, #ffc99b);
+    }
+  }
+  .el-dialog__body .qrCode {
+    display: flex;
+    justify-content: center;
+    align-content: center;
   }
 }
 </style>

@@ -126,6 +126,7 @@ export default {
           productId: productId
         }
       });
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
     },
     change(index) {
       console.log("index", index);
@@ -227,6 +228,117 @@ export default {
       color: #333;
       font-size: 24px;
       padding-left: 10px;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  // .tabs {
+  //   width: 400px;
+  //   height: 70px;
+  //   box-shadow: 0px 8px 10px 1px rgba(6, 4, 3, 0.07);
+  //   border-radius: 5px;
+  //   .tab {
+  //     width: 25%;
+  //     font-size: 18px;
+  //     font-weight: 600;
+  //     color: #815ff5;
+  //     text-align: center;
+  //     line-height: 70px;
+  //     cursor: pointer;
+  //   }
+  //   .active {
+  //     background: #815ff5;
+  //     color: #fff;
+  //   }
+  // }
+
+  .tabs {
+    width: 95%;
+    height: 70px;
+    box-shadow: 0px 9px 9px 1px rgba(6, 4, 3, 0.07);
+    border-radius: 5px;
+    .tab {
+      width: 50%;
+      font-size: 18px;
+      font-weight: 600;
+      color: #815ff5;
+      text-align: center;
+      line-height: 70px;
+      cursor: pointer;
+    }
+    .active {
+      background: #815ff5;
+      color: #fff;
+    }
+  }
+
+  .container {
+    width: 100%;
+    min-height: 335px;
+    margin: 0px auto 0;
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 25px;
+    padding-bottom: 40px;
+    .item {
+      background: #fffbf8;
+      width: 400px;
+      margin: 0 auto 10px;
+      padding: 24px;
+      cursor: pointer;
+      .name {
+        color: #000;
+        font-size: 14px;
+        font-weight: 600;
+      }
+      .subTitle {
+        width: 200px;
+        height: 20px;
+        background: url("../../assets/imgs/power_subtitle.png") no-repeat;
+        background-size: cover;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        .l {
+          width: 75px;
+          text-align: center;
+          font-size: 10px;
+          font-weight: 500;
+          color: #ffffff;
+          line-height: 20px;
+        }
+        .r {
+          flex: 1;
+          font-size: 12px;
+          text-align: center;
+          line-height: 20px;
+          color: #333;
+        }
+      }
+      .li {
+        line-height: 30px;
+      }
+      .key {
+        color: #666;
+        font-size: 12px;
+        font-weight: 500;
+      }
+      .val {
+        color: #000;
+        font-size: 12px;
+        font-weight: 500;
+      }
+      .produ {
+        color: #f16c00;
+        font-size: 12px;
+        font-weight: 600;
+        padding-left: 5px;
+      }
+      .time {
+        color: #333;
+        font-size: 12px;
+        padding-left: 5px;
+      }
     }
   }
 }

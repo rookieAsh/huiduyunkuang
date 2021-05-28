@@ -270,4 +270,112 @@ export default {
     }
   }
 }
+
+@media screen and (max-width: 767px) {
+  .content {
+    width: 100%;
+    margin: 0 auto;
+    padding: 90px 0;
+    .item {
+      width: 166px;
+      background: #ffffff;
+      box-shadow: 0px 9px 21px 0px rgba(29, 39, 53, 0.1);
+      border-radius: 10px;
+      padding: 20px;
+      margin-right: 20px;
+      margin-left: 20px;
+      .name {
+        color: #666;
+        font-size: 20px;
+        font-weight: 500;
+      }
+      .tip {
+        height: 85px;
+        font-size: 16px;
+        padding: 10px 0;
+      }
+      .btn {
+        width: 70%;
+        height: 30px;
+        background: #7e66f0;
+        box-shadow: 0px 7px 8px 1px rgba(65, 79, 98, 0.08);
+        border-radius: 5px;
+        line-height: 30px;
+        font-size: 14px;
+        color: #ffffff;
+        margin: 20px auto 0;
+        cursor: pointer;
+      }
+    }
+  }
+  .popup {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 999;
+    .cnt {
+      width: 300px;
+      // height: 240px;
+      background: #fff;
+      border-radius: 10px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      padding: 20px;
+      .title {
+        color: #000;
+        font-weight: 600;
+        font-size: 20px;
+        padding-bottom: 20px;
+      }
+      input {
+        display: block;
+        width: 100%;
+        height: 40px;
+        color: #333;
+        font-size: 16px;
+        margin-top: 10px;
+        border: #7e66f0 1px solid;
+        padding-left: 10px;
+        border-radius: 5px;
+      }
+      .code {
+        width: 180px;
+        color: #7e66f0;
+        font-size: 16px;
+        text-align: center;
+        line-height: 60px;
+        cursor: pointer;
+      }
+      input::-webkit-input-placeholder {
+        color: #999;
+        font-size: 16px;
+      }
+      .btns {
+        width: 100%;
+        height: 38px;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+        .btn {
+          width: 45%;
+          text-align: center;
+          line-height: 38px;
+          cursor: pointer;
+        }
+        .btn:nth-child(1) {
+          font-size: 18px;
+        }
+        .btn:nth-child(2) {
+          font-size: 18px;
+          color: #7e66f0;
+        }
+      }
+    }
+  }
+}
 </style>

@@ -22,9 +22,6 @@
               {{ titlelist[index] }}
             </div>
           </div>
-          <!-- <div class="text">
-            1月20日下午，比特小鹿CEO孟晓妮受邀出席“币世界年度数字资产投资策略论坛”，与矿圈大佬一起，探讨行业现状，分享2021年挖矿投资的掘金机会。新年伊始，比特币一骑绝尘，以前所未有的上涨速度冲破4万美元，刷新史上最高价格，挖矿市场情绪高涨。受比特币疯牛行情刺激，一边是矿机市场断货严重，供不应求，一边是二级市场囤币从供给端，矿机厂商控制投片导致产能不足。孟晓妮认为，去年黑天鹅事件让很多企业深刻地认识到风险管理和现金流管理的重要性，大规模的产能对应的就是大规模的投片，也需要大量的资金投入，在20年上半年风险不是很明朗的时候，很多矿机厂商做了相对理性的投片控制。
-          </div> -->
         </div>
       </div>
     </div>
@@ -37,7 +34,7 @@ export default {
     return {
       imglist: [],
       titlelist: [],
-      htmllist: [],
+      htmllist: []
     };
   },
   created() {
@@ -47,10 +44,11 @@ export default {
     getLun() {
       let param = new URLSearchParams();
       param.append("type", 7);
-      this.$axios.post("/index/getBannerList", param).then((res) => {
+      this.$axios.post("/index/getBannerList", param).then(res => {
         console.log(res.data.data);
-        res.data.data.map((item) => {
+        res.data.data.map(item => {
           this.imglist.push(item.url);
+          console.log(this.imglist);
           this.titlelist.push(item.content);
           this.htmllist.push(item.jump_site);
         });
@@ -61,11 +59,11 @@ export default {
       this.$router.push({
         path: "/pls1",
         query: {
-          title: htmll,
-        },
+          title: htmll
+        }
       });
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -103,6 +101,45 @@ export default {
         font-size: 16px;
         line-height: 26px;
         padding: 10px 0;
+      }
+    }
+  }
+}
+@media screen and (max-width: 767px) {
+  .box {
+    width: 100%;
+    padding: 0 10px 50px 10px;
+    .item {
+      width: 100%;
+      height: 120px;
+      margin-bottom: 20px;
+
+      .item_left {
+        width: 190px;
+        height: 110px;
+        border: 1px solid #ccc;
+        .pic {
+          width: 100%;
+          height: 100%;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+      .item_right {
+        flex: 1;
+        padding-left: 10px;
+        cursor: pointer;
+        .fzs {
+          font-size: 14px !important;
+        }
+        .text {
+          color: #333;
+          font-size: 12px;
+          line-height: 13px;
+          padding: 5px 0;
+        }
       }
     }
   }

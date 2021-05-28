@@ -190,4 +190,81 @@ export default {
     background: linear-gradient(121deg, #ff9b47, #ffc99b);
   }
 }
+@media screen and (max-width: 767px) {
+  .content {
+    width: 100%;
+    padding: 100px 0 0 15px;
+    .leftContent {
+      width: 60%;
+      .title {
+        font-size: 20px;
+        font-weight: 800;
+        color: #000000;
+        line-height: 30px;
+      }
+      .number {
+        width: 175px;
+        height: 35px;
+        background: rgba(0, 0, 0, 0.05);
+        margin: 20px 0 35px 0;
+        text-align: center;
+        padding: 0 10px;
+        .pre,
+        .plus {
+          cursor: pointer;
+          color: #000;
+          font-size: 16px;
+        }
+        .num {
+          width: 100%;
+          text-align: center;
+          color: #000;
+          font-size: 16px;
+        }
+      }
+      .couponsNav {
+        height: 20px;
+        line-height: 20px;
+      }
+      .coupons {
+        .el-select {
+          width: 200px;
+          height: 100%;
+          .el-input__inner {
+            font-size: 12px;
+            border: 0;
+          }
+        }
+      }
+      .title1 {
+        font-size: 14px;
+        font-weight: 800;
+        color: #000000;
+        margin: 25px 0;
+      }
+    }
+    .rightContent {
+      width: 500px;
+      img {
+        width: 160px;
+        height: 110px;
+      }
+    }
+    .footerBtn {
+      width: 260px;
+      height: 35px;
+      line-height: 35px;
+      text-align: center;
+      margin: 0 auto;
+      margin-top: 40px;
+      margin-bottom: 40px;
+      font-size: 16px;
+      font-family: PingFang SC;
+      font-weight: 500;
+      color: #ffffff;
+      border-radius: 25px;
+      background: linear-gradient(121deg, #ff9b47, #ffc99b);
+    }
+  }
+}
 </style>

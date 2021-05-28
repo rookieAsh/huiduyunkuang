@@ -91,6 +91,7 @@ export default {
           productId: productId
         }
       });
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
     },
     // showTime(time) {
     //   var thetime = time;
@@ -258,6 +259,105 @@ export default {
   }
   .item:nth-child(3n) {
     margin-right: 0;
+  }
+}
+@media screen and (max-width: 767px) {
+  .tabs {
+    width: 95%;
+    height: 70px;
+    box-shadow: 0px 9px 9px 1px rgba(6, 4, 3, 0.07);
+    border-radius: 5px;
+    .tab {
+      width: 50%;
+      font-size: 18px;
+      font-weight: 600;
+      color: #815ff5;
+      text-align: center;
+      line-height: 70px;
+      cursor: pointer;
+    }
+    .active {
+      background: #815ff5;
+      color: #fff;
+    }
+  }
+
+  .container {
+    width: 100%;
+    margin: 50px auto 0;
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 50px;
+    .item {
+      width: 100%;
+      height: 188px;
+      background: linear-gradient(
+        21deg,
+        rgba(255, 155, 71, 0.7),
+        rgba(255, 201, 155, 0.7),
+        rgba(255, 201, 155, 0.7)
+      );
+      box-shadow: -1px 6px 11px 0px rgba(29, 39, 53, 0.16);
+      border-radius: 10px;
+      margin: 0 10px 60px 10px;
+      position: relative;
+      padding-top: 80px;
+      .pic {
+        width: 140px;
+        height: 110px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: -22px;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .subT {
+        position: absolute;
+        width: 80px;
+        height: 30px;
+        left: -5px;
+        top: 78px;
+        background: url("../../assets/imgs/subT.png") no-repeat;
+        background-size: 100% 100%;
+        color: #fff;
+        font-size: 14px;
+        line-height: 25px;
+        text-align: center;
+      }
+      .name {
+        font-size: 12px;
+        font-weight: 700;
+        color: #ffffff;
+      }
+      .product {
+        font-size: 14px;
+        color: #ffffff;
+        padding-top: 10px;
+        span {
+          color: rgba(255, 255, 255, 0.7);
+          font-size: 12px;
+          padding-left: 3px;
+        }
+      }
+      .price {
+        color: #fff;
+        font-size: 12px;
+        font-weight: 600;
+        padding-top: 15px;
+      }
+      .del {
+        color: rgba(255, 255, 255, 0.5);
+        text-align: center;
+        font-size: 14px;
+        text-decoration: line-through;
+      }
+    }
+    .item:nth-child(3n) {
+      margin-right: 10px;
+    }
   }
 }
 </style>

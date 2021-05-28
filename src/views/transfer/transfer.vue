@@ -287,7 +287,7 @@ export default {
     height: 60px;
     background: linear-gradient(90deg, #ff9b47, #ffc99b);
     line-height: 60px;
-    border-radius: 10px;
+    border-radius: 8px;
     text-align: center;
     font-size: 28px;
     font-weight: 600;
@@ -361,6 +361,163 @@ export default {
       .btn:nth-child(2) {
         font-size: 18px;
         color: #ffab57;
+      }
+    }
+  }
+}
+@media screen and (max-width: 767px) {
+  .box {
+    width: 90%;
+    .titleBox {
+      width: 50px;
+      height: 25px;
+      margin-top: 50px;
+      position: relative;
+      margin-left: 0px;
+      .title {
+        color: #9d83f3;
+        font-size: 16px;
+      }
+      .title_bg {
+        width: 35px;
+        height: 12px;
+        position: absolute;
+        right: 5px;
+        bottom: 5px;
+      }
+    }
+    .inpDiv {
+      width: 300px;
+      height: 50px;
+      border-bottom: 1px solid #ffd8b7;
+      img {
+        width: 30px !important;
+        height: 30px;
+      }
+      input {
+        display: block;
+        // flex: 1;
+        width: 150px;
+        height: 30px;
+        outline: none;
+        border: none;
+        background: transparent;
+        font-size: 16px;
+      }
+      .line {
+        // width: 1px;
+        height: 30px;
+        background: #ff9915;
+        opacity: 0.34;
+        margin: 0 10px;
+      }
+      .all {
+        width: 30px;
+        font-size: 13px;
+        font-weight: 500;
+        color: #030303;
+        line-height: 44px;
+        opacity: 0.61;
+      }
+      .coin {
+        color: #000;
+        font-size: 16px;
+        padding: 0 8px;
+      }
+    }
+    .using {
+      width: 300px;
+      height: 30px;
+      line-height: 30px;
+      font-size: 14px;
+      font-weight: bold;
+      color: #000000;
+      .rate {
+        font-size: 14px;
+        font-weight: 400;
+        color: #ff9915;
+      }
+    }
+    .btnSubmit {
+      width: 250px;
+      height: 40px;
+      background: linear-gradient(90deg, #ff9b47, #ffc99b);
+      line-height: 40px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff;
+      margin: 50px auto 100px;
+      cursor: pointer;
+    }
+  }
+  .popup {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 999;
+    .cnt {
+      width: 180px;
+      // height: 240px;
+      background: #fff;
+      border-radius: 10px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      padding: 20px;
+      .title {
+        color: #000;
+        font-weight: 600;
+        font-size: 20px;
+        padding-bottom: 20px;
+      }
+      input {
+        display: block;
+        width: 140px;
+        height: 40px;
+        color: #333;
+        font-size: 16px;
+        margin-top: 10px;
+        border: #ffab57 1px solid;
+        padding-left: 10px;
+        border-radius: 5px;
+      }
+      .code {
+        width: 90px;
+        color: #ff9915;
+        font-size: 16px;
+        text-align: center;
+        line-height: 60px;
+        cursor: pointer;
+      }
+      input::-webkit-input-placeholder {
+        color: #999;
+        font-size: 16px;
+      }
+      .btns {
+        width: 100%;
+        height: 20px;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        .btn {
+          width: 45%;
+          text-align: center;
+          line-height: 20px;
+          cursor: pointer;
+        }
+        .btn:nth-child(1) {
+          font-size: 14px;
+        }
+        .btn:nth-child(2) {
+          font-size: 14px;
+          color: #ffab57;
+        }
       }
     }
   }

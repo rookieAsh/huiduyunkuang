@@ -47,6 +47,7 @@
           ></i>
         </div>
         <div class="cancle text-center" @click="ChargeShow = false">确认</div>
+        <!-- <div class="cle" @click="hidePop2()">取消</div> -->
       </div>
     </div>
     <div class="popup" v-if="WithdrawShow">
@@ -104,7 +105,6 @@
             v-model="tradePwd"
           />
         </div>
-
         <div class="flex" style="padding:0 40px">
           <div class="cancle text-center" @click="transferBtn()">确认</div>
           <div class="cle" @click="hidePop1()">取消</div>
@@ -234,6 +234,11 @@ export default {
         this.TransferShow = false;
       }
     },
+    // hidePop2() {
+    //   if (this.ChargeShow) {
+    //     this.ChargeShow = false;
+    //   }
+    // },
     transferBtn() {
       if (!this.quantity) {
         this.$u.toast("请输入划转数量");
@@ -455,6 +460,215 @@ export default {
     }
     .icon {
       cursor: pointer;
+    }
+  }
+}
+@media screen and (max-width: 767px) {
+  .content {
+    width: 100%;
+    padding: 40px 20px;
+    margin: 0 auto;
+    .assets {
+      width: 100%;
+      height: 40px;
+      display: flex;
+      line-height: 40px;
+      .name {
+        color: #000;
+        font-size: 14px;
+        font-weight: 600;
+      }
+      .num {
+        color: #999;
+        font-size: 14px;
+        padding-left: 10px;
+      }
+    }
+    .line {
+      width: 100%;
+      height: 5px;
+      background: #fff5ed;
+    }
+    .th {
+      width: 100%;
+      margin-top: 20px;
+      .li {
+        width: 25%;
+        font-size: 12px;
+      }
+      .li:nth-child(4) {
+        width: 30%;
+        text-align: center;
+      }
+    }
+    .td {
+      height: 40px;
+      border-bottom: 1px solid #dbdbdb;
+      .li {
+        width: 100%;
+        font-size: 12px;
+        line-height: 40px;
+        .cell1 {
+          width: 120px;
+          height: 24px;
+          background: #7e66f0;
+          border-radius: 5px;
+          line-height: 24px;
+          color: #fff;
+          font-size: 12px;
+          cursor: pointer;
+        }
+        .cell2 {
+          width: 120px;
+          height: 24px;
+          margin: 0 5px;
+          background: #ff9915;
+          border-radius: 5px;
+          line-height: 24px;
+          color: #fff;
+          font-size: 12px;
+          cursor: pointer;
+        }
+        .cell3 {
+          width: 120px;
+          height: 24px;
+          background: #000000;
+          border-radius: 5px;
+          line-height: 24px;
+          color: #fff;
+          font-size: 12px;
+          cursor: pointer;
+        }
+      }
+      .li:nth-child(4) {
+        width: 30%;
+      }
+    }
+  }
+  .popup {
+    width: 100%;
+    // height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 999;
+    .cnt {
+      width: 300px;
+      background: #ffffff;
+      box-shadow: 0px 16px 43px 0px rgba(29, 39, 53, 0.16);
+      border-radius: 10px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      padding: 0px;
+      .title {
+        color: #000;
+        font-size: 16px;
+        margin-top: 10px;
+      }
+      .qrCode {
+        width: 100%;
+        // height: 100%;
+        margin: 30px auto;
+        text-align: center;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .link {
+        width: 100%;
+        color: #333;
+        font-size: 12px;
+        text-align: center;
+        padding-top: 0px;
+      }
+      .cancle {
+        width: 60%;
+        height: 30px;
+        line-height: 30px;
+        background: #7e66f0;
+        border-radius: 15px;
+        color: #fff;
+        font-size: 12px;
+        margin: 10px auto;
+        cursor: pointer;
+      }
+      .cle {
+        width: 50px;
+        height: 30px;
+        line-height: 30px;
+        background: #ececec;
+        margin: 10px auto;
+        text-align: center;
+        font-size: 12px;
+        border-radius: 15px;
+        cursor: pointer;
+        color: #fff;
+      }
+      .inpDiv {
+        width: 210px;
+        height: 20px;
+        margin: 10px auto 0;
+        align-items: center;
+        input {
+          display: block;
+          flex: 1;
+          height: 20px;
+          color: #333;
+          font-size: 12px;
+          outline: none;
+          border: none;
+          border-bottom: 1px solid #999;
+          margin-left: 10px;
+        }
+        textarea {
+          flex: 1;
+          margin-left: 10px;
+          height: 50px;
+          color: #333;
+          font-size: 12px;
+          outline: none;
+          border: none;
+          border: 1px solid #999;
+          padding: 5px;
+          resize: none;
+        }
+        .val {
+          padding-left: 10px;
+          color: #8d8d8d;
+          font-size: 12px;
+        }
+        .lable {
+          width: 40px;
+          font-size: 12px;
+          font-family: PingFang SC;
+          font-weight: 500;
+          color: #000000;
+        }
+        input::-webkit-input-placeholder {
+          color: #999;
+          font-size: 12px;
+        }
+      }
+      .tabs {
+        padding: 0 50px;
+        margin-bottom: 15px;
+        margin-top: 15px;
+        .tab {
+          color: #333;
+          font-size: 14px;
+          span {
+            padding-right: 5px;
+            font-size: 12px;
+          }
+        }
+      }
+      .icon {
+        cursor: pointer;
+      }
     }
   }
 }

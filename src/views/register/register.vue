@@ -52,6 +52,7 @@
       <div class="tabShow flex-between  align-center">
         <input
           type="text"
+          class="textCode"
           placeholder="请输入验证码"
           v-model="registerForm.code"
         />
@@ -251,6 +252,7 @@ export default {
         border: 1px solid #dde2e9;
         border-radius: 5px;
       }
+
       input::-webkit-input-placeholder {
         color: #999 !important;
         font-size: 16px !important;
@@ -307,6 +309,115 @@ export default {
       span {
         color: #ff8e06;
         cursor: pointer;
+      }
+    }
+  }
+}
+@media screen and (max-width: 767px) {
+  .registerPage {
+    width: 100%;
+    background: #101838;
+    padding-top: 25px;
+    padding-bottom: 50px;
+    .registerBox {
+      width: 250px;
+      height: 100%;
+      background: #fff;
+      border-radius: 5px;
+      padding: 20px 20px;
+      .title {
+        color: #333;
+        font-size: 16px;
+        font-weight: 600;
+        padding: 10px 0;
+      }
+      .tabs {
+        .tab {
+          color: #333;
+          font-size: 14px;
+          margin-right: 10px;
+          cursor: pointer;
+        }
+        .active {
+          color: #ff8e06;
+          font-weight: 600;
+        }
+      }
+      .tabShow {
+        width: 100%;
+        .textCode {
+          width: 50%;
+        }
+        input {
+          width: 80%;
+          height: 30px;
+          padding-left: 5px;
+          font-size: 12px;
+          margin-top: 10px;
+          border: 1px solid #dde2e9;
+          border-radius: 5px;
+        }
+        input::-webkit-input-placeholder {
+          color: #999 !important;
+          font-size: 12px !important;
+        }
+        .code {
+          width: 100px;
+          height: 20px;
+          line-height: 20px;
+          background: #f2f4fb;
+          margin-left: 0px;
+          border-radius: 5px;
+          margin-top: 10px;
+          font-size: 12px;
+          color: #333;
+          cursor: pointer;
+        }
+        .isColor {
+          background: #ff8e06;
+          color: #fff;
+        }
+      }
+      .tip {
+        font-size: 12px;
+        color: #eb3d45;
+        padding: 4px 0;
+      }
+      .loginBtn {
+        width: 80%;
+        height: 30px;
+        line-height: 30px;
+        color: #fff;
+        background: linear-gradient(
+          21deg,
+          rgba(255, 155, 71, 0.7),
+          rgba(255, 201, 155, 0.7),
+          rgba(255, 201, 155, 0.7)
+        );
+        box-shadow: -1px 12px 21px 0px rgba(29, 39, 53, 0.16);
+        font-size: 14px;
+        border-radius: 8px;
+        // margin-top: 15px;
+        margin: 15px auto;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .checkbox {
+        color: #333;
+        margin-top: 14px;
+        font-size: 14px;
+        span {
+          color: #ff8e06;
+          cursor: pointer;
+        }
+      }
+      .link {
+        padding: 8px 0;
+        font-size: 14px;
+        span {
+          color: #ff8e06;
+          cursor: pointer;
+        }
       }
     }
   }

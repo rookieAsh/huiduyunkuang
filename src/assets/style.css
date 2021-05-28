@@ -3,7 +3,7 @@
     padding: 0;
     box-sizing: border-box;
   }
-  body,html {
+  /* body,html {
     font: 14px/1.4 Open Sans,PingFang SC,Hiragino Sans GB,Heiti SC,Microsoft YaHei,monospace;
     -webkit-font-smoothing: antialiased;
     min-width: 1200px;
@@ -11,14 +11,14 @@
     height: 100%;
     background: #fff;
     color: #ccc;
-  }
+  } */
   button,input{
     outline: none;
   }
 
   input::-webkit-input-placeholder {
 	color: #999;
-	font-size: 30px;
+	/* font-size: 30px; */
 }
 
 

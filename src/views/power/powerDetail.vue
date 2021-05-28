@@ -1,11 +1,11 @@
 <template>
   <div class="powerPage">
     <div class="k60"></div>
-    <div class="banner margin0 flex-between">
+    <div class="banner margin0">
       <div class="left">
         <div class="name" v-if="this.id == 16">BTC云算力</div>
         <div class="name" v-if="this.id == 15">ETH云算力</div>
-        <div class="pic" style="marginTop:120px">
+        <div class="pic">
           <img v-if="this.id == 16" src="../../assets/imgs/pic.png" alt="" />
           <img v-if="this.id == 15" src="../../assets/imgs/ethImg.png" alt="" />
         </div>
@@ -158,6 +158,7 @@ export default {
         console.log("nowTime11111", nowTime);
         this.time = result.data[0].parseTime - nowTime;
         if (this.time <= 0) {
+          // 过会改为true
           this.flag = true;
         } else {
           this.flag = false;
@@ -172,6 +173,8 @@ export default {
 .banner {
   width: 1200px;
   padding: 100px 0 0 30px;
+  display: flex;
+  flex-direction: row;
   .name {
     font-size: 30px;
     font-weight: 700;
@@ -199,6 +202,7 @@ export default {
   .pic {
     width: 320px;
     height: 220px;
+    margin-top: 120px;
     img {
       width: 100%;
       height: 100%;
@@ -309,6 +313,155 @@ export default {
     color: #000000;
     line-height: 36px;
     padding: 30px 0;
+  }
+}
+@media screen and (max-width: 767px) {
+  .banner {
+    width: 100%;
+    padding: 50px 0 0 15px;
+    display: flex;
+    flex-direction: column;
+    .name {
+      font-size: 15px;
+      font-weight: 700;
+      color: #000000;
+      text-align: center;
+    }
+    .countDown {
+      margin: 15px 0 60px 0;
+    }
+    .border {
+      width: 20px;
+      height: 20px;
+      border: 1px solid #ffab57;
+      border-radius: 5px;
+      line-height: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #ffab57;
+      text-align: center;
+    }
+    span {
+      color: #989898;
+      font-size: 12px;
+      padding: 0 5px;
+    }
+    .pic {
+      width: 160px;
+      height: 110px;
+      margin: 30px auto;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .right {
+      flex: 1;
+      padding-left: 20px;
+      .starTime {
+        font-size: 14px;
+        font-family: PingFang SC;
+        font-weight: 500;
+        color: #999;
+      }
+      .th {
+        width: 100%;
+        margin-top: 25px;
+        font-size: 14px;
+        font-weight: bold;
+        color: #000000;
+        .th_li {
+          width: 25%;
+        }
+      }
+      .td {
+        width: 100%;
+        margin-top: 5px;
+        font-size: 12px;
+        color: #999;
+        .td_li {
+          width: 25%;
+        }
+      }
+      .number {
+        width: 84%;
+        height: 37px;
+        background: rgba(0, 0, 0, 0.05);
+        margin-top: 10px;
+        padding: 0 10px;
+        .pre,
+        .plus {
+          cursor: pointer;
+          color: #000;
+          font-size: 18px;
+        }
+        .num {
+          color: #000;
+          font-size: 18px;
+        }
+      }
+      .span {
+        color: #f16c00;
+        font-size: 12px;
+      }
+      .el-checkbox {
+        margin-top: 10px;
+      }
+      .btn {
+        width: 250px;
+        height: 30px;
+        line-height: 30px;
+        background: linear-gradient(180deg, #ff9b48, #ffc99b);
+        margin: 40px auto;
+        text-align: center;
+        border-radius: 15px;
+        font-size: 15px;
+        font-weight: 500;
+        color: #ffffff;
+        cursor: pointer;
+      }
+      .btn1 {
+        width: 250px;
+        height: 30px;
+        line-height: 30px;
+        background: linear-gradient(180deg, #b6b6b6, #929292);
+        margin: 40px 25px;
+        text-align: center;
+        border-radius: 15px;
+        font-size: 12px;
+        font-weight: 500;
+        color: #ffffff;
+        cursor: pointer;
+      }
+    }
+  }
+  .content {
+    width: 100%;
+    padding-bottom: 50px;
+    .titleBox {
+      width: 90px;
+      height: 25px;
+      position: relative;
+      .title {
+        color: #815ff5;
+        font-size: 18px;
+        margin-left: 5px;
+      }
+      .title_bg {
+        width: 75px;
+        height: 16px;
+        position: absolute;
+        right: -5px;
+        bottom: -5px;
+      }
+    }
+    .text {
+      font-size: 9px;
+      font-weight: 400;
+      color: #000000;
+      line-height: 30px;
+      padding: 15px 10px;
+    }
   }
 }
 </style>
