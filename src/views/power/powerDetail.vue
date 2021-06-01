@@ -159,7 +159,7 @@ export default {
         this.time = result.data[0].parseTime - nowTime;
         if (this.time <= 0) {
           // 过会改为true
-          this.flag = true;
+          this.flag = false;
         } else {
           this.flag = false;
         }

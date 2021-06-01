@@ -4,14 +4,21 @@
     <div class="banner">
       <div class="k60"></div>
       <div class="banner_inner margin0">
-        <h1>一站式挖矿服务</h1>
-        <h2>灰度云矿</h2>
-        <h2>助你轻松挖矿！</h2>
+        <div class="hide">
+          <h1>一站式挖矿服务</h1>
+          <h2>灰度云矿</h2>
+          <h2>助你轻松挖矿！</h2>
+        </div>
+        <div class="hidePhone">
+          <span class="span1">一站式挖矿服务</span>
+          <span class="span2">灰度云矿</span>
+          <span class="span2">助你轻松挖矿！</span>
+        </div>
         <div class="swiper margin30">
           <el-carousel
             :interval="3000"
             type="card"
-            :height="isCollapse ? '120px' : '300px'"
+            :height="isCollapse ? '110px' : '300px'"
           >
             <el-carousel-item v-for="item in lunList" :key="item.id">
               <a :href="item.jump_site">
@@ -204,16 +211,7 @@
           :class="{ active: cureent == index }"
           @click="select1(item, index)"
         >
-          <!-- {{ item }} -->
           <img :src="item.image" alt="" />
-          <!-- <img
-            v-if="item.productId == 3"
-            src="../../assets/imgs/kangjiblack.png"
-          />
-          <img
-            v-if="item.productId == 5"
-            src="../../assets/imgs/kuangji3.png"
-          /> -->
           <div class="key1">{{ item.name }}</div>
         </div>
       </div>
@@ -481,9 +479,6 @@ export default {
     };
   },
   methods: {
-    // changeMenu() {
-    //   this.isCollapse = !this.isCollapse;
-    // },
     // 收益计算
     handleCount() {
       let param = new URLSearchParams();
@@ -1105,9 +1100,9 @@ export default {
         padding: 10px 0 0 10px;
       }
       .swiper {
-        width: 100%;
-        padding: 14px;
-        margin: 5px 0;
+        width: 90%;
+        padding: 0px;
+        margin: 0px auto;
         img {
           width: 100%;
           height: 100%;
@@ -1115,6 +1110,19 @@ export default {
       }
       .hide {
         display: none;
+      }
+      .hidePhone {
+        padding: 20px 10px 10px 10px;
+        .span1 {
+          font-size: 18px;
+          font-weight: bold;
+          color: #fff;
+        }
+        .span2 {
+          font-size: 14px;
+          font-weight: bold;
+          color: #fff;
+        }
       }
       .calculation {
         width: 95%;
@@ -1230,7 +1238,7 @@ export default {
   // 市场热销
   .section_hot_sell {
     width: 100%;
-    padding: 20px 0;
+    padding: 20px 0 0px 0;
     // background: pink;
     .titleBox {
       width: 90px;
@@ -1242,18 +1250,18 @@ export default {
         margin-left: 8px;
       }
       .title_bg {
-        width: 75px;
+        width: 65px;
         height: 16px;
         position: absolute;
-        right: -9px;
-        bottom: -5px;
+        right: 0px;
+        bottom: -2px;
       }
     }
     .hot_sell_left {
       width: 300px;
       padding-left: 38px;
       height: 160px;
-      margin-top: 25px;
+      margin-top: 20px;
       padding-top: 15px;
       .subTtitle {
         width: 90px;
@@ -1292,7 +1300,7 @@ export default {
       }
       .price {
         color: #815ff5;
-        font-size: 21px;
+        font-size: 16px;
         padding-bottom: 20px;
         del {
           font-size: 13px;
@@ -1302,11 +1310,11 @@ export default {
     }
     .hot_sell_right {
       flex: 1;
-      height: 160px;
-      margin-top: 25px;
+      height: 120px;
+      // margin-top: 25px;
       img {
-        width: 220px;
-        height: 145px;
+        width: 200px;
+        height: 125px;
         // margin-right: 40px;
       }
     }
@@ -1315,31 +1323,39 @@ export default {
     }
     .market {
       width: 100%;
-      height: 280px;
+      height: 140px;
       // flex-wrap: wrap;
+      padding-left: 10px;
+      padding-right: 10px;
+      margin: 0 auto;
       overflow: hidden;
       .marketLi {
-        width: 90%;
-        height: 75px;
+        width: 49%;
+        height: 50px;
         background: linear-gradient(29deg, #7763fb, #bfb5fe);
-        border-radius: 10px;
+        border-radius: 0px;
         cursor: pointer;
         margin-bottom: 25px;
+        margin-right: 3px;
         img {
           width: 70px;
           height: 50px;
           transform: translateX(-60px);
-          margin-top: 17px;
+          transform: translateY(-0px);
+          margin-top: 0px;
           border: 1px solid #ccc;
-          box-shadow: 0 0 10px rgb(172, 170, 170);
+          box-shadow: 0 0 5px rgb(172, 170, 170);
         }
         .key1 {
-          flex: 1;
-          font-size: 8px;
-          font-weight: bold;
+          // flex: 1;
+          width: 100%;
+          font-size: 12px;
+          font-weight: 400;
           color: #333;
           line-height: 75px;
-          transform: translateX(-20px);
+          transform: translateX(0px);
+          transform: translateY(-10px);
+          overflow: hidden;
         }
       }
       .active {
@@ -1368,43 +1384,28 @@ export default {
       }
       .title_bg {
         width: 65px;
-        height: 18px;
+        height: 16px;
         position: absolute;
         right: 0;
-        bottom: -5px;
+        bottom: -2px;
       }
     }
     .miningBox {
       width: 100%;
-      height: 110px;
+      height: 90px;
       margin-top: 25px;
-
+      padding: 0 10px;
       .miningLi {
-        width: 240px;
-        height: 170px;
+        width: 248px;
+        height: 140px;
         background: url("../../assets/imgs/mining.png") no-repeat;
         background-size: 100% 100%;
         position: relative;
         cursor: pointer;
         h4 {
-          width: 71px;
-          height: 25px;
-          line-height: 25px;
-          background: linear-gradient(
-            21deg,
-            rgba(255, 155, 71, 0.6),
-            rgba(255, 201, 155, 0.6)
-          );
-          border-radius: 13px;
-          color: #fff;
-          font-size: 11px;
-          text-align: center;
-          margin: 75px auto 0;
-        }
-        h6 {
-          width: 71px;
-          height: 25px;
-          line-height: 25px;
+          width: 65px;
+          height: 20px;
+          line-height: 18px;
           background: linear-gradient(
             21deg,
             rgba(255, 155, 71, 0.6),
@@ -1414,12 +1415,27 @@ export default {
           color: #fff;
           font-size: 12px;
           text-align: center;
-          margin: 15px auto 0;
+          margin: 59px auto 0;
+        }
+        h6 {
+          width: 65px;
+          height: 20px;
+          line-height: 20px;
+          background: linear-gradient(
+            21deg,
+            rgba(255, 155, 71, 0.6),
+            rgba(255, 201, 155, 0.6)
+          );
+          border-radius: 13px;
+          color: #fff;
+          font-size: 12px;
+          text-align: center;
+          margin: 8px auto 0;
           transform: translateX(-10px);
         }
         .icon {
-          width: 25px;
-          height: 40px;
+          width: 20px;
+          height: 30px;
           position: absolute;
           right: 25px;
           top: 10px;
@@ -1451,10 +1467,10 @@ export default {
       }
       .title_bg {
         width: 65px;
-        height: 18px;
+        height: 16px;
         position: absolute;
         right: 0;
-        bottom: -5px;
+        bottom: -2px;
       }
     }
     .aboutContent {
@@ -1466,32 +1482,36 @@ export default {
       font-size: 14px;
       .aboutC {
         width: 50%;
-        height: 270px;
+        height: 200px;
         margin: 0;
         img {
-          width: 110px;
-          height: 100px;
+          width: 80px;
+          height: 70px;
         }
         .name {
-          font-size: 16px;
+          font-size: 14px;
+          padding-top: 8px;
         }
         .dec {
           font-size: 12px;
+          padding-top: 8px;
         }
       }
       .aboutC1 {
         width: 50%;
-        height: 270px;
+        height: 235px;
         margin: 0;
         padding: 5px 0 0 0;
         img {
-          width: 200px;
+          width: 180px;
         }
         .name {
-          font-size: 16px !important;
+          font-size: 14px !important;
+          padding-top: 8px;
         }
         .dec {
           font-size: 12px;
+          padding-top: 8px;
         }
       }
 
@@ -1517,10 +1537,10 @@ export default {
   //我们的服务
   .serve {
     width: 100%;
-    padding: 20px 0 !important;
+    padding: 5px 0 !important;
     .titleBox {
       width: 100px;
-      height: 50px;
+      height: 30px;
       position: relative;
       .title {
         color: #815ff5;
@@ -1528,11 +1548,11 @@ export default {
         margin-left: 8px;
       }
       .title_bg {
-        width: 75px;
+        width: 80px;
         height: 16px;
         position: absolute;
-        right: 0;
-        bottom: 22px;
+        right: -5px;
+        bottom: 3px;
       }
     }
     .serveContent {
@@ -1574,11 +1594,11 @@ export default {
   // 生态合作伙伴
   .partner {
     width: 100%;
-    height: 380px;
-    padding: 25px 0;
+    height: 320px;
+    padding: 5px 0;
     .titleBox {
       width: 170px;
-      height: 50px;
+      height: 30px;
       position: relative;
       .title {
         color: #815ff5;
@@ -1586,11 +1606,11 @@ export default {
         margin-left: 8px;
       }
       .title_bg {
-        width: 75px;
+        width: 100px;
         height: 16px;
         position: absolute;
-        right: 68px;
-        bottom: 22px;
+        right: 45px;
+        bottom: 3px;
       }
     }
     .partnerImg {

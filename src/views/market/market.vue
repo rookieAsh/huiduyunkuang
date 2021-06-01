@@ -263,7 +263,7 @@ export default {
 }
 @media screen and (max-width: 767px) {
   .tabs {
-    width: 95%;
+    width: 90%;
     height: 70px;
     box-shadow: 0px 9px 9px 1px rgba(6, 4, 3, 0.07);
     border-radius: 5px;
@@ -283,14 +283,14 @@ export default {
   }
 
   .container {
-    width: 100%;
-    margin: 50px auto 0;
+    width: 90%;
+    margin: 35px auto 0;
     display: flex;
     flex-wrap: wrap;
-    padding-top: 50px;
+    padding-top: 0px;
     .item {
       width: 100%;
-      height: 188px;
+      height: 150px;
       background: linear-gradient(
         21deg,
         rgba(255, 155, 71, 0.7),
@@ -299,12 +299,12 @@ export default {
       );
       box-shadow: -1px 6px 11px 0px rgba(29, 39, 53, 0.16);
       border-radius: 10px;
-      margin: 0 10px 60px 10px;
+      margin: 0 10px 40px 10px;
       position: relative;
-      padding-top: 80px;
+      padding-top: 70px;
       .pic {
-        width: 140px;
-        height: 110px;
+        width: 120px;
+        height: 90px;
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
@@ -319,7 +319,7 @@ export default {
         width: 80px;
         height: 30px;
         left: -5px;
-        top: 78px;
+        top: 60px;
         background: url("../../assets/imgs/subT.png") no-repeat;
         background-size: 100% 100%;
         color: #fff;
@@ -335,7 +335,7 @@ export default {
       .product {
         font-size: 14px;
         color: #ffffff;
-        padding-top: 10px;
+        padding-top: 3px;
         span {
           color: rgba(255, 255, 255, 0.7);
           font-size: 12px;
@@ -346,7 +346,7 @@ export default {
         color: #fff;
         font-size: 12px;
         font-weight: 600;
-        padding-top: 15px;
+        padding-top: 0px;
       }
       .del {
         color: rgba(255, 255, 255, 0.5);

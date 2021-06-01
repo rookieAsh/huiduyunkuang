@@ -71,6 +71,7 @@ export default {
 .box {
   width: 1200px;
   padding-bottom: 100px;
+  margin-top: 40px;
   .item {
     width: 1200px;
     height: 250px;
@@ -107,16 +108,15 @@ export default {
 }
 @media screen and (max-width: 767px) {
   .box {
-    width: 100%;
-    padding: 0 10px 50px 10px;
+    width: 96%;
+    padding: 0 10px 20px 10px;
     .item {
       width: 100%;
-      height: 120px;
+      height: 100px;
       margin-bottom: 20px;
-
       .item_left {
-        width: 190px;
-        height: 110px;
+        width: 160px;
+        height: 100px;
         border: 1px solid #ccc;
         .pic {
           width: 100%;

@@ -4,10 +4,10 @@
     <div class="content">
       <div class="contentMsg">
         <div class="msg">
-          <div class="msg1 font1">选择国籍：</div>
+          <div class="msg1 font1">国&nbsp;&nbsp;&nbsp;&nbsp;籍：</div>
           <div>
-            <!-- <input type="text" placeholder="中国大陆" v-model="pwd" /> -->
-            <el-select
+            <input type="text" placeholder="中国大陆" v-model="nationality" />
+            <!-- <el-select
               v-model="countriesValue"
               clearable
               filterable
@@ -20,11 +20,11 @@
                 :value="item.value"
               >
               </el-option>
-            </el-select>
+            </el-select> -->
           </div>
         </div>
         <div class="msg">
-          <div class="msg1 font1">姓名：</div>
+          <div class="msg1 font1">姓&nbsp;&nbsp;&nbsp;&nbsp;名：</div>
           <div>
             <input
               type="text"
@@ -37,7 +37,7 @@
           <div class="msg1 font1">身份证号：</div>
           <div>
             <input
-              type="password"
+              type="number"
               placeholder="请输入身份证号，认证后无法修改"
               v-model="cardId"
             />
@@ -45,15 +45,40 @@
         </div>
       </div>
       <div class="contentPic">
-        <div class="font1">身份证正反面照：</div>
-        <div>123456789123456</div>
+        <div class="font1">身份证正面照：</div>
+        <div>
+          <el-upload
+            class="avatar-uploader"
+            action="#"
+            :show-file-list="false"
+            :http-request="fnUploadRequest"
+          >
+            <img v-if="imageUrl" :src="imageUrl" class="avatar" />
+            <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+          </el-upload>
+        </div>
       </div>
-      <div class="contentBtn">提交</div>
+      <div class="contentPic">
+        <div class="font1">身份证反面照：</div>
+        <div>
+          <el-upload
+            class="avatar-uploader"
+            action="#"
+            :show-file-list="false"
+            :http-request="fnUploadRequest1"
+          >
+            <img v-if="imageUrl1" :src="imageUrl1" class="avatar" />
+            <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+          </el-upload>
+        </div>
+      </div>
+      <div class="contentBtn" @click="handleSubmit()">提交</div>
     </div>
   </div>
 </template>
 
 <script>
+import Oss from "ali-oss";
 export default {
   data() {
     return {
@@ -250,11 +275,161 @@ export default {
         { value: "Zambia", label: "赞比亚" }
       ],
       name: "",
-      cardId: ""
+      cardId: "",
+      imageUrl: "",
+      imageUrl1: "",
+      viewHost: "https://zhaoxuefei-image.oss-cn-beijing.aliyuncs.com/",
+      aliyunDate: "",
+      nationality: "中国大陆" // 国籍
     };
   },
-  created() {},
-  methods: {}
+  created() {
+    this.getClientData();
+  },
+  methods: {
+    async getClientData() {
+      await this.$axios.post("/Autnentication/sts").then(res => {
+        this.aliyunDate = res.data;
+        console.log(this.aliyunDate);
+      });
+    },
+
+    async fnUploadRequest(option) {
+      try {
+        console.log("参数", option);
+        await this.getClientData();
+        // 获取Oss配置信息
+        let client = new Oss({
+          region: "oss-cn-beijing",
+          accessKeyId: this.aliyunDate.accessKeyId,
+          accessKeySecret: this.aliyunDate.accessKeySecret,
+          bucket: "zhaoxuefei-image",
+          stsToken: this.aliyunDate.securityToken,
+          secure: true
+        });
+
+        let file = option.file;
+        const point = file.name.lastIndexOf(".");
+        let suffix = file.name.substr(point);
+        let fileName = file.name.substr(0, point);
+        let date = new Date().getTime();
+        // let date = this.$date().format("YYYYMMDDHHmm");
+        let fileNames = `${fileName}_${this.getDate(date)}${suffix}`;
+        let relativePath = "img_";
+        console.log("oss客户端", client);
+        console.log("文件", file);
+        // 分片上传文件
+        let ret = await client.multipartUpload(relativePath + fileNames, file, {
+          progress: async function(p) {
+            let e = {};
+            e.percent = p * 100;
+            option.onProgress(e);
+          }
+        });
+        if (ret.res.statusCode === 200) {
+          console.log("上传成功", ret);
+          let image = ret.res.requestUrls[0];
+          if (image.indexOf("?") != -1) {
+            this.imageUrl = image.substring(0, image.indexOf("?"));
+          } else {
+            this.imageUrl = image;
+          }
+          // this.imageUrl = image || image.substring(0, image.indexOf("?"));
+          console.log("this.imageUrl", this.imageUrl);
+        } else {
+          option.onError("上传失败");
+        }
+      } catch (error) {
+        console.error(error);
+        option.onError("上传失败");
+      }
+    },
+    async fnUploadRequest1(option1) {
+      try {
+        console.log("参数", option1);
+        await this.getClientData();
+        // 获取Oss配置信息
+        let client = new Oss({
+          region: "oss-cn-beijing",
+          accessKeyId: this.aliyunDate.accessKeyId,
+          accessKeySecret: this.aliyunDate.accessKeySecret,
+          bucket: "zhaoxuefei-image",
+          stsToken: this.aliyunDate.securityToken,
+          secure: true
+        });
+
+        let file = option1.file;
+        const point = file.name.lastIndexOf(".");
+        let suffix = file.name.substr(point);
+        let fileName = file.name.substr(0, point);
+        let date = new Date().getTime();
+        // let date = this.$date().format("YYYYMMDDHHmm");
+        let fileNames = `${fileName}_${this.getDate(date)}${suffix}`;
+        let relativePath = "img_";
+        console.log("oss客户端", client);
+        console.log("文件", file);
+        // 分片上传文件
+        let ret = await client.multipartUpload(relativePath + fileNames, file, {
+          progress: async function(p) {
+            let e = {};
+            e.percent = p * 100;
+            option1.onProgress(e);
+          }
+        });
+        if (ret.res.statusCode === 200) {
+          console.log("上传成功", ret);
+          let image = ret.res.requestUrls[0];
+          if (image.indexOf("?") != -1) {
+            this.imageUrl1 = image.substring(0, image.indexOf("?"));
+          } else {
+            this.imageUrl1 = image;
+          }
+          console.log("this.imageUrl1", this.imageUrl1);
+        } else {
+          option1.onError("上传失败");
+        }
+      } catch (error) {
+        console.error(error);
+        option1.onError("上传失败");
+      }
+    },
+    handleSubmit() {
+      let param = new URLSearchParams();
+      let userId = sessionStorage.getItem("userId");
+      param.append("userId", userId);
+      param.append("username", this.name);
+      param.append("idNumber", this.cardId);
+      param.append("picOcr", this.imageUrl);
+      param.append("picRear", this.imageUrl1);
+      this.$axios.post("/Autnentication/picUpOCR", param).then(res => {
+        if (res.status == 200) {
+          if (res.data.state == 0) {
+            this.$message.success(res.data.message);
+          } else if (res.data.state == 0) {
+            this.$message.warning(res.data.message);
+          } else {
+            this.$message.warning(res.data.message);
+          }
+        }
+      });
+    },
+    // 时间处理
+    getDate(time) {
+      const date = new Date(time);
+      const year = date.getFullYear();
+      const month =
+        date.getMonth() < 10 ? date.getMonth() + 1 : date.getMonth() + 1;
+      const day = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+      const hh = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+      const mm =
+        date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+      const ss =
+        date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+      const nowTime =
+        year + "-" + month + "-" + day + "_" + hh + "-" + mm + "-" + ss;
+      return nowTime;
+    }
+  }
 };
 </script>
 
@@ -271,11 +446,42 @@ export default {
   .contentPic {
     width: 660px;
     margin: 0 auto;
+    .avatar-uploader {
+      margin: 20px 20px 20px 180px;
+      .el-upload {
+        border: 1px dashed #d9d9d9;
+        border-radius: 6px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+    }
+    .avatar-uploader .el-upload:hover {
+      border-color: #409eff;
+    }
+    .avatar-uploader-icon {
+      font-size: 28px;
+      color: #8c939d;
+      width: 178px;
+      height: 178px;
+      line-height: 178px;
+      text-align: center;
+    }
+    .avatar {
+      width: 178px;
+      height: 178px;
+      display: block;
+    }
+    .avatar-uploader-icon {
+      border: 1px solid #ccc;
+      // margin: 20px 20px 20px 180px;
+    }
   }
   .contentBtn {
     width: 569px;
     height: 80px;
     border-radius: 50px;
+    cursor: pointer;
     background: linear-gradient(to right, #ffa04e, #ffc695);
     margin: 0 auto;
     text-align: center;
@@ -322,6 +528,107 @@ export default {
     color: #000000;
     line-height: 32px;
     opacity: 0.5;
+  }
+}
+@media screen and (max-width: 767px) {
+  .content {
+    width: 100%;
+    //   height: 600px;
+    padding: 50px 0;
+    margin: 0 auto;
+    .contentMsg {
+      width: 330px;
+      margin: 0 auto;
+    }
+    .contentPic {
+      width: 330px;
+      margin: 0 auto;
+      .avatar-uploader {
+        margin: 10px 10px 10px 90px;
+        .el-upload {
+          border: 1px dashed #d9d9d9;
+          border-radius: 6px;
+          cursor: pointer;
+          position: relative;
+          overflow: hidden;
+        }
+      }
+      .avatar-uploader .el-upload:hover {
+        border-color: #409eff;
+      }
+      .avatar-uploader-icon {
+        font-size: 14px;
+        color: #8c939d;
+        width: 90px;
+        height: 90px;
+        line-height: 90px;
+        text-align: center;
+      }
+      .avatar {
+        width: 90px;
+        height: 90px;
+        display: block;
+      }
+      .avatar-uploader-icon {
+        border: 1px solid #ccc;
+        // margin: 20px 20px 20px 180px;
+      }
+    }
+    .contentBtn {
+      width: 60%;
+      height: 30px;
+      line-height: 30px;
+      font-size: 15px;
+      border-radius: 25px;
+      cursor: pointer;
+      background: linear-gradient(to right, #ffa04e, #ffc695);
+      // margin-left: 60px;
+      // margin-bottom: 0px;
+      // margin-top: 30px;
+      margin: 30px auto 0px;
+      text-align: center;
+      font-weight: 500;
+      color: #ffffff;
+    }
+    .msg {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      margin: 35px 0;
+      input {
+        width: 210px;
+        height: 30px;
+        font-size: 12px;
+        padding: 0 10px;
+        border-radius: 5px;
+        border: 1px solid #dcdfe6;
+      }
+      .el-select {
+        width: 500px;
+        .el-input .el-input__inner {
+          font-size: 12px im !important;
+          height: 20px;
+        }
+      }
+    }
+    .msg1 {
+      width: 80px;
+    }
+    .font1 {
+      font-size: 14px;
+      font-family: PingFang SC;
+      font-weight: bold;
+      color: #000000;
+      line-height: 30px;
+    }
+    .font2 {
+      font-size: 14px;
+      font-family: PingFang SC;
+      font-weight: 400;
+      color: #000000;
+      line-height: 30px;
+      opacity: 0.5;
+    }
   }
 }
 </style>

@@ -129,7 +129,6 @@ export default {
       document.body.scrollTop = document.documentElement.scrollTop = 0;
     },
     change(index) {
-      console.log("index", index);
       this.active = index;
       if (this.active == 0) {
         this.getBtcList();
@@ -233,28 +232,8 @@ export default {
 }
 
 @media screen and (max-width: 767px) {
-  // .tabs {
-  //   width: 400px;
-  //   height: 70px;
-  //   box-shadow: 0px 8px 10px 1px rgba(6, 4, 3, 0.07);
-  //   border-radius: 5px;
-  //   .tab {
-  //     width: 25%;
-  //     font-size: 18px;
-  //     font-weight: 600;
-  //     color: #815ff5;
-  //     text-align: center;
-  //     line-height: 70px;
-  //     cursor: pointer;
-  //   }
-  //   .active {
-  //     background: #815ff5;
-  //     color: #fff;
-  //   }
-  // }
-
   .tabs {
-    width: 95%;
+    width: 90%;
     height: 70px;
     box-shadow: 0px 9px 9px 1px rgba(6, 4, 3, 0.07);
     border-radius: 5px;
@@ -274,8 +253,8 @@ export default {
   }
 
   .container {
-    width: 100%;
-    min-height: 335px;
+    width: 85%;
+    min-height: 250px;
     margin: 0px auto 0;
     display: flex;
     flex-wrap: wrap;
@@ -283,10 +262,11 @@ export default {
     padding-bottom: 40px;
     .item {
       background: #fffbf8;
-      width: 400px;
+      width: 320px;
       margin: 0 auto 10px;
-      padding: 24px;
+      padding: 15px;
       cursor: pointer;
+      box-shadow: 0 0 5px #ccc;
       .name {
         color: #000;
         font-size: 14px;
@@ -316,7 +296,7 @@ export default {
         }
       }
       .li {
-        line-height: 30px;
+        line-height: 20px;
       }
       .key {
         color: #666;

@@ -114,7 +114,6 @@
         <img v-if="imageUrl" :src="imageUrl" class="avatar" />
         <i v-else class="el-icon-plus avatar-uploader-icon"></i>
       </el-upload> -->
-
       <div style="font-size:20px">
         <input type="file" id="doc" />
       </div>
@@ -217,7 +216,6 @@ export default {
     async getClientData() {
       await this.$axios.post("/Autnentication/sts").then(res => {
         this.res = res.data;
-        console.log("this.res", this.res);
       });
     },
     // 获得页面传来的数据

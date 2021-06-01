@@ -1,5 +1,5 @@
 <template>
-  <div class="footerPage">
+  <div class="footerPage footerPages">
     <!-- 电脑 -->
     <div class="footContainer margin0 flex-between footerHide">
       <div class="line">
@@ -137,16 +137,9 @@
     </div>
 
     <!-- 手机 -->
-    <div class="footContainer margin0  flex-between footerHidePhone">
+    <div class="footContainer margin0  flex footerHidePhone">
       <div class="line">
         <div class="th">关注我们</div>
-
-        <div class="td">
-          <a href="https://weibo.com/u/7575599257?refer_flag=1001030103_"
-            >微博</a
-          >
-        </div>
-
         <div class="td">
           <a
             href=" https://www.huoxing24.com/userCenter/35272edfa3944eb0bf99b3f531ce7e96"
@@ -159,6 +152,11 @@
           </a>
         </div>
         <div class="td">
+          <a href="https://weibo.com/u/7575599257?refer_flag=1001030103_"
+            >微博</a
+          >
+        </div>
+        <div class="td">
           <a href="https://bihu.com/people/1045398140">币乎</a>
         </div>
       </div>
@@ -167,8 +165,14 @@
         <div class="td" @click="navigate('/market', 0)">BTC挖矿</div>
         <div class="td" @click="navigate('/market', 1)">ETH挖矿</div>
         <div class="td" @click="navigate('/market', 2)">CHIA挖矿</div>
+        <div class="td" @click="yaoqing('copy')">邀请链接</div>
+        <div class="td" @click="handleCalculator">计算器</div>
+        <div class="td" @click="navigate('/transfer')">闪兑</div>
+        <div class="yaoqing" id="copy">
+          https://www.graycloud.top/dl.html
+        </div>
       </div>
-      <div class="line">
+      <!-- <div class="line">
         <div class="th">其他产品</div>
         <div class="td" @click="navigate('/transfer')">闪兑</div>
         <div class="td" @click="handleCalculator">计算器</div>
@@ -178,9 +182,18 @@
         <div class="yaoqing" id="copy">
           https://www.graycloud.top/dl.html
         </div>
-      </div>
+      </div> -->
       <div class="line ">
         <div class="th">友情链接</div>
+        <div class="td">
+          <a href="https://www.poolin.com">币印矿池</a>
+        </div>
+        <div class="td">
+          <a href="https://www.jinse.com/member?id=796392">金色财经</a>
+        </div>
+        <div class="td">
+          <a href="https://tokenview.com/cn/">Tokenview</a>
+        </div>
         <div class="td">
           <a href="https://www.f2pool.com">鱼池</a>
         </div>
@@ -192,15 +205,6 @@
             火币
           </a>
         </div>
-        <div class="td">
-          <a href="https://www.poolin.com">币印矿池</a>
-        </div>
-        <div class="td">
-          <a href="https://www.jinse.com/member?id=796392">金色财经</a>
-        </div>
-        <div class="td">
-          <a href="https://tokenview.com/cn/">Tokenview</a>
-        </div>
       </div>
       <div class="line">
         <div class="th">支持</div>
@@ -210,7 +214,6 @@
         <div class="td" @click="handleLaw">法律声明</div>
         <div class="td" @click="handleAbout">关于我们</div>
       </div>
-
       <div class="line">
         <div>
           <div class="logo">
@@ -1026,7 +1029,7 @@ export default {
 }
 
 @media screen and (max-width: 767px) {
-  .footerPage {
+  .footerPages {
     width: 100%;
     height: 100%;
     background: #7a68f3;
@@ -1035,14 +1038,14 @@ export default {
     }
     .footContainer {
       width: 100%;
-      height: 100%;
-      // flex-direction: row;
-      flex-wrap: wrap;
-      padding: 25px 0;
+      height: 200px;
+      // flex-wrap: wrap;
+      flex: 1;
+      padding: 10px 10px;
       .line {
         text-align: center;
-        width: 50%;
-        margin: 10px 0;
+        width: 33.33%;
+        margin: 5px 0;
         .logo {
           width: 100%;
           height: 70px;
@@ -1114,21 +1117,22 @@ export default {
           }
         }
         .login {
-          width: 50px;
-          height: 18px;
-          line-height: 18px;
+          width: 45px;
+          height: 15px;
+          line-height: 15px;
           text-align: center;
           background: #ffb165;
           border-radius: 5px;
           color: #fff;
           font-size: 8px;
           cursor: pointer;
+          margin-left: 5px;
         }
         .reg {
           cursor: pointer;
-          width: 50px;
-          height: 18px;
-          line-height: 18px;
+          width: 45px;
+          height: 15px;
+          line-height: 15px;
           border: 1px solid #ffffff;
           color: #fff;
           border-radius: 5px;
@@ -1138,16 +1142,17 @@ export default {
         }
         .yaoqing {
           position: absolute;
+          // left: 1000px;
           z-index: -1000;
         }
         .th {
           color: #fff;
           font-size: 12px;
-          margin-bottom: 10px;
+          margin-bottom: 5px;
         }
         .td {
           color: rgba(255, 255, 255, 0.5);
-          font-size: 8px;
+          font-size: 12px;
           cursor: pointer;
           margin-bottom: 5px;
           a {
@@ -1167,7 +1172,7 @@ export default {
         }
       }
       .line:nth-child(1) {
-        width: 50%;
+        width: 33.33%;
         // margin-left: 25px;
       }
       // .line:nth-child(6) {
