@@ -5,19 +5,18 @@
       <div class="k60"></div>
       <div class="banner_inner margin0">
         <div class="hide">
-          <h1>一站式挖矿服务</h1>
+          <!-- <h1>一站式挖矿服务</h1>
           <h2>灰度云矿</h2>
-          <h2>助你轻松挖矿！</h2>
+          <h2>助你轻松挖矿！</h2> -->
         </div>
         <div class="hidePhone">
-          <span class="span1">一站式挖矿服务</span>
+          <!-- <span class="span1">一站式挖矿服务</span>
           <span class="span2">灰度云矿</span>
-          <span class="span2">助你轻松挖矿！</span>
+          <span class="span2">助你轻松挖矿！</span> -->
         </div>
         <div class="swiper margin30">
           <el-carousel
             :interval="3000"
-            type="card"
             :height="isCollapse ? '110px' : '300px'"
           >
             <el-carousel-item v-for="item in lunList" :key="item.id">
@@ -130,7 +129,7 @@
               indicator-position="none"
             >
               <el-carousel-item v-for="item in hintList" :key="item.noticeId">
-                <div class="medium">
+                <div class="medium" @click="handleHintCon(item.noticeId)">
                   {{ item.subtitle }}
                 </div>
               </el-carousel-item>
@@ -167,7 +166,7 @@
           </div>
         </div>
 
-        <div class="hot_sell_right">
+        <div class="hot_sell_right" @click="handleHotToBuy()">
           <img :src="hotObj.image" alt="" />
           <!-- <img
             v-if="hotObj.productId == 3"
@@ -218,44 +217,47 @@
     </div>
 
     <!-- 灰度挖矿 -->
-    <div class="mining margin0">
-      <div class="titleBox">
-        <div class="title">灰度挖矿</div>
-        <img src="../../assets/imgs/title_bg.png" class="title_bg" />
-      </div>
-      <div class="miningBox flex">
-        <div class="miningLi">
-          <div class="icon">
-            <img src="../../assets/imgs/icon_btc.png" alt="" />
-          </div>
-          <h4 @click="navigate('./power', 0)">云算力</h4>
-          <h6 @click="navigate('./market', 0)">联合挖矿</h6>
+    <div class="mianContent">
+      <div class="mining margin0">
+        <div class="titleBox">
+          <div class="title">灰度挖矿</div>
+          <img src="../../assets/imgs/title_bg.png" class="title_bg" />
         </div>
-        <div class="miningLi">
-          <div class="icon">
-            <img src="../../assets/imgs/icon_eth.png" alt="" />
+        <div class="miningBox flex">
+          <div class="miningLi">
+            <div class="icon">
+              <img src="../../assets/imgs/btcIcon1.png" alt="" />
+            </div>
+            <h4 @click="navigate('./power', 0)">云算力</h4>
+            <h6 @click="navigate('./market', 0)">联合挖矿</h6>
           </div>
-          <h4 @click="navigate('./power', 1)">云算力</h4>
-          <h6 @click="navigate('./market', 1)">联合挖矿</h6>
-        </div>
-        <div class="miningLi">
-          <div class="icon">
-            <img src="../../assets/imgs/chiaImg.png" alt="" />
+          <div class="miningLi">
+            <div class="icon">
+              <img src="../../assets/imgs/ethIcon1.png" alt="" />
+            </div>
+            <h4 @click="navigate('./power', 1)">云算力</h4>
+            <h6 @click="navigate('./market', 1)">联合挖矿</h6>
           </div>
-          <h4 @click="navigate('./power', 2)">云算力</h4>
-          <h6 @click="navigate('./market', 2)">联合挖矿</h6>
-        </div>
-        <!-- <div class="miningLi">
+          <div class="miningLi">
+            <div class="icon">
+              <img src="../../assets/imgs/chiaIcon1.png" alt="" />
+            </div>
+            <h4 @click="navigate('./power', 2)">云算力</h4>
+            <h6 @click="navigate('./market', 2)">联合挖矿</h6>
+          </div>
+          <!-- <div class="miningLi">
           <div class="icon">
             <img src="../../assets/imgs/chiaImg.png" alt="" />
           </div>
           <h4 @click="navigate('./power', 2)">云算力</h4>
           <h6 @click="navigate('./market', 2)">联合挖矿</h6>
         </div> -->
+        </div>
       </div>
     </div>
 
     <!-- 如何加入 -->
+
     <div class="about margin0">
       <div class="titleBox">
         <div class="title">如何加入</div>
@@ -336,75 +338,78 @@
     </div>
 
     <!-- 我们的服务 -->
-    <div class="serve margin0">
-      <div class="titleBox">
-        <div class="title">我们的服务</div>
-        <img src="../../assets/imgs/title_bg.png" class="title_bg" />
-      </div>
-      <div class="serveContent">
-        <div class="conLi">
-          <div class="icon">
-            <img src="../../assets/imgs/kjcg.png" />
-          </div>
-          <div class="name text-center">矿机采购</div>
-          <div class="dec text-center">权威厂家</div>
-          <div class="dec text-center">专业矿机订购</div>
+
+    <div class="mianContent">
+      <div class="serve margin0">
+        <div class="titleBox">
+          <div class="title">我们的服务</div>
+          <img src="../../assets/imgs/title_bg.png" class="title_bg" />
         </div>
-        <div class="conLi">
-          <div class="icon">
-            <img src="../../assets/imgs/ysbs.png" />
+        <div class="serveContent">
+          <div class="conLi">
+            <div class="icon">
+              <img src="../../assets/imgs/kjcg.png" />
+            </div>
+            <div class="name text-center">矿机采购</div>
+            <div class="dec text-center">权威厂家</div>
+            <div class="dec text-center">专业矿机订购</div>
           </div>
-          <div class="name text-center">运输部署</div>
-          <div class="dec text-center">快速搬运</div>
-          <div class="dec text-center">及时上架开挖</div>
-        </div>
-        <div class="conLi">
-          <div class="icon">
-            <img src="../../assets/imgs/yxwx.png" />
+          <div class="conLi">
+            <div class="icon">
+              <img src="../../assets/imgs/ysbs.png" />
+            </div>
+            <div class="name text-center">运输部署</div>
+            <div class="dec text-center">快速搬运</div>
+            <div class="dec text-center">及时上架开挖</div>
           </div>
-          <div class="name text-center">运行维护</div>
-          <div class="dec text-center">轮班监控</div>
-          <div class="dec text-center">安全稳定运行</div>
-        </div>
-        <div class="conLi">
-          <div class="icon">
-            <img src="../../assets/imgs/jqql.png" />
+          <div class="conLi">
+            <div class="icon">
+              <img src="../../assets/imgs/yxwx.png" />
+            </div>
+            <div class="name text-center">运行维护</div>
+            <div class="dec text-center">轮班监控</div>
+            <div class="dec text-center">安全稳定运行</div>
           </div>
-          <div class="name text-center">机器清理</div>
-          <div class="dec text-center">快速搬运</div>
-          <div class="dec text-center">及时上架开挖</div>
-        </div>
-        <div class="conLi">
-          <div class="icon">
-            <img src="../../assets/imgs/yjhb.png" />
+          <div class="conLi">
+            <div class="icon">
+              <img src="../../assets/imgs/jqql.png" />
+            </div>
+            <div class="name text-center">机器清理</div>
+            <div class="dec text-center">快速搬运</div>
+            <div class="dec text-center">及时上架开挖</div>
           </div>
-          <div class="name text-center">一键换币</div>
-          <div class="dec text-center">随时随地</div>
-          <div class="dec text-center">兑换各种币种</div>
-        </div>
-        <div class="conLi">
-          <div class="icon">
-            <img src="../../assets/imgs/gzdf.png" />
+          <div class="conLi">
+            <div class="icon">
+              <img src="../../assets/imgs/yjhb.png" />
+            </div>
+            <div class="name text-center">一键换币</div>
+            <div class="dec text-center">随时随地</div>
+            <div class="dec text-center">兑换各种币种</div>
           </div>
-          <div class="name text-center">故障代发</div>
-          <div class="dec text-center">运行异常</div>
-          <div class="dec text-center">安排发货返修</div>
-        </div>
-        <div class="conLi">
-          <div class="icon">
-            <img src="../../assets/imgs/dfjn.png" />
+          <div class="conLi">
+            <div class="icon">
+              <img src="../../assets/imgs/gzdf.png" />
+            </div>
+            <div class="name text-center">故障代发</div>
+            <div class="dec text-center">运行异常</div>
+            <div class="dec text-center">安排发货返修</div>
           </div>
-          <div class="name text-center">电费缴纳</div>
-          <div class="dec text-center">电费代缴</div>
-          <div class="dec text-center">快捷又省心</div>
-        </div>
-        <div class="conLi">
-          <div class="icon">
-            <img src="../../assets/imgs/zxkf.png" />
+          <div class="conLi">
+            <div class="icon">
+              <img src="../../assets/imgs/dfjn.png" />
+            </div>
+            <div class="name text-center">电费缴纳</div>
+            <div class="dec text-center">电费代缴</div>
+            <div class="dec text-center">快捷又省心</div>
           </div>
-          <div class="name text-center">专项客服</div>
-          <div class="dec text-center">一对一</div>
-          <div class="dec text-center">随时为您服务</div>
+          <div class="conLi">
+            <div class="icon">
+              <img src="../../assets/imgs/zxkf.png" />
+            </div>
+            <div class="name text-center">专项客服</div>
+            <div class="dec text-center">一对一</div>
+            <div class="dec text-center">随时为您服务</div>
+          </div>
         </div>
       </div>
     </div>
@@ -417,7 +422,7 @@
       </div>
       <div class="partnerImg">
         <!-- <img :src="imgurl" class="imgUrl" /> -->
-        <div class="boxImg" v-for="(item, id) in partnerList">
+        <div class="boxImg" v-for="(item, id) in partnerList" :key="id">
           <img class="imgUrl" :src="item.url" alt="" />
           <div class="imgName">{{ item.content }}</div>
         </div>
@@ -500,6 +505,15 @@ export default {
         this.partnerList = result;
       });
     },
+    // 跳到矿机购买页面
+    handleHotToBuy() {
+      this.$router.push({
+        path: "/market",
+        query: {
+          id: 0
+        }
+      });
+    },
     navigate(path, id) {
       this.$router.push({
         path: path,
@@ -530,6 +544,15 @@ export default {
         this.hintList = res.data.data;
       });
     },
+    handleHintCon(id) {
+      console.log(213213123, id);
+      this.$router.push({
+        path: "hintContent",
+        query: {
+          id: id
+        }
+      });
+    },
     getHot() {
       this.$axios.post("/MartianOrePool/selectMillAllByHost", {}).then(res => {
         this.hotList = res.data.data;
@@ -553,7 +576,7 @@ export default {
   background: url("../../assets/imgs/home_banner.png") no-repeat;
   background-size: cover;
   .banner_inner {
-    width: 1200px;
+    width: 100%;
     padding-bottom: 50px;
     h1 {
       color: #fff;
@@ -568,9 +591,10 @@ export default {
       padding: 20px 0 0 20px;
     }
     .swiper {
-      width: 1200px;
-      padding: 20px;
-      margin-bottom: 70px;
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 50px;
+      padding: 0px;
       img {
         width: 100%;
         height: 100%;
@@ -582,6 +606,7 @@ export default {
       background: #fff;
       border-radius: 10px;
       padding: 0 60px;
+      margin: 0 auto;
       .selectCoin {
         width: 154px;
         height: 60px;
@@ -671,12 +696,14 @@ export default {
         line-height: 42px;
         .medium {
           width: 100%;
-          color: #815ff5;
+          // color: #815ff5;
+          color: #000;
           font-size: 24px;
           padding-left: 20px;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
+          cursor: pointer;
         }
       }
     }
@@ -691,10 +718,13 @@ export default {
   .titleBox {
     width: 180px;
     height: 50px;
+    margin: 0 auto;
     position: relative;
     .title {
-      color: #815ff5;
+      // color: #815ff5;
+      color: #000;
       font-size: 34px;
+      font-weight: bold;
     }
     .title_bg {
       width: 130px;
@@ -711,7 +741,7 @@ export default {
     margin-top: 50px;
     padding-top: 30px;
     .subTtitle {
-      width: 188px;
+      width: 180px;
       height: 44px;
       line-height: 44px;
       background: url("../../assets/imgs/subtitle.png") no-repeat;
@@ -744,7 +774,8 @@ export default {
       }
     }
     .price {
-      color: #815ff5;
+      // color: #815ff5;
+      color: #000;
       font-size: 42px;
       padding-bottom: 40px;
       del {
@@ -755,11 +786,11 @@ export default {
   }
   .hot_sell_right {
     flex: 1;
-    height: 375px;
-    margin-top: 50px;
+    height: 300px;
+    margin-top: 100px;
     img {
-      width: 500px;
-      height: 375px;
+      width: 400px;
+      height: 300px;
     }
   }
   .market {
@@ -771,7 +802,7 @@ export default {
     .marketLi {
       width: 300px;
       height: 150px;
-      background: linear-gradient(29deg, #7763fb, #bfb5fe);
+      // background: linear-gradient(29deg, #7763fb, #bfb5fe);
       border-radius: 20px;
       cursor: pointer;
       margin-bottom: 50px;
@@ -780,7 +811,7 @@ export default {
         height: 100px;
         transform: translateX(-60px);
         margin-top: 25px;
-        border: 1px solid #ccc;
+        // border: 1px solid #ccc;
         box-shadow: 0 0 10px rgb(172, 170, 170);
       }
       .key1 {
@@ -792,28 +823,43 @@ export default {
         transform: translateX(-40px);
       }
     }
+    // .active {
+    //   background: linear-gradient(
+    //     21deg,
+    //     rgba(255, 155, 71, 0.6),
+    //     rgba(255, 201, 155, 0.6)
+    //   );
+    // }
     .active {
       background: linear-gradient(
         21deg,
-        rgba(255, 155, 71, 0.6),
-        rgba(255, 201, 155, 0.6)
+        rgba(128, 128, 128, 0.6),
+        rgba(233, 232, 232, 0.6)
       );
     }
   }
 }
 
-// 灰度挖矿部分
+// 灰色底色颜色
+.mianContent {
+  width: 100%;
+  background-color: #e8e8e8;
+}
+
+// 灰度挖矿
 .mining {
   width: 1200px;
   padding: 50px 0;
-  // background: pink;
   .titleBox {
     width: 180px;
     height: 50px;
+    margin: 0 auto;
     position: relative;
     .title {
-      color: #815ff5;
+      // color: #815ff5;
+      color: #000;
       font-size: 34px;
+      font-weight: bold;
     }
     .title_bg {
       width: 130px;
@@ -827,51 +873,70 @@ export default {
     width: 100%;
     height: 400px;
     margin-top: 80px;
-
     .miningLi {
       width: 460px;
       height: 400px;
-      background: url("../../assets/imgs/mining.png") no-repeat;
+      // background: url("../../assets/imgs/mining.png") no-repeat;
       background-size: 100% 100%;
       position: relative;
+      text-align: center;
       cursor: pointer;
       h4 {
         width: 142px;
         height: 50px;
         line-height: 50px;
+        // background: linear-gradient(
+        //   21deg,
+        //   rgba(255, 155, 71, 0.6),
+        //   rgba(255, 201, 155, 0.6)
+        // );
+        background-color: #c2c2c2;
+        border-radius: 25px;
+        color: #fff;
+        font-size: 22px;
+        text-align: center;
+        margin: 50px auto 0;
+      }
+      h4:hover {
         background: linear-gradient(
           21deg,
           rgba(255, 155, 71, 0.6),
           rgba(255, 201, 155, 0.6)
         );
-        border-radius: 25px;
-        color: #fff;
-        font-size: 22px;
-        text-align: center;
-        margin: 150px auto 0;
+        box-shadow: 0 10px 10px #ccc;
       }
       h6 {
         width: 142px;
         height: 50px;
         line-height: 50px;
-        background: linear-gradient(
-          21deg,
-          rgba(255, 155, 71, 0.6),
-          rgba(255, 201, 155, 0.6)
-        );
+        // background: linear-gradient(
+        //   21deg,
+        //   rgba(255, 155, 71, 0.6),
+        //   rgba(255, 201, 155, 0.6)
+        // );
+        background-color: #c2c2c2;
         border-radius: 25px;
         color: #fff;
         font-size: 22px;
         text-align: center;
         margin: 30px auto 0;
-        transform: translateX(-20px);
+        // transform: translateX(-20px);
+      }
+      h6:hover {
+        background: linear-gradient(
+          21deg,
+          rgba(255, 155, 71, 0.6),
+          rgba(255, 201, 155, 0.6)
+        );
+        box-shadow: 0 10px 10px #ccc;
       }
       .icon {
-        width: 50px;
-        height: 80px;
-        position: absolute;
-        right: 50px;
-        top: 20px;
+        width: 227px;
+        height: 90px;
+        margin: 0 auto;
+        // position: absolute;
+        // right: 50px;
+        // top: 20px;
         img {
           width: 100%;
           height: 100%;
@@ -887,14 +952,17 @@ export default {
 // 如何加入
 .about {
   width: 1200px;
-  padding: 50px 0;
+  padding: 70px 0 90px 0;
   .titleBox {
     width: 180px;
     height: 50px;
+    margin: 0 auto;
     position: relative;
     .title {
-      color: #815ff5;
+      // color: #815ff5;
+      color: #000;
       font-size: 34px;
+      font-weight: bold;
     }
     .title_bg {
       width: 130px;
@@ -927,7 +995,8 @@ export default {
       .dec {
         width: 85%;
         margin: auto;
-        color: #815ff5;
+        // color: #815ff5;
+        color: #000;
         font-size: 14px;
         padding: 20px 0 0 0;
       }
@@ -960,7 +1029,8 @@ export default {
       .dec {
         width: 85%;
         margin: auto;
-        color: #815ff5;
+        // color: #815ff5;
+        color: #000;
         font-size: 14px;
         padding: 20px 0 0 0;
       }
@@ -976,10 +1046,13 @@ export default {
   .titleBox {
     width: 200px;
     height: 50px;
+    margin: 0 auto;
     position: relative;
     .title {
-      color: #815ff5;
+      // color: #815ff5;
+      color: #000;
       font-size: 34px;
+      font-weight: bold;
     }
     .title_bg {
       width: 130px;
@@ -995,30 +1068,31 @@ export default {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    padding: 100px 50px 50px;
+    padding: 50px 50px 0px;
     .conLi {
       width: 25%;
-      height: 320px;
+      height: 250px;
       display: flex;
       justify-content: space-between;
       flex-direction: column;
-      padding: 50px 0;
+      padding: 20px 0;
       .icon {
-        width: 105px;
-        height: 105px;
+        width: 100px;
+        height: 100px;
         margin: 0 auto;
         img {
-          width: 105px;
+          width: 100px;
         }
       }
       .name {
         color: #000;
         font-size: 24px;
         font-weight: 600;
-        padding-top: 10px;
+        padding-top: 0px;
       }
       .dec {
-        color: #815ff5;
+        // color: #815ff5;
+        color: #000;
         font-size: 18px;
       }
     }
@@ -1029,14 +1103,17 @@ export default {
 .partner {
   width: 1200px;
   padding: 50px 0;
-  height: 500px;
+  height: 600px;
   .titleBox {
     width: 250px;
     height: 50px;
+    margin: 0 auto;
     position: relative;
     .title {
-      color: #815ff5;
+      // color: #815ff5;
+      color: #000;
       font-size: 34px;
+      font-weight: bold;
     }
     .title_bg {
       width: 130px;
@@ -1051,10 +1128,11 @@ export default {
     flex-direction: row;
     flex-wrap: wrap;
     text-align: center;
-    margin-top: 60px;
+    margin-top: 70px;
     .boxImg {
       width: 18%;
       margin: 10px;
+      padding-bottom: 30px;
     }
     .imgUrl {
       width: 120px;
@@ -1078,6 +1156,11 @@ export default {
 }
 
 @media screen and (max-width: 767px) {
+  // 灰度挖矿部分底色颜色
+  .mianContent {
+    width: 100%;
+    background-color: #fff;
+  }
   // 轮播图部分
   .banner {
     width: 100%;
@@ -1100,8 +1183,9 @@ export default {
         padding: 10px 0 0 10px;
       }
       .swiper {
-        width: 90%;
-        padding: 0px;
+        width: 100%;
+        padding: 10px 0 15px 0;
+        // padding-bottom: 15px;
         margin: 0px auto;
         img {
           width: 100%;
@@ -1112,7 +1196,7 @@ export default {
         display: none;
       }
       .hidePhone {
-        padding: 20px 10px 10px 10px;
+        padding: 0px 10px;
         .span1 {
           font-size: 18px;
           font-weight: bold;
@@ -1126,9 +1210,9 @@ export default {
       }
       .calculation {
         width: 95%;
-        height: 80px;
+        height: 70px;
         background: #fff;
-        padding: 20px 30px;
+        padding: 10px 30px;
         margin-left: 10px;
         .selectCoin {
           // width: 75px;
@@ -1238,14 +1322,16 @@ export default {
   // 市场热销
   .section_hot_sell {
     width: 100%;
-    padding: 20px 0 0px 0;
+    padding: 0px 0 0px 0;
     // background: pink;
     .titleBox {
       width: 90px;
       height: 25px;
+      margin: 0 auto;
       position: relative;
       .title {
-        color: #815ff5;
+        // color: #815ff5;
+        color: #000;
         font-size: 16px;
         margin-left: 8px;
       }
@@ -1299,7 +1385,8 @@ export default {
         }
       }
       .price {
-        color: #815ff5;
+        // color: #815ff5;
+        color: #000;
         font-size: 16px;
         padding-bottom: 20px;
         del {
@@ -1332,7 +1419,7 @@ export default {
       .marketLi {
         width: 49%;
         height: 50px;
-        background: linear-gradient(29deg, #7763fb, #bfb5fe);
+        // background: linear-gradient(29deg, #7763fb, #bfb5fe);
         border-radius: 0px;
         cursor: pointer;
         margin-bottom: 25px;
@@ -1358,11 +1445,18 @@ export default {
           overflow: hidden;
         }
       }
+      // .active {
+      //   background: linear-gradient(
+      //     21deg,
+      //     rgba(255, 155, 71, 0.6),
+      //     rgba(255, 201, 155, 0.6)
+      //   );
+      // }
       .active {
         background: linear-gradient(
           21deg,
-          rgba(255, 155, 71, 0.6),
-          rgba(255, 201, 155, 0.6)
+          rgba(128, 128, 128, 0.6),
+          rgba(233, 232, 232, 0.6)
         );
       }
     }
@@ -1371,14 +1465,17 @@ export default {
   // 灰度挖矿部分
   .mining {
     width: 100%;
+    height: 100%;
     padding: 20px 0;
     // background: pink;
     .titleBox {
       width: 90px;
       height: 25px;
+      margin: 0 auto;
       position: relative;
       .title {
-        color: #815ff5;
+        // color: #815ff5;
+        color: #000;
         font-size: 16px;
         margin-left: 8px;
       }
@@ -1392,7 +1489,7 @@ export default {
     }
     .miningBox {
       width: 100%;
-      height: 90px;
+      height: 100%;
       margin-top: 25px;
       padding: 0 10px;
       .miningLi {
@@ -1454,14 +1551,16 @@ export default {
   // 如何加入
   .about {
     width: 100%;
-    padding: 25px 0 0 0;
+    padding: 0px 0 0 0;
     .titleBox {
       width: 90px;
       height: 25px;
+      margin: 0 auto;
       margin-top: 40px;
       position: relative;
       .title {
-        color: #815ff5;
+        // color: #815ff5;
+        color: #000;
         font-size: 16px;
         margin-left: 8px;
       }
@@ -1518,9 +1617,11 @@ export default {
       .titleBox {
         width: 90px;
         height: 25px;
+        margin: 0 auto;
         position: relative;
         .title {
-          color: #815ff5;
+          // color: #815ff5;
+          color: #000;
           font-size: 17px;
         }
         .title_bg {
@@ -1537,13 +1638,15 @@ export default {
   //我们的服务
   .serve {
     width: 100%;
-    padding: 5px 0 !important;
+    padding: 30px 0 0 0 !important;
     .titleBox {
       width: 100px;
       height: 30px;
+      margin: 0 auto;
       position: relative;
       .title {
-        color: #815ff5;
+        // color: #815ff5;
+        color: #000;
         font-size: 16px;
         margin-left: 8px;
       }
@@ -1584,7 +1687,8 @@ export default {
           padding-top: 5px;
         }
         .dec {
-          color: #815ff5;
+          // color: #815ff5;
+          color: #000;
           font-size: 12px;
         }
       }
@@ -1594,14 +1698,16 @@ export default {
   // 生态合作伙伴
   .partner {
     width: 100%;
-    height: 320px;
-    padding: 5px 0;
+    height: 100%;
+    padding: 30px 0 0px 0;
+    text-align: center;
     .titleBox {
-      width: 170px;
+      width: 100%;
       height: 30px;
       position: relative;
       .title {
-        color: #815ff5;
+        // color: #815ff5;
+        color: #000;
         font-size: 16px;
         margin-left: 8px;
       }
@@ -1609,7 +1715,7 @@ export default {
         width: 100px;
         height: 16px;
         position: absolute;
-        right: 45px;
+        right: 115px;
         bottom: 3px;
       }
     }

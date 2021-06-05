@@ -34,7 +34,7 @@ export default {
 
 <style lang="less">
 .el-dialog__wrapper .el-dialog {
-  width: 600px;
+  width: 800px;
 }
 @media screen and (max-width: 767px) {
   html {

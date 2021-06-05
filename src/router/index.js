@@ -254,5 +254,12 @@ export default new Router({
         return import('../views/support/supportAbout.vue')
       }
     },
+    {
+      path: '/hintContent',
+      name: 'hintContent',
+      component: function () {
+        return import('../views/home/hintContent.vue')
+      }
+    },
   ]
 })

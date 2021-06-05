@@ -77,7 +77,7 @@ export default {
 <style lang="less" scoped>
 .content {
   width: 1200px;
-  padding: 80px 0;
+  padding: 100px 0 110px 0;
   margin: 0 auto;
   .assets {
     width: 100%;
@@ -152,7 +152,7 @@ export default {
 @media screen and (max-width: 767px) {
   .content {
     width: 100%;
-    padding: 40px 20px;
+    padding: 40px 20px 150px 20px;
     margin: 0 auto;
     .assets {
       width: 100%;

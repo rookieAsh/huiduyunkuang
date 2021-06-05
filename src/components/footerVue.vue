@@ -8,7 +8,7 @@
         </div> -->
         <!-- <div class="td">联系我们 656034864@qq.com</div> -->
         <!-- <div class="td">关于我们 www.ASDFA.COM</div> -->
-        <div>
+        <div class="erCode">
           <!-- <div class="logo1">
             <img class="img1" src="../assets/imgs/wx.png" alt="" />
             <div class="gfwx">微信公众号</div>
@@ -64,26 +64,28 @@
       </div>
       <div class="line">
         <div class="th">关注我们</div>
-
         <div class="td">
-          <a href="https://weibo.com/u/7575599257?refer_flag=1001030103_"
+          <a
+            target="_blank"
+            href="https://weibo.com/u/7575599257?refer_flag=1001030103_"
             >微博</a
           >
         </div>
 
         <div class="td">
           <a
+            target="_blank"
             href=" https://www.huoxing24.com/userCenter/35272edfa3944eb0bf99b3f531ce7e96"
             >火星号</a
           >
         </div>
         <div class="td">
-          <a href="https://0.plus/graycloud888">
+          <a target="_blank" href="https://0.plus/graycloud888">
             电报号
           </a>
         </div>
         <div class="td">
-          <a href="https://bihu.com/people/1045398140">币乎</a>
+          <a target="_blank" href="https://bihu.com/people/1045398140">币乎</a>
         </div>
       </div>
       <div class="line">
@@ -106,24 +108,29 @@
       <div class="line ">
         <div class="th">友情链接</div>
         <div class="td">
-          <a href="https://www.f2pool.com">鱼池</a>
+          <a target="_blank" href="https://www.f2pool.com">鱼池</a>
         </div>
         <div class="td">
-          <a href="https://cobo.com/custody">COBO</a>
+          <a target="_blank" href="https://cobo.com/custody">COBO</a>
         </div>
         <div class="td">
-          <a href="https://www.huobi.ms/topic/invited/?invite_code=j2uh3">
+          <a
+            target="_blank"
+            href="https://www.huobi.ms/topic/invited/?invite_code=j2uh3"
+          >
             火币
           </a>
         </div>
         <div class="td">
-          <a href="https://www.poolin.com">币印矿池</a>
+          <a target="_blank" href="https://www.poolin.com">币印矿池</a>
         </div>
         <div class="td">
-          <a href="https://www.jinse.com/member?id=796392">金色财经</a>
+          <a target="_blank" href="https://www.jinse.com/member?id=796392"
+            >金色财经</a
+          >
         </div>
         <div class="td">
-          <a href="https://tokenview.com/cn/">Tokenview</a>
+          <a target="_blank" href="https://tokenview.com/cn/">Tokenview</a>
         </div>
       </div>
       <div class="line">
@@ -142,22 +149,25 @@
         <div class="th">关注我们</div>
         <div class="td">
           <a
+            target="_blank"
             href=" https://www.huoxing24.com/userCenter/35272edfa3944eb0bf99b3f531ce7e96"
             >火星号</a
           >
         </div>
         <div class="td">
-          <a href="https://0.plus/graycloud888">
+          <a target="_blank" href="https://0.plus/graycloud888">
             电报号
           </a>
         </div>
         <div class="td">
-          <a href="https://weibo.com/u/7575599257?refer_flag=1001030103_"
+          <a
+            target="_blank"
+            href="https://weibo.com/u/7575599257?refer_flag=1001030103_"
             >微博</a
           >
         </div>
         <div class="td">
-          <a href="https://bihu.com/people/1045398140">币乎</a>
+          <a target="_blank" href="https://bihu.com/people/1045398140">币乎</a>
         </div>
       </div>
       <div class="line">
@@ -183,25 +193,30 @@
           https://www.graycloud.top/dl.html
         </div>
       </div> -->
-      <div class="line ">
+      <div class="line">
         <div class="th">友情链接</div>
         <div class="td">
-          <a href="https://www.poolin.com">币印矿池</a>
+          <a target="_blank" href="https://www.poolin.com">币印矿池</a>
         </div>
         <div class="td">
-          <a href="https://www.jinse.com/member?id=796392">金色财经</a>
+          <a target="_blank" href="https://www.jinse.com/member?id=796392"
+            >金色财经</a
+          >
         </div>
         <div class="td">
-          <a href="https://tokenview.com/cn/">Tokenview</a>
+          <a target="_blank" href="https://tokenview.com/cn/">Tokenview</a>
         </div>
         <div class="td">
-          <a href="https://www.f2pool.com">鱼池</a>
+          <a target="_blank" href="https://www.f2pool.com">鱼池</a>
         </div>
         <div class="td">
-          <a href="https://cobo.com/custody">COBO</a>
+          <a target="_blank" href="https://cobo.com/custody">COBO</a>
         </div>
         <div class="td">
-          <a href="https://www.huobi.ms/topic/invited/?invite_code=j2uh3">
+          <a
+            target="_blank"
+            href="https://www.huobi.ms/topic/invited/?invite_code=j2uh3"
+          >
             火币
           </a>
         </div>
@@ -430,7 +445,7 @@ export default {
       navIcon: 0,
       srcUrl: require("../assets/imgs/wx.png"),
       content: "",
-      imageMsg: "",
+      imageMsg: "微信公众号",
       // 计算机
       tabDivCurrent: 0,
       tabBoxCurrent: 1,
@@ -505,18 +520,23 @@ export default {
     },
     handleHelp() {
       this.$router.push("/supportHelp");
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
     },
     handleUser() {
       this.$router.push("/supportUser");
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
     },
     handlePrivacy() {
       this.$router.push("/supportPrivacy");
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
     },
     handleLaw() {
       this.$router.push("/supportLaw");
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
     },
     handleAbout() {
       this.$router.push("/supportAbout");
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
     },
     handleCalculator() {
       this.dialog = true;
@@ -711,12 +731,16 @@ export default {
   width: 100%;
   height: 320px;
   background: #7a68f3;
+  // background: #e8e8e8;
   .footContainer {
     width: 1200px;
     height: 320px;
     padding: 50px 0;
     .line {
       width: 17%;
+      .erCode {
+        padding-left: 20px;
+      }
       .logo {
         width: 100px;
         height: 120px;

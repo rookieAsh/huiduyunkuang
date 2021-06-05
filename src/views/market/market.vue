@@ -192,12 +192,12 @@ export default {
   .item {
     width: 360px;
     height: 460px;
-    background: linear-gradient(
-      21deg,
-      rgba(255, 155, 71, 0.7),
-      rgba(255, 201, 155, 0.7),
-      rgba(255, 201, 155, 0.7)
-    );
+    // background: linear-gradient(
+    //   21deg,
+    //   rgba(255, 155, 71, 0.7),
+    //   rgba(255, 201, 155, 0.7),
+    //   rgba(255, 201, 155, 0.7)
+    // );
     box-shadow: -1px 12px 21px 0px rgba(29, 39, 53, 0.16);
     border-radius: 20px;
     margin-bottom: 140px;
@@ -205,8 +205,8 @@ export default {
     position: relative;
     padding-top: 210px;
     .pic {
-      width: 280px;
-      height: 210px;
+      width: 220px;
+      height: 150px;
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
@@ -224,7 +224,8 @@ export default {
       top: 130px;
       background: url("../../assets/imgs/subT.png") no-repeat;
       background-size: 100% 100%;
-      color: #fff;
+      // color: #fff;
+      color: #000;
       font-size: 20px;
       line-height: 52px;
       text-align: center;
@@ -232,26 +233,29 @@ export default {
     .name {
       font-size: 24px;
       font-weight: 700;
-      color: #ffffff;
+      // color: #ffffff;
+      color: #000;
     }
     .product {
       font-size: 20px;
-      color: #ffffff;
+      // color: #ffffff;
+      color: #000;
       padding-top: 10px;
       span {
-        color: rgba(255, 255, 255, 0.7);
+        color: rgba(44, 44, 44, 0.7);
         font-size: 16px;
         padding-left: 5px;
       }
     }
     .price {
-      color: #fff;
+      // color: #fff;
+      color: #000;
       font-size: 36px;
       font-weight: 600;
       padding-top: 30px;
     }
     .del {
-      color: rgba(255, 255, 255, 0.5);
+      color: rgba(44, 44, 44, 0.7);
       text-align: center;
       font-size: 20px;
       text-decoration: line-through;
@@ -291,12 +295,12 @@ export default {
     .item {
       width: 100%;
       height: 150px;
-      background: linear-gradient(
-        21deg,
-        rgba(255, 155, 71, 0.7),
-        rgba(255, 201, 155, 0.7),
-        rgba(255, 201, 155, 0.7)
-      );
+      // background: linear-gradient(
+      //   21deg,
+      //   rgba(255, 155, 71, 0.7),
+      //   rgba(255, 201, 155, 0.7),
+      //   rgba(255, 201, 155, 0.7)
+      // );
       box-shadow: -1px 6px 11px 0px rgba(29, 39, 53, 0.16);
       border-radius: 10px;
       margin: 0 10px 40px 10px;
@@ -322,7 +326,8 @@ export default {
         top: 60px;
         background: url("../../assets/imgs/subT.png") no-repeat;
         background-size: 100% 100%;
-        color: #fff;
+        // color: #fff;
+        color: #000;
         font-size: 14px;
         line-height: 25px;
         text-align: center;
@@ -330,28 +335,31 @@ export default {
       .name {
         font-size: 12px;
         font-weight: 700;
-        color: #ffffff;
+        // color: #ffffff;
+        color: #000;
       }
       .product {
         font-size: 14px;
-        color: #ffffff;
+        // color: #ffffff;
+        color: #000;
         padding-top: 3px;
         span {
-          color: rgba(255, 255, 255, 0.7);
+          color: rgba(44, 44, 44, 0.7);
           font-size: 12px;
           padding-left: 3px;
         }
       }
       .price {
-        color: #fff;
-        font-size: 12px;
+        // color: #fff;
+        color: #000;
+        font-size: 13px;
         font-weight: 600;
         padding-top: 0px;
       }
       .del {
-        color: rgba(255, 255, 255, 0.5);
+        color: rgba(44, 44, 44, 0.7);
         text-align: center;
-        font-size: 14px;
+        font-size: 12px;
         text-decoration: line-through;
       }
     }

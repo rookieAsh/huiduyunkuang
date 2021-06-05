@@ -40,17 +40,23 @@
         </div>
         <div v-if="this.active == 1">
           <div class="title2">转账信息</div>
-          <div class="flex-between heightTit">
-            <div class="title3">账户名</div>
-            <div class="titleContent">杭州爱挖云科技有限公司</div>
-          </div>
-          <div class="flex-between">
-            <div class="title3">电费天数</div>
-            <div class="titleContent">宁波银行杭州海创园小微企业专营支行</div>
-          </div>
-          <div class="flex-between heightTit">
-            <div class="title3">账号</div>
-            <div class="titleContent">71230122000139088</div>
+          <div
+            v-for="(item, index) in bankcardDate"
+            :key="index"
+            :class="{ bankcardClass: index >= 1 }"
+          >
+            <div class="flex-between heightTit">
+              <div class="title3">账户名</div>
+              <div class="titleContent">{{ item.accountName }}</div>
+            </div>
+            <div class="flex-between">
+              <div class="title3">电费天数</div>
+              <div class="titleContent">{{ item.bank_of_deposit }}</div>
+            </div>
+            <div class="flex-between heightTit">
+              <div class="title3">账号</div>
+              <div class="titleContent">{{ item.corporate_account }}</div>
+            </div>
           </div>
           <div class="title2">支付信息</div>
           <div class="flex-between heightTit">
@@ -189,7 +195,8 @@ export default {
       amounts: "", //人民币总价
       res: {}, // 存签名信息
       imageUrl: "",
-      fileMsg: ""
+      fileMsg: "",
+      bankcardDate: []
     };
   },
   created() {
@@ -199,6 +206,7 @@ export default {
     this.amount = (this.$route.query.amount / 6.62).toFixed(4);
     this.amounts = this.$route.query.amount;
     // this.getWellatAddress();
+    this.getBankcardData();
   },
 
   watch: {
@@ -212,6 +220,12 @@ export default {
     //   console.log(12345678);
     //   this.getAliyunMsg();
     // },
+    // 获得银行卡的信息
+    async getBankcardData() {
+      await this.$axios.post("/MartianOrePool/selectReceiptBank").then(res => {
+        this.bankcardDate = res.data.data;
+      });
+    },
     // 获取阿里云数据
     async getClientData() {
       await this.$axios.post("/Autnentication/sts").then(res => {
@@ -564,6 +578,9 @@ export default {
       color: #000000;
       opacity: 0.61;
     }
+    .bankcardClass {
+      border-top: 1px solid #ccc;
+    }
     .titleContent {
       font-size: 28px;
       font-weight: 500;
@@ -726,6 +743,7 @@ export default {
         color: #000000;
         opacity: 0.61;
       }
+
       .titleContent {
         font-size: 14px;
         line-height: 30px;
