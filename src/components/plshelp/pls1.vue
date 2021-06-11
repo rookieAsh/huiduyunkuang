@@ -31,7 +31,7 @@ export default {
 @media screen and (max-width: 767px) {
   .pls1 {
     overflow: hidden;
-    padding: 10px;
+    padding: 30px 10px 0 10px;
     .plsbox {
       color: #000;
       width: 100%;

@@ -55,47 +55,47 @@ export default {
         {
           url: "https://mclouds.huoxing24.com/build/purchas-131c1242.png",
           title: "矿机采购",
-          content: "权威厂家，专业矿机订购",
+          content: "权威厂家，专业矿机订购"
         },
         {
           url: "https://mclouds.huoxing24.com/build/shopingcar-0b3642b4.png",
           title: "运输部署",
-          content: "确保矿机安全、快速的运到场地、并及时上架开始挖矿",
+          content: "确保矿机安全、快速的运到场地、并及时上架开始挖矿"
         },
         {
           url: "https://mclouds.huoxing24.com/build/tool-ac57a6d9.png",
           title: "运行维护",
-          content: "24小时轮班监控，保证机器安全，稳定运行",
+          content: "24小时轮班监控，保证机器安全，稳定运行"
         },
         {
           url: "https://mclouds.huoxing24.com/build/clean-f08ac677.png",
           title: "机器清理",
-          content: "定期进行机器清灰保养，延长使用寿命",
+          content: "定期进行机器清灰保养，延长使用寿命"
         },
         {
           url: "https://mclouds.huoxing24.com/build/electriction-cc0fee02.png",
           title: "电费缴纳",
-          content: "一键电费代缴，快捷又省心",
+          content: "一键电费代缴，快捷又省心"
         },
         {
           url: "https://mclouds.huoxing24.com/build/barter-02c3502c.png",
           title: "一键换币",
-          content: "随时随地兑换所需币种",
+          content: "随时随地兑换所需币种"
         },
         {
           url: "https://mclouds.huoxing24.com/build/fault-e4d02307.png",
           title: "故障代发",
-          content: "运行异常，及时检修，全权安排发货返修",
+          content: "运行异常，及时检修，全权安排发货返修"
         },
         {
           url: "https://mclouds.huoxing24.com/build/connects-6ae108ac.png",
           title: "专项客服",
-          content: "提供一对一客服服务，随时为您答惑",
-        },
+          content: "提供一对一客服服务，随时为您答惑"
+        }
       ],
-      imgurl: "https://mclouds.huoxing24.com/build/organl-e953533f.png",
+      imgurl: "https://mclouds.huoxing24.com/build/organl-e953533f.png"
     };
-  },
+  }
 };
 </script>
 
@@ -185,9 +185,9 @@ export default {
       }
     }
   }
-  .box2{
-      text-align: center;
-      overflow: hidden;
+  .box2 {
+    text-align: center;
+    overflow: hidden;
     .child1 {
       color: #000;
       font-weight: 600;
@@ -195,9 +195,116 @@ export default {
       text-align: center;
       margin-top: 40px;
     }
-    .child2{
-        margin: 50px 0;
-        width: 1200px;
+    .child2 {
+      margin: 50px 0;
+      width: 1200px;
+    }
+  }
+}
+@media screen and (max-width: 767px) {
+  .servicePage {
+    overflow: hidden;
+    .box {
+      width: 100%;
+      height: 260px;
+      margin-top: 60px;
+      background: rgba(231, 140, 51, 0.08);
+      overflow: hidden;
+      .child1 {
+        font-size: 16px;
+        font-weight: 700;
+        color: #35384a;
+        text-align: center;
+        margin-top: 30px;
+      }
+      .child2 {
+        width: 90%;
+        display: block;
+        margin: 25px auto 0;
+      }
+      .child3 {
+        width: 100%;
+        margin: 15px auto 0;
+        display: flex;
+        justify-content: space-between;
+        text-align: center;
+        .son {
+          width: 180px;
+          .p1 {
+            font-size: 14px;
+            color: #000;
+            font-weight: 600;
+          }
+          .p2 {
+            width: 100px;
+            text-align: center;
+            margin: 0 auto;
+            font-size: 12px;
+            // font-weight: 500;
+            color: #000;
+          }
+        }
+      }
+    }
+    .box1 {
+      margin: 0 auto;
+      background: #28325c;
+      color: #fff;
+      overflow: hidden;
+      .child1 {
+        font-size: 16px;
+        text-align: center;
+        margin-top: 20px;
+      }
+      .child2 {
+        width: 100%;
+        margin: 0 auto;
+        display: flex;
+        // flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        overflow: hidden;
+        margin-top: 30px;
+        .son {
+          width: 180px;
+          height: 115px;
+          text-align: center;
+          margin: 0px 0;
+          .t1 {
+            width: 30px;
+            height: 30px;
+          }
+          .t2 {
+            overflow: hidden;
+            border-right: 0.5px solid hsla(0, 0%, 100%, 0.1);
+            .tt1 {
+              font-size: 13px;
+              margin-top: 0px;
+            }
+            .tt2 {
+              font-size: 12px;
+              box-sizing: border-box;
+              padding: 0 20px;
+              margin-top: 5px;
+            }
+          }
+        }
+      }
+    }
+    .box2 {
+      text-align: center;
+      overflow: hidden;
+      .child1 {
+        color: #000;
+        font-size: 16px;
+        text-align: center;
+        margin-top: 25px;
+      }
+      .child2 {
+        margin: 30px 0;
+        width: 95%;
+      }
     }
   }
 }

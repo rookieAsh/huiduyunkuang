@@ -16,7 +16,7 @@
                   <span>后结束</span>
                 </div> -->
         <div class="pic">
-          <img src="../../assets/imgs/pic.png" alt="" />
+          <img :src="picImage" alt="" />
         </div>
       </div>
       <div class="right">
@@ -276,7 +276,8 @@ export default {
       quantity: 1,
       time: "",
       flag: false,
-      agreementVisible: false
+      agreementVisible: false,
+      picImage: ""
     };
   },
   created() {
@@ -309,6 +310,9 @@ export default {
       param.append("productId", id);
       this.$axios.post("/MartianOrePool/selectMillAllById", param).then(res => {
         let result = res.data;
+        let obj = res.data.data[0];
+        this.picImage = obj.image;
+        console.log(" this.picImage", this.picImage);
         var nowTime = Date.parse(new Date()) / 1000;
         this.time = result.data[0].parseTime - nowTime;
         if (this.time <= 0) {

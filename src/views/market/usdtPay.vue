@@ -88,7 +88,7 @@
         </div>
       </div>
       <div class="rightContent">
-        <img src="../../assets/imgs/pic.png" alt="" />
+        <img :src="picImage" alt="" />
       </div>
     </div>
     <div>
@@ -197,7 +197,8 @@ export default {
       res: {}, // 存签名信息
       imageUrl: "",
       fileMsg: "",
-      bankcardDate: []
+      bankcardDate: [],
+      picImage: "" //图片地址
     };
   },
   created() {
@@ -208,6 +209,7 @@ export default {
     this.amounts = this.$route.query.cost;
     // this.getWellatAddress();
     this.getBankcardData();
+    this.getDetail();
   },
 
   watch: {
@@ -221,7 +223,16 @@ export default {
     //   console.log(12345678);
     //   this.getAliyunMsg();
     // },
-
+    // 获得矿机图片
+    getDetail() {
+      let param = new URLSearchParams();
+      param.append("productId", this.productId);
+      this.$axios.post("/MartianOrePool/selectMillAllById", param).then(res => {
+        let obj = res.data.data[0];
+        this.picImage = obj.image;
+        console.log(" this.picImage", this.picImage);
+      });
+    },
     // 获得银行卡的信息
     async getBankcardData() {
       await this.$axios.post("/MartianOrePool/selectReceiptBank").then(res => {

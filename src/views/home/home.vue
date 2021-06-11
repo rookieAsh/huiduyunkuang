@@ -17,7 +17,7 @@
         <div class="swiper margin30">
           <el-carousel
             :interval="3000"
-            :height="isCollapse ? '110px' : '300px'"
+            :height="isCollapse ? '110px' : '400px'"
           >
             <el-carousel-item v-for="item in lunList" :key="item.id">
               <a :href="item.jump_site">
@@ -545,7 +545,6 @@ export default {
       });
     },
     handleHintCon(id) {
-      console.log(213213123, id);
       this.$router.push({
         path: "hintContent",
         query: {
@@ -573,6 +572,7 @@ export default {
 //  banner部分
 .banner {
   width: 100%;
+  margin: 20px 0 0 0;
   background: url("../../assets/imgs/home_banner.png") no-repeat;
   background-size: cover;
   .banner_inner {
@@ -1537,8 +1537,8 @@ export default {
           right: 25px;
           top: 10px;
           img {
-            width: 100%;
-            height: 100%;
+            width: 35px;
+            height: 20px;
           }
         }
       }

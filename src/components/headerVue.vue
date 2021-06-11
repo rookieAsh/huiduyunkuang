@@ -1,11 +1,11 @@
 <template>
   <div class="headerPage fixed" :class="{ topScrool: top > 60 }">
-    <div class="header margin0 flex-between align-center">
+    <div class="header margin0 flex-between align-center headerTab">
       <div class="header_left flex align-center">
         <div class="logo" @click="navigate('../home')">
           <img src="../assets/imgs/logo.png" alt="" />
         </div>
-        <div class="tabs flex align-center">
+        <div class="tabs flex align-center dropDown">
           <div
             class="tab"
             :class="{
@@ -48,6 +48,50 @@
           >
             闪兑
           </div>
+          <div>
+            <el-dropdown>
+              <div
+                class="tab download text-center el-dropdown-link"
+                :class="{
+                  current:
+                    $route.path.indexOf('activity') > 0 ||
+                    $route.path.indexOf('service') > 0
+                }"
+              >
+                市场活动
+              </div>
+              <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item @click.native="navigate('./activity')"
+                  >市场合伙人</el-dropdown-item
+                >
+                <el-dropdown-item @click.native="navigate('./service')"
+                  >大客户定制</el-dropdown-item
+                >
+              </el-dropdown-menu>
+            </el-dropdown>
+          </div>
+          <div>
+            <el-dropdown>
+              <div
+                class="tab download text-center el-dropdown-link"
+                :class="{
+                  current:
+                    $route.path.indexOf('ashInstitute') > 0 ||
+                    $route.path.indexOf('help') > 0
+                }"
+              >
+                灰度研究院
+              </div>
+              <el-dropdown-menu slot="dropdown" class="text-center">
+                <el-dropdown-item @click.native="navigate('./ashInstitute')"
+                  >灰度研究院</el-dropdown-item
+                >
+                <el-dropdown-item @click.native="navigate('./help')"
+                  >挖矿指南</el-dropdown-item
+                >
+              </el-dropdown-menu>
+            </el-dropdown>
+          </div>
           <!-- <div
             class="tab"
             :class="{ current: $route.path.indexOf('service') > 0 }"
@@ -55,16 +99,17 @@
           >
             大客户服务
           </div> -->
-          <div
+          <!-- <div
             class="tab"
             :class="{ current: $route.path.indexOf('help') > 0 }"
             @click="navigate('../help')"
           >
             <span v-if="token">指南</span>
             <span v-else>挖矿小指南</span>
-          </div>
+          </div> -->
         </div>
       </div>
+
       <div class="header_right flex align-center dropDown">
         <el-dropdown v-if="token">
           <img
@@ -138,6 +183,90 @@
       <div class="dropDownPhone">
         <div class="usersIcon">
           <i class="el-icon-user" @click="userClick"></i>
+        </div>
+      </div>
+    </div>
+    <div class="headerTabIphone margin0 flex-between align-center">
+      <div class="tabs flex align-center dropDown">
+        <div
+          class="tab"
+          :class="{
+            current: $route.path.indexOf('home') > 0 || $route.path == '/'
+          }"
+          @click="navigate('../home')"
+        >
+          首页
+        </div>
+        <div
+          class="tab"
+          :class="{
+            current:
+              $route.path.indexOf('market') > 0 ||
+              $route.path.indexOf('order') > 0 ||
+              $route.path.indexOf('usdtPay') > 0
+          }"
+          @click="navigate1('../market', 0)"
+        >
+          矿机
+        </div>
+        <div
+          class="tab"
+          :class="{
+            current:
+              $route.path.indexOf('power') > 0 ||
+              $route.path.indexOf('payMsg') > 0
+          }"
+          @click="navigate('../power')"
+        >
+          云算力
+        </div>
+        <div
+          class="tab"
+          :class="{
+            current: $route.path.indexOf('transfer') > 0
+          }"
+          @click="navigate('../transfer')"
+          v-if="token"
+        >
+          闪兑
+        </div>
+        <div
+          :class="{
+            current: $route.path.indexOf('activity') > 0
+          }"
+        >
+          <el-dropdown>
+            <span class="tab">
+              市场活动
+            </span>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item @click.native="navigate('./activity')"
+                >市场合伙人</el-dropdown-item
+              >
+              <el-dropdown-item @click.native="navigate('./service')"
+                >大客户定制</el-dropdown-item
+              >
+            </el-dropdown-menu>
+          </el-dropdown>
+        </div>
+        <div
+          :class="{
+            current: $route.path.indexOf('ashInstitute') > 0
+          }"
+        >
+          <el-dropdown>
+            <div class="tab download text-center el-dropdown-link">
+              灰度研究院
+            </div>
+            <el-dropdown-menu slot="dropdown" class="text-center">
+              <el-dropdown-item @click.native="navigate('./ashInstitute')"
+                >灰度研究院</el-dropdown-item
+              >
+              <el-dropdown-item @click.native="navigate('./help')"
+                >挖矿指南</el-dropdown-item
+              >
+            </el-dropdown-menu>
+          </el-dropdown>
         </div>
       </div>
     </div>
@@ -355,12 +484,15 @@ export default {
   .dropDownPhone {
     display: none;
   }
+  .headerTabIphone {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 767px) {
   .headerPage {
     width: 100%;
-    height: 60px;
+    height: 80px;
     z-index: 99;
     top: 0;
     left: 0;
@@ -396,6 +528,9 @@ export default {
             font-weight: 700;
           }
         }
+        .headerTab {
+          display: none;
+        }
       }
       .dropDown {
         display: none;
@@ -406,7 +541,7 @@ export default {
           width: 28px;
           height: 28px;
           line-height: 28px;
-          border: 1px solid rgb(167, 164, 164);
+          border: 1px solid #8a75f1;
           border-radius: 50%;
           // box-shadow: 0 0 5px 1px #ccc;
           text-align: center;
@@ -457,6 +592,33 @@ export default {
         }
       }
     }
+    .headerTabIphone {
+      margin: -10px 0 0 0;
+      .logo {
+        width: 80px;
+        height: 20px;
+        img {
+          height: 100%;
+        }
+        cursor: pointer;
+      }
+      .tabs {
+        margin-left: 0px;
+        .tab {
+          margin-right: 15px;
+          font-size: 14px;
+          color: rgba(255, 255, 255, 0.5);
+          cursor: pointer;
+        }
+        .tab:hover {
+          color: #fff;
+        }
+        .current {
+          color: #fff;
+          font-weight: 700;
+        }
+      }
+    }
   }
   .el-drawer__container {
     width: 400px;
@@ -466,7 +628,7 @@ export default {
       height: 40px;
       margin: 20px auto 5px;
       line-height: 40px;
-      border: 1px solid #ccc;
+      border: 1px solid #facea7;
       border-radius: 50%;
       text-align: center;
       .el-icon-user {
@@ -519,6 +681,7 @@ export default {
       }
       div:hover {
         cursor: pointer;
+        background: rgb(204, 150, 103);
       }
     }
     .appDownPic {

@@ -747,6 +747,7 @@ export default {
         margin: 10px 0 0 40px;
         .gfwx {
           text-align: center;
+          margin: 0px 0 0 0;
         }
         img {
           width: 100%;
@@ -1077,8 +1078,8 @@ export default {
           text-align: center;
           .gfwx {
             width: 100%;
-            font-size: 12px;
-            // margin: 10px 0;
+            font-size: 10px;
+            margin: 0px 0 0 0;
           }
           img {
             width: 50px;

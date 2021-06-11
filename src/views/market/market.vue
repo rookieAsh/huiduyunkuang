@@ -24,7 +24,7 @@
         @click="navigate('./marketDetail', item.productId)"
       >
         <div class="pic">
-          <img src="../../assets/imgs/pic.png" alt="" />
+          <img :src="item.image" alt="" />
         </div>
         <div class="subT" v-show="item.parseTime - nowTime >= 0">
           现货挖矿
@@ -56,7 +56,10 @@ export default {
       nowTime: "",
       endTime: "",
       flag: false,
-      id: ""
+      id: "",
+      prifectureList1: "", //矿机图片
+      prifectureList2: "", //矿机图片
+      prifectureList3: "" //矿机图片
     };
   },
   created() {
@@ -116,6 +119,7 @@ export default {
         if (result.state == 0) {
           this.list = result.data;
           console.log(this.list);
+          // this.prifectureList1 = result.data.
         }
         this.loading = false;
       });
@@ -140,7 +144,7 @@ export default {
       param.append("typeMill", 3);
       this.$axios.post("/MartianOrePool/selectMillAll", param).then(res => {
         let result = res.data;
-        console.log("result", result);
+        console.log("result111111", result);
         if (result.state == 0) {
           this.list = result.data;
         }
@@ -185,7 +189,7 @@ export default {
 
 .container {
   width: 1200px;
-  margin: 100px auto 0;
+  margin: 0px auto 0;
   display: flex;
   flex-wrap: wrap;
   padding-top: 180px;
@@ -212,8 +216,8 @@ export default {
       transform: translateX(-50%);
       top: -88px;
       img {
-        width: 100%;
-        height: 100%;
+        width: 90%;
+        height: 90%;
       }
     }
     .subT {

@@ -261,5 +261,26 @@ export default new Router({
         return import('../views/home/hintContent.vue')
       }
     },
+    {
+      path: '/hintContent',
+      name: 'hintContent',
+      component: function () {
+        return import('../views/home/hintContent.vue')
+      }
+    },
+    {
+      path: '/ashInstitute',
+      name: 'ashInstitute',
+      component: function () {
+        return import('../views/ash/ashInstitute.vue')
+      }
+    },
+    {
+      path: '/activity',
+      name: 'activity',
+      component: function () {
+        return import('../views/activity/activity.vue')
+      }
+    },
   ]
 })
