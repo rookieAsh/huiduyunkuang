@@ -26,6 +26,7 @@ import axios from 'axios'
 
 
 axios.defaults.baseURL = 'https://www.graycloud.top'
+// axios.defaults.baseURL = 'https://192.168.2.8'
 // axios.defaults.baseURL = '/api'
 // axios.defaults.baseURL = 'https://www.grayclouds.cn'
 axios.interceptors.request.use(config => {

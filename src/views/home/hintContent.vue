@@ -4,7 +4,7 @@
     <div class="content">
       <div class="content1">{{ hintList.subtitle }}</div>
       <div class="content2">{{ hintList.creatTime }}</div>
-      <div class="content3">{{ hintList.describe }}</div>
+      <div class="content3" v-html="hintList.describe"></div>
     </div>
   </div>
 </template>

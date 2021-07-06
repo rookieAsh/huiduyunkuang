@@ -259,7 +259,6 @@ export default {
   methods: {
     // 协议弹框
     handleAgreement() {
-      console.log(321321312);
       this.AgreementVisible = true;
     },
     getData() {

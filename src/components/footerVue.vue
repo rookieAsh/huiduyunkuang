@@ -139,7 +139,7 @@
         <div class="td" @click="handleUser">用户条款</div>
         <div class="td" @click="handlePrivacy">隐私协议</div>
         <div class="td" @click="handleLaw">法律声明</div>
-        <div class="td" @click="handleAbout">关于我们</div>
+        <!-- <div class="td" @click="handleAbout">关于我们</div> -->
       </div>
     </div>
 
@@ -147,6 +147,12 @@
     <div class="footContainer margin0  flex footerHidePhone">
       <div class="line">
         <div class="th">关注我们</div>
+        <div class="td" @click="navigate('/introduction')">
+          <a href="#">公司简介</a>
+        </div>
+        <div class="td" @click="navigate('/dynamic')">
+          <a href="#">公司动态</a>
+        </div>
         <div class="td">
           <a
             target="_blank"

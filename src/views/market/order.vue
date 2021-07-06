@@ -80,16 +80,18 @@
       </div>
     </div>
 
-    <div
-      class="coupon text-center"
-      v-if="$route.query.name && $route.query.newAward"
-      @click="navigate('./coupon')"
-    >
-      {{ name }}￥{{ newAward }}
+    <div v-if="this.coin == 'XCH'">
+      <div
+        class="coupon text-center"
+        v-if="$route.query.name && $route.query.newAward"
+        @click="navigate('./coupon')"
+      >
+        {{ name }}￥{{ newAward }}
+      </div>
+      <div class="coupon text-center" @click="navigate('./coupon')" v-else>
+        添加优惠券
+      </div>
     </div>
-    <!-- <div class="coupon text-center" @click="navigate('./coupon')" v-else>
-      添加优惠券
-    </div> -->
     <div class="btn" @click="navigate('./usdtPay')">支付</div>
   </div>
 </template>
@@ -107,7 +109,8 @@ export default {
       active: 1,
       name: "",
       newAward: "",
-      totle: ""
+      totle: "",
+      coin: ""
     };
   },
   watch: {
@@ -127,6 +130,7 @@ export default {
   created() {
     this.quantity = this.$route.query.quantity;
     this.id = this.$route.query.id;
+    this.coin = this.$route.query.coin;
     if (this.$route.query.name) {
       this.name = this.$route.query.name;
     }
@@ -144,7 +148,8 @@ export default {
           quantity: this.quantity,
           id: this.id,
           mallAddress: this.orderObj.addressKey,
-          totle: this.orderObj.mill_cost_sum
+          totle: this.orderObj.mill_cost_sum,
+          coin: this.coin
         }
       });
     },
@@ -172,13 +177,13 @@ export default {
         console.log(result, "resultresultresultresult");
         if (result.state == 0) {
           this.orderObj = result.data[0];
-          console.log("this.orderObj", this.orderObj);
           this.millCost = Number(this.orderObj.mill_cost_sum);
           this.cost =
             Number(this.orderObj.mill_cost_sum) +
             Number(this.orderObj.cose) +
             Number(this.orderObj.decimal) +
-            Number(this.orderObj.carriage);
+            Number(this.orderObj.carriage) -
+            Number(this.newAward);
         }
       });
     }

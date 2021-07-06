@@ -59,6 +59,13 @@ export default new Router({
       }
     },
     {
+      path: '/swMarketDetail',
+      name: 'swMarketDetail',
+      component: function () {
+        return import('../views/market/swMarketDetail.vue')
+      }
+    },
+    {
       path: '/tips',
       name: 'tips',
       component: function () {
@@ -70,6 +77,13 @@ export default new Router({
       name: 'order',
       component: function () {
         return import('../views/market/order.vue')
+      }
+    },
+    {
+      path: '/swOrder',
+      name: 'swOrder',
+      component: function () {
+        return import('../views/market/swOrder.vue')
       }
     },
     {
@@ -220,6 +234,13 @@ export default new Router({
       }
     },
     {
+      path: '/swUsdtPay',
+      name: 'swUsdtPay',
+      component: function () {
+        return import('../views/market/swUsdtPay.vue')
+      }
+    },
+    {
       path: '/supportHelp',
       name: 'supportHelp',
       component: function () {
@@ -280,6 +301,30 @@ export default new Router({
       name: 'activity',
       component: function () {
         return import('../views/activity/activity.vue')
+      }
+    },
+    // 动态
+    {
+      path: '/introduction',
+      name: 'introduction',
+      component: function () {
+        return import('../views/aboutUs/introduction.vue')
+      }
+    },
+    // 动态内容
+    {
+      path: '/dynamicContent',
+      name: 'dynamicContent',
+      component: function () {
+        return import('../views/aboutUs/dynamicContent.vue')
+      }
+    },
+    // 简介
+    {
+      path: '/dynamic',
+      name: 'dynamic',
+      component: function () {
+        return import('../views/aboutUs/dynamic.vue')
       }
     },
   ]

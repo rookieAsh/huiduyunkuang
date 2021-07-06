@@ -3,20 +3,22 @@
     <div class="k60" style="background: #815ff5"></div>
     <div class="tabs flex-between margin60">
       <div class="tab" :class="{ active: active == 0 }" @click="change(0)">
-        BTC专区
+        SWARM专区
       </div>
       <div class="tab" :class="{ active: active == 1 }" @click="change(1)">
-        ETH专区
+        BTC专区
       </div>
       <div class="tab" :class="{ active: active == 2 }" @click="change(2)">
+        ETH专区
+      </div>
+      <div class="tab" :class="{ active: active == 3 }" @click="change(3)">
         CHIA专区
       </div>
-      <!-- <div class="tab" :class="{active:active===2}" @click="change(2)">FIL专区</div> -->
     </div>
     <div class="showLoading text-center fixed-auto" v-if="loading">
       <span class="el-icon-loading" style="font-size:50px;color:#cecece"></span>
     </div>
-    <div class="container">
+    <div class="container" v-if="active == 1 || active == 2 || active == 3">
       <div
         class="item"
         v-for="(item, index) in list"
@@ -41,6 +43,25 @@
         </div>
         <div class="price text-center">￥{{ item.activity_price }}</div>
         <div class="del">￥{{ item.mill_cost }}</div>
+      </div>
+    </div>
+    <div class="container" v-else>
+      <div
+        class="item"
+        v-for="(item, index) in list"
+        :key="index"
+        @click="navigate('./swMarketDetail', item.cmcId)"
+      >
+        <div class="pic">
+          <img :src="item.logo" alt="" />
+        </div>
+        <div class="subT">
+          BZZ现货挖矿
+        </div>
+        <div class="name text-center">{{ item.name }}</div>
+        <div class="product text-center">{{ item.cmcName }}<span></span></div>
+        <div class="price text-center">￥{{ item.unitPrice }}</div>
+        <div class="text-center">第{{ item.periods }}期</div>
       </div>
     </div>
   </div>
@@ -79,9 +100,12 @@ export default {
   methods: {
     change(index) {
       this.active = index;
+      // console.log(this.active, 12121212);
       if (this.active == 0) {
-        this.getBtcList();
+        this.getSwarmList();
       } else if (this.active == 1) {
+        this.getBtcList();
+      } else if (this.active == 2) {
         this.getEthList();
       } else {
         this.getChiaList();
@@ -150,6 +174,20 @@ export default {
         }
         this.loading = false;
       });
+    },
+    getSwarmList() {
+      this.loading = true;
+      let param = new URLSearchParams();
+      param.append("goodsType", 9);
+      param.append("typeMill", 3);
+      this.$axios.post("/MartianOrePool/getAllSwarm", param).then(res => {
+        let result = res.data;
+        console.log("resultSwarm", result);
+        if (result.state == 0) {
+          this.list = result.data.swarmGoodsList;
+        }
+        this.loading = false;
+      });
     }
   },
   watch: {
@@ -174,7 +212,7 @@ export default {
   border-radius: 10px;
   .tab {
     width: 50%;
-    font-size: 36px;
+    font-size: 30px;
     font-weight: 600;
     color: #815ff5;
     text-align: center;
@@ -241,7 +279,7 @@ export default {
       color: #000;
     }
     .product {
-      font-size: 20px;
+      font-size: 28px;
       // color: #ffffff;
       color: #000;
       padding-top: 10px;
@@ -272,16 +310,16 @@ export default {
 @media screen and (max-width: 767px) {
   .tabs {
     width: 90%;
-    height: 70px;
+    height: 50px;
     box-shadow: 0px 9px 9px 1px rgba(6, 4, 3, 0.07);
     border-radius: 5px;
     .tab {
       width: 50%;
-      font-size: 18px;
+      font-size: 12px;
       font-weight: 600;
       color: #815ff5;
       text-align: center;
-      line-height: 70px;
+      line-height: 50px;
       cursor: pointer;
     }
     .active {

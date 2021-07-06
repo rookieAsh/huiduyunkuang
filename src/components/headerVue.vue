@@ -92,6 +92,29 @@
               </el-dropdown-menu>
             </el-dropdown>
           </div>
+
+          <div>
+            <el-dropdown>
+              <div
+                class="tab download text-center el-dropdown-link"
+                :class="{
+                  current:
+                    $route.path.indexOf('introduction') > 0 ||
+                    $route.path.indexOf('dynamic') > 0
+                }"
+              >
+                关于我们
+              </div>
+              <el-dropdown-menu slot="dropdown" class="text-center">
+                <el-dropdown-item @click.native="navigate('./introduction')"
+                  >公司简介</el-dropdown-item
+                >
+                <el-dropdown-item @click.native="navigate('./dynamic')"
+                  >公司动态</el-dropdown-item
+                >
+              </el-dropdown-menu>
+            </el-dropdown>
+          </div>
           <!-- <div
             class="tab"
             :class="{ current: $route.path.indexOf('service') > 0 }"
@@ -186,6 +209,7 @@
         </div>
       </div>
     </div>
+
     <div class="headerTabIphone margin0 flex-between align-center">
       <div class="tabs flex align-center dropDown">
         <div
@@ -203,7 +227,10 @@
             current:
               $route.path.indexOf('market') > 0 ||
               $route.path.indexOf('order') > 0 ||
-              $route.path.indexOf('usdtPay') > 0
+              $route.path.indexOf('usdtPay') > 0 ||
+              $route.path.indexOf('smOrder') > 0 ||
+              $route.path.indexOf('smUsdtPay') > 0 ||
+              $route.path.indexOf('swMarketDetail') > 0
           }"
           @click="navigate1('../market', 0)"
         >
@@ -392,7 +419,7 @@ export default {
 };
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .headerPage {
   width: 100%;
   height: 60px;

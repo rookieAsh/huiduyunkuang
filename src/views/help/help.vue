@@ -48,7 +48,6 @@ export default {
         console.log(res.data.data);
         res.data.data.map(item => {
           this.imglist.push(item.url);
-          console.log(this.imglist);
           this.titlelist.push(item.content);
           this.htmllist.push(item.jump_site);
         });
@@ -57,7 +56,7 @@ export default {
     gotoword(item) {
       var htmll = item;
       this.$router.push({
-        path: "/pls1",
+        path: "/dynamicContent",
         query: {
           title: htmll
         }
@@ -70,10 +69,10 @@ export default {
 <style lang="less" scoped>
 .helpPage {
   // height: 1100px;
-  height: 100%;
+  // height: 100%;
   .box {
     width: 1200px;
-    padding-bottom: 100px;
+    // padding-bottom: 100px;
     margin-top: 40px;
     .item {
       width: 1200px;
@@ -111,10 +110,10 @@ export default {
 }
 @media screen and (max-width: 767px) {
   .helpPage {
-    height: 100%;
+    // height: 100%;
     .box {
       width: 96%;
-      padding: 0 10px 20px 10px;
+      padding: 0 10px 0px 10px;
       .item {
         width: 100%;
         height: 100px;

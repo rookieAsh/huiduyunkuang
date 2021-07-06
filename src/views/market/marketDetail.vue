@@ -24,9 +24,8 @@
         <div class="th flex">
           <div class="th_li">矿机算力</div>
           <div class="th_li">矿机功耗</div>
-          <div class="th_li" v-if="detailObj.cmc_subarea == 'CHIA'">托管费</div>
+          <div class="th_li" v-if="detailObj.cmc_subarea == 'XCH'">托管费</div>
           <div class="th_li" v-else>电费</div>
-          <!-- <div class="th_li">狂吃费率</div> -->
         </div>
         <div class="td flex">
           <div class="td_li" v-if="detailObj.cmc_subarea == 'BTC'">
@@ -35,26 +34,37 @@
           <div class="td_li" v-if="detailObj.cmc_subarea == 'ETH'">
             {{ detailObj.hashrate }}MH/S
           </div>
-          <div class="td_li" v-if="detailObj.cmc_subarea == 'CHIA'">
+          <div class="td_li" v-if="detailObj.cmc_subarea == 'XCH'">
             {{ detailObj.hashrate }}TH/S
           </div>
           <div class="td_li">{{ detailObj.power_diss }}KW/台</div>
-          <div class="td_li" v-if="detailObj.cmc_subarea == 'CHIA'">
+          <div class="td_li" v-if="detailObj.cmc_subarea == 'XCH'">
             {{ detailObj.electric_charge }}元/T/月
           </div>
           <div class="td_li" v-else>{{ detailObj.electric_charge }}元/KW*h</div>
         </div>
         <div class="th flex" style="margin-top:30px">
-          <div class="th_li">预计日产币</div>
+          <div class="th_li" v-if="detailObj.cmc_subarea != 'XCH'">
+            预计日产币
+          </div>
           <div class="th_li">管理费</div>
-          <div class="th_li">回本天数</div>
+
+          <div class="th_li" v-if="detailObj.cmc_subarea != 'XCH'">
+            回本天数
+          </div>
+          <div class="th_li" v-else>
+            停售时间
+          </div>
         </div>
         <div class="td flex">
-          <div class="td_li">
+          <div class="td_li" v-if="detailObj.cmc_subarea != 'XCH'">
             {{ detailObj.earnings }}{{ detailObj.cmc_subarea }}/天
           </div>
           <div class="td_li">{{ detailObj.administrative_fee }}%</div>
-          <div class="td_li">{{ detailObj.Back_tothe }}天</div>
+          <div class="td_li" v-if="detailObj.cmc_subarea != 'XCH'">
+            {{ detailObj.Back_tothe }}天
+          </div>
+          <div class="td_li" v-else>{{ detailObj.end_sale_time }}</div>
         </div>
         <div class="th">
           总价 ￥{{ detailObj.activity_price * quantity }} （不包含电费）
@@ -73,7 +83,6 @@
         </div>
 
         <el-checkbox v-model="checked">我已阅读并同意</el-checkbox>
-        <!-- <span class="span" @click="navigate('./tips')">矿机租赁/购买协议</span> -->
         <span class="span" @click="handleAgreement">矿机租赁/购买协议</span>
         <div class="btn1" v-if="flag == true">已结束</div>
         <div class="btn" @click="navigate('./order')" v-else>购买</div>
@@ -277,7 +286,8 @@ export default {
       time: "",
       flag: false,
       agreementVisible: false,
-      picImage: ""
+      picImage: "",
+      coin: ""
     };
   },
   created() {
@@ -301,7 +311,8 @@ export default {
         path: path,
         query: {
           quantity: this.quantity,
-          id: this.id
+          id: this.id,
+          coin: this.coin
         }
       });
     },
@@ -311,8 +322,8 @@ export default {
       this.$axios.post("/MartianOrePool/selectMillAllById", param).then(res => {
         let result = res.data;
         let obj = res.data.data[0];
+        this.coin = obj.cmc_subarea;
         this.picImage = obj.image;
-        console.log(" this.picImage", this.picImage);
         var nowTime = Date.parse(new Date()) / 1000;
         this.time = result.data[0].parseTime - nowTime;
         if (this.time <= 0) {
